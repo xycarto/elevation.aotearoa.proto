@@ -2,7 +2,9 @@
 function insert() { 
     $('body').append('<div class="top"><a href="index.html">Elevation Aotearoa</a></div>');
     $('body').append('<div class="menu"></div>'); 
-    $('body').append('<div class="left">Left</div>'); 
+    $('body').append('<div class="left"></div>'); 
+        $('.left').append('<div class="left-title">left title</div>'); 
+        $('.left').append('<div class="left-data">left data</div>');
     $('body').append('<div id="map"></div>'); 
     $('.menu').append('<div class="menuitem"><a href="discover.html">Discover Data</a></div>');
     $('.menu').append('<div class="menuitem"><a href="stories.html">Our Stories</a></div>');
