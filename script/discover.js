@@ -10,10 +10,9 @@ function insert() {
     $('.menu').append('<div class="menuitem"><a href="connect.html">Connect</a></div>');
     $('.menu').append('<div class="menuitem"><a href="about.html">About</a></div>');
 
-    //Begin vector tiles
+//Begin vector tiles
 
 //Vector Tiles: Available
-
 //layer url
 var urlVectorAvailable = "https://xycarto.github.io/vectortile-repo/available_now/{z}/{x}/{y}.pbf";
 
@@ -38,7 +37,7 @@ var stylesStartAvailable = {
     }}
 };
 
-//add functionality to vector layer
+//add functionality to vector layer Available
 var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvailable)
 .on('click', function(e) {
 var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
