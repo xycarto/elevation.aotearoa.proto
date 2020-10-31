@@ -41,6 +41,16 @@ function insert() {
         return false;
     });
 
+    $(".landbox2inner-left").click(function(){
+        window.location = $(this).attr("data-href");
+        return false;
+    });
+
+    $(".landbox2inner-middle").click(function(){
+        window.location = $(this).attr("data-href");
+        return false;
+    });
+
 
 };
 
