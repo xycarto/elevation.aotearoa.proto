@@ -3,7 +3,7 @@ function insert() {
     $('body').append('<div class="top"><a href="index.html">Elevation Aotearoa</a></div>');
     $('body').append('<div class="menu"></div>'); 
     $('body').append('<div class="left"></div>'); 
-        $('.left').append('<div class="left-title">left title</div>'); 
+        $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
         $('.left').append('<div class="left-data">left data</div>');
     $('body').append('<div id="map"></div>'); 
     $('.menu').append('<div class="menuitem"><a href="discover.html">Discover Data</a></div>');
@@ -108,6 +108,37 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
         }); 
 
     var control = L.control.layers(basemaps, overlays, settingsControl).addTo(map);
+
+    map.on('overlayadd', function (e) {
+        if (e.name === 'Available Now') {
+          $(".left-title").text("Available Data")
+          $(".left-data").empty()
+        }
+        else if (e.name === 'Coming Soon') {
+          $(".left-title").text("Coming Soon")
+          $(".left-data").empty()
+        }
+        else if (e.name === 'In Progress') {
+          $(".left-title").text("In Progress")
+          $(".left-data").empty()
+        }
+      });
+      
+      map.on('overlayremove', function (e) {
+        if (e.name === 'Available Now') {
+          $(".left-title").text("Please Choose a Layer from the Layer Selector (Top Right of Map)")
+          $(".left-data").empty()
+        }
+        else if (e.name === 'Coming Soon') {
+          $(".left-title").empty()
+          $(".left-data").empty()
+        }
+        else if (e.name === 'In Progress') {
+          $(".left-title").empty()
+          $(".left-data").empty()
+        }
+      });
+
 
     map.addLayer(map);
 
