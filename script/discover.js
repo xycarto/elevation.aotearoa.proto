@@ -112,13 +112,13 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
     map.on('overlayadd', function (e) {
         if (e.name === 'Available Now') {
           $(".left-title").text("Available Data")
-          $.getJSON("metadata.json", { get_param: 'value' }, function(data) {
+          $.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
             var parsed = JSON.parse(data.json)
             var list = parsed.tilestats.layers[0].attributes[15].values
             $.each(list, function(i, item){
               var name = '<div>' + item + '</div>';
-              $(".left-data").append(name);})
-            console.log(list)
+              $(".left-data").append(name);
+            })
               //$.each(JSON.parse(data.json), function(i, items){
                 //console.log(items.layers)
                 //});
