@@ -112,6 +112,11 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
     map.on('overlayadd', function (e) {
         if (e.name === 'Available Now') {
           $(".left-title").text("Available Data")
+          $.getJSON("metadata.json", { get_param: 'value' }, function(data) {
+              $.each(JSON.parse(data.json), function(i, items){console.log(items.layers)
+                });
+                //$(".left-data").text(parsed.name);
+        })
           $(".left-data").empty()
         }
         else if (e.name === 'Coming Soon') {
