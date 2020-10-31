@@ -113,8 +113,15 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
         if (e.name === 'Available Now') {
           $(".left-title").text("Available Data")
           $.getJSON("metadata.json", { get_param: 'value' }, function(data) {
-              $.each(JSON.parse(data.json), function(i, items){console.log(items.layers)
-                });
+            var parsed = JSON.parse(data.json)
+            var list = parsed.tilestats.layers[0].attributes[15].values
+            $.each(list, function(i, item){
+              var name = '<div>' + item + '</div>';
+              $(".left-data").append(name);})
+            console.log(list)
+              //$.each(JSON.parse(data.json), function(i, items){
+                //console.log(items.layers)
+                //});
                 //$(".left-data").text(parsed.name);
         })
           $(".left-data").empty()
