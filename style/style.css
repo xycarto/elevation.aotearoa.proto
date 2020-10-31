@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+  }
+
+html, body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.active {
+    background-color: #4CAF50;
+  }
+
+.top {
+    height: 10%;
+    width: 100%;
+    background-color: #ffffff;
+    color: #02637A;
+    padding:10px;
+    text-align: center;
+    font-size:3vw;
+    margin: 2;
+}
+
+.top a {
+    color: #02637A;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    height: 5%;
+    width: 100%;
+    background-color: #02637A;
+    color: black;
+    margin: 2;
+    align-items: center;
+}
+
+.menuitem {
+    width:20%;
+    float: left;
+    background-color: #02637A;
+    text-align: center;
+    font-size:1.25vw;
+}
+
+.menuitem a {
+    display: block;
+    color: white;
+    text-decoration: none;
+  }
+
+.menuitem a:hover {
+    font-weight: bold;
+  }
+
+.landboxframe {    
+    width: 100%;
+    height: 89%;
+    float: none;
+    padding:10px;
+    margin-top: 0 auto;
+}
+
+.landbox1, .landbox2 { 
+    display: flex;
+    justify-content: space-between;   
+    width: 80%;
+    height: 40%;
+    background-color: white;
+    margin: 20 auto;
+}
+
+.landbox1inner-left,
+.landbox1inner-middle,
+.landbox1inner-right,
+.landbox2inner-left,
+.landbox2inner-middle,
+.landbox2inner-right
+{ 
+    display: inline-block; 
+    width: 32%;
+    height: 100%;
+    background-color: #555555;
+    margin: 0 auto;
+}
+
+.boxstyle-t {
+    height: 33%;
+    width: 100%;
+    background-color: #02637A;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.boxstyle-b {
+    height: 67%;
+    width: 100%;
+    background-color: #eeeeee;
+    padding: 10px; 
+}
+
+
+.left {
+    width: 34%;
+    height: 89%;
+    background-color: blue;
+    float: left;
+    padding:10px;
+    margin-top: 10;
+}
+
+#map {
+    width: 65%;
+    height: 89%;
+    background-color: green;
+    float: right;
+    padding:10px;
+    right:0;
+    margin-top: 10;
+}
