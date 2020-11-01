@@ -6,6 +6,11 @@ html, body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.popUpText {
+    color: #222222;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
 .active {
     background-color: #4CAF50;
   }

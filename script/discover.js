@@ -43,24 +43,26 @@ var stylesStartAvailable = {
 var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvailable)
 .on('click', function(e) {
 var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
-var popupDensity = '<div id="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
-var popupVertical = '<div id="popUpText"><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
-var popupHorizontal = '<div id="popUpText"><strong>Horizontal Datum: </strong>' + e.layer.properties.horizontal + '</div>';
-var popupSupplier = '<div id="popUpText"><strong>Supplier: </strong>' + e.layer.properties.supplier + '</div>';
-var popupFlownFrom = '<div id="popUpText"><strong>Flown From: </strong>' + e.layer.properties.flown_from + '</div>';
-var popupFlownTo = '<div id="popUpText"><strong>Flown To: </strong>' + e.layer.properties.flown_to + '</div>';
-var popupGetData = '<div id="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + e.layer.properties.DataDEM + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ e.layer.properties.DataDSM + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + e.layer.properties.DataPointC+ '" target="_blank">Point Cloud(LAS)</a></li></ul></div>';
-$("#sp-head").text(e.layer.properties.name);
-$("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical_d);
-    L.popup()
-      .setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
-      .setLatLng(e.latlng)
-      .openOn(map);
+var popupDensity = '<div class="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
+var popupVertical = '<div class="><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
+var popupHorizontal = '<div class="><strong>Horizontal Datum: </strong>' + e.layer.properties.horizontal + '</div>';
+var popupSupplier = '<div class="><strong>Supplier: </strong>' + e.layer.properties.supplier + '</div>';
+var popupFlownFrom = '<div class="popUpText"><strong>Flown From: </strong>' + e.layer.properties.flown_from + '</div>';
+var popupFlownTo = '<div class="popUpText"><strong>Flown To: </strong>' + e.layer.properties.flown_to + '</div>';
+var popupGetData = '<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + e.layer.properties.DataDEM + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ e.layer.properties.DataDSM + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + e.layer.properties.DataPointC+ '" target="_blank">Point Cloud(LAS)</a></li></ul></div>';
+//$("#sp-head").text(e.layer.properties.name);
+//$("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical_d);
+L.popup()
+  .setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
+  .setLatLng(e.latlng)
+  .openOn(map);
 })
 .on("mouseover", function(e) {
   e.layer.setStyle({
     fillColor: "yellow"
   })
+  //var nameID = e.layer.properties.name;
+  //console.log(nameID);
 })
 .on("mouseout", function(e) {
   e.layer.setStyle({
@@ -71,6 +73,7 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
     fillOpacity: 0.75,
     fill: true
   });
+  
 });
 
 
@@ -134,9 +137,9 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
           $(".left-title").text("In Progress")
           $(".left-data").empty()
         }
-      });
+    });
       
-      map.on('overlayremove', function (e) {
+    map.on('overlayremove', function (e) {
         if (e.name === 'Available Now') {
           $(".left-title").text("Please Choose a Layer from the Layer Selector (Top Right of Map)")
           $(".left-data").empty()
@@ -149,10 +152,12 @@ $("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical
           $(".left-title").empty()
           $(".left-data").empty()
         }
-      });
+    });
 
-
+    
     map.addLayer(map);
+
+    
 
 };
 
