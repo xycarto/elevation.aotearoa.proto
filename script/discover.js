@@ -1,16 +1,17 @@
 
 function insert() { 
-    $('body').append('<div class="top"><a href="index.html">Elevation Aotearoa</a></div>');
-    $('body').append('<div class="menu"></div>'); 
-    $('body').append('<div class="left"></div>'); 
-        $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
-        $('.left').append('<div class="left-data">left data</div>');
-    $('body').append('<div id="map"></div>'); 
-    $('.menu').append('<div class="menuitem"><a href="discover.html">Discover Data</a></div>');
-    $('.menu').append('<div class="menuitem"><a href="stories.html">Our Stories</a></div>');
-    $('.menu').append('<div class="menuitem"><a href="learn.html">Learn</a></div>');
-    $('.menu').append('<div class="menuitem"><a href="connect.html">Connect</a></div>');
-    $('.menu').append('<div class="menuitem"><a href="about.html">About</a></div>');
+  $('body').append('<div class="top"></div>');
+      $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
+      $('.top').append('<div class="menuitem"><a href="discover.html"><span>Discover Data</span></a></div>');
+      $('.top').append('<div class="menuitem"><span><a href="learn.html">Learn</a></span></div>');
+      $('.top').append('<div class="menuitem"><span><a href="connect.html">Connect</a></span></div>');
+      $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
+  $('body').append('<div class="landboxframe"></div>');
+    $('.landboxframe').append('<div class="left"></div>'); 
+          $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
+          $('.left').append('<div class="left-data">left data</div>');
+    $('.landboxframe').append('<div id="map"></div>'); 
+
 
 //Begin vector tiles
 

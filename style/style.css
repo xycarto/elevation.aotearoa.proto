@@ -11,29 +11,65 @@ html, body{
     font-family: Helvetica, Arial, sans-serif;
   }
 
-.active {
-    background-color: #4CAF50;
-  }
-
 .top {
     height: 10%;
     width: 100%;
     background-color: #ffffff;
-    color: #02637A;
-    padding:10px;
-    text-align: center;
-    font-size:3vw;
-    margin: 2;
+    margin: 4;
 }
 
-.top a {
+.menuitem {
+    position: relative;
+    height: 100%;
+    width:10%;
+    float: left;
+    background-color: #ffffff;
+    text-align: center;
+    font-size:1.0vw;
+}
+
+.menuitem span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.menuitem-index {
+    display: table-cell;
+    position: relative;
+    width:25%;
+    height: 100%;
+    float: left;
+    background-color: #ffffff;
+    text-align: left;
+    font-size:2.5vw;
+    
+}
+
+.menuitem-index span {
+    position: absolute;
+    bottom: -7;
+    left: 0;
+}
+
+.menuitem a {
+    display: block;
+    color: #676767;
+    text-decoration: none;
+  }
+
+.menuitem-index a {
     color: #02637A;
     text-decoration: none;
-}
+  }
 
-.menu {
+.menuitem a:hover {
+    font-weight: bold;
+  }
+
+.imageholder {
     display: flex;
-    height: 5%;
+    height: 50%;
     width: 100%;
     background-color: #02637A;
     color: black;
@@ -41,23 +77,11 @@ html, body{
     align-items: center;
 }
 
-.menuitem {
-    width:20%;
-    float: left;
-    background-color: #02637A;
-    text-align: center;
-    font-size:1.25vw;
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
-
-.menuitem a {
-    display: block;
-    color: white;
-    text-decoration: none;
-  }
-
-.menuitem a:hover {
-    font-weight: bold;
-  }
 
 .landboxframe {    
     width: 100%;
