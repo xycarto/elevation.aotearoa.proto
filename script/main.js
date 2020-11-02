@@ -8,7 +8,7 @@ function insert() {
         $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
 
 
-    $('body').append('<div class="imageholder"></div>');
+    $('body').append('<div class="imageholder"><img src="img/two_volcano_zoomout_web.jpg" alt="Two Volcanoes"></div>');
     $('body').append('<div class="landboxframe"></div>');
         $('.landboxframe').append('<div class="landbox1"></div>');
             $('.landbox1').append('<div class="landbox1inner-left" data-href="https://xycarto.github.io/elevation.aotearoa.proto/discover.html"></div>');
