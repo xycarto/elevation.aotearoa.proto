@@ -155,10 +155,11 @@ L.popup()
         }
     });
 
-    $(".left").delegate(".left-data", "click", function(){
+    $(".left").delegate(".left-list", "click", function(e){
+      var getName = $(this).text();
       $(".left-data").empty()
-      $(".left-data").append('<div class="data">data clicked</div>')
       $(".left-data").append('<div class="return">return to list</div>')
+      $(".left-data").append('<div class="data">' + getName + '</div>')
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
         $('.left').append('<div class="left-data"></div>');
