@@ -96,27 +96,25 @@ html, body{
 }
 
 .imageholderbox-buttonholder {
-    display: flex;
-    justify-content: space-between;   
+    display: flex; 
+    justify-content: center;
     width: 100%;
     height: 30%;
-    margin: 1 auto;
 }
 
 .imageholderbox-left{
-    display: flex; 
     background-color: #ffffff;
     color: #02637A;
     justify-content: center;
     align-content: center;
     flex-direction: column;
     font-weight: 600;
-    width: 40%;
+    width: 30%;
     height: 50%;
+    margin-right: 15;
 }
 
 .imageholderbox-right {
-    display: flex;
     border: 1px solid #ffffff;
     color: #ffffff;
     justify-content: center;
@@ -124,8 +122,14 @@ html, body{
     flex-direction: column;
     text-align: center;
     font-weight: 600;
-    width: 40%;
+    width: 30%;
     height: 50%;
+    margin-left: 15;
+}
+
+.imageholderbox-right a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 img {

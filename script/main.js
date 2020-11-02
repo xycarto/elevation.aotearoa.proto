@@ -12,7 +12,7 @@ function insert() {
                 $('.imageholderoverlay').append('<div class="imageholdertext">The central resource for elevation data in New Zealand</div>');
                 $('.imageholderoverlay').append('<div class="imageholderbox-buttonholder"></div>');
                     $('.imageholderbox-buttonholder').append('<div class="imageholderbox-left">Find Resources</div>');
-                    $('.imageholderbox-buttonholder').append('<div class="imageholderbox-right">Find Data</div>');
+                    $('.imageholderbox-buttonholder').append('<div class="imageholderbox-right"><a href="discover.html">Find Data</a></div>');
 
         $('.landboxframe').append('<div class="landbox1"></div>');
             /*Box Left Top*/
