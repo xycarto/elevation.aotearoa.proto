@@ -106,26 +106,32 @@ img {
 .landbox2inner-right
 { 
     display: inline-block; 
-    width: 32%;
+    width: 28%;
     height: 100%;
-    background-color: #555555;
     margin: 0 auto;
     cursor: pointer;
 }
 
 .boxstyle-t {
-    height: 33%;
+    height: 2%;
     width: 100%;
     background-color: #02637A;
     color: #ffffff;
-    padding: 10px;
+}
+
+.boxstyle-m {
+    height: 18%;
+    width: 100%;
+    background-color: #ffffff;
+    color: #333333;
+    padding-top: 7px;
 }
 
 .boxstyle-b {
-    height: 67%;
+    height: 80%;
     width: 100%;
-    background-color: #eeeeee;
-    padding: 10px; 
+    background-color: #ffffff;
+    color: #333333;
 }
 
 
