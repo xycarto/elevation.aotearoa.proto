@@ -209,7 +209,7 @@ img {
 
 .left {
     width: 25%;
-    height: 89%;
+    height: 100%;
     background-color: #02637A;
     float: left;
     padding:10px;
@@ -238,7 +238,7 @@ img {
 
 #map {
     width: 74%;
-    height: 89%;
+    height: 100%;
     background-color: #02637A;
     float: right;
     padding:10px;
