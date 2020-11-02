@@ -125,11 +125,21 @@ L.popup()
               var name = '<div class="left-list">' + item + '</div>';
               $(".left-data").append(name);
             })
-          
-              //$.each(JSON.parse(data.json), function(i, items){
-                //console.log(items.layers)
-                //});
-                //$(".left-data").text(parsed.name);
+            $(".left-list").click(function(){
+              $(".left-data").empty()
+              $(".left-data").append('<div class="data">data clicked</div>')
+              $(".left-data").append('<div class="return">return to list</div>')
+              $(".return").click(function(){
+                $(".left-data").empty()
+                $.each(list, function(i, item){
+                  var name = '<div class="left-list">' + item + '</div>';
+                  $(".left-data").append(name);
+                })
+              })
+              
+            })
+            
+
         })
           $(".left-data").empty()
         }
