@@ -212,7 +212,7 @@ img {
     height: 100%;
     background-color: #02637A;
     float: left;
-    padding:10px;
+    padding: 10px;
     margin-top: 10;
 }
 
@@ -234,6 +234,10 @@ img {
     padding:10px;
     margin-top: 10;
     overflow: scroll;
+}
+
+.left-list:hover {
+    color: #02637A;
 }
 
 #map {

@@ -122,7 +122,7 @@ L.popup()
             var parsed = JSON.parse(data.json)
             var list = parsed.tilestats.layers[0].attributes[15].values
             $.each(list, function(i, item){
-              var name = '<div>' + item + '</div>';
+              var name = '<div class="left-list">' + item + '</div>';
               $(".left-data").append(name);
             })
           
@@ -160,8 +160,6 @@ L.popup()
 
     
     map.addLayer(map);
-
-    
 
 };
 
