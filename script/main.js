@@ -45,7 +45,7 @@ $('body').append('<div class="page-container"></div>');
                     $('.landbox2inner-middle').append('<div class="boxstyle-t"></div>');
                     $('.landbox2inner-middle').append('<div class="boxstyle-m">About</div>');
                     $('.landbox2inner-middle').append('<div class="boxstyle-b"><p>Some sort of text will go here. This will explain something about the link and what you are about to see.  It will be really cool content. </p></div>');
-    $('.page-container').append('<div class="bottom"></div>');
+    //$('.page-container').append('<div class="bottom"></div>');
 
     $(".landbox1inner-left").click(function(){
         window.location = $(this).attr("data-href");
