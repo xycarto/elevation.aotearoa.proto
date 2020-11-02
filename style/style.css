@@ -103,6 +103,7 @@ html, body{
 }
 
 .imageholderbox-left{
+    display: flex;
     background-color: #ffffff;
     color: #02637A;
     justify-content: center;
@@ -115,6 +116,7 @@ html, body{
 }
 
 .imageholderbox-right {
+    display: flex;
     border: 1px solid #ffffff;
     color: #ffffff;
     justify-content: center;
