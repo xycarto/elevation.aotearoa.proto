@@ -7,8 +7,7 @@ function insert() {
         $('.top').append('<div class="menuitem"><span><a href="connect.html">Connect</a></span></div>');
         $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
     $('body').append('<div class="landboxframe"></div>');
-        $('.landboxframe').append('<div class="imageholder"><img src="img/two_volcano_zoomout_web.jpg" alt="Two Volcanoes"></div>');
-            $('.imageholder').append('div class="imageholdertext">Image Holder OverlayText</div>');
+        $('.landboxframe').append('<div class="imageholder"><img src="img/two_volcano_zoomout_web.jpg" alt="Two Volcanoes"><div class="imageholdertext">Image Holder OverlayText</div></div>');
 
         $('.landboxframe').append('<div class="landbox1"></div>');
             /*Box Left Top*/

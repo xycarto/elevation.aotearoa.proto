@@ -69,11 +69,21 @@ html, body{
 
 .imageholder {
     display: flex;
+    position: relative;
+    text-align: center;
     height: 60%;
     width: 100%;
     background-color: #02637A;
     color: black;
     align-items: center;
+}
+
+.imageholdertext {
+    position: absolute;
+    color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 img {
