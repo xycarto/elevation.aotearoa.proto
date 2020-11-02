@@ -15,7 +15,7 @@ html, body{
     height: 10%;
     width: 100%;
     background-color: #ffffff;
-    margin: 4;
+    padding-bottom: 10px;
 }
 
 .menuitem {
@@ -69,11 +69,10 @@ html, body{
 
 .imageholder {
     display: flex;
-    height: 50%;
+    height: 60%;
     width: 100%;
     background-color: #02637A;
     color: black;
-    margin: 2;
     align-items: center;
 }
 
@@ -87,8 +86,7 @@ img {
     width: 100%;
     height: 89%;
     float: none;
-    padding:10px;
-    margin-top: 0 auto;
+    margin-top: 5 auto;
 }
 
 .landbox1, .landbox2 { 
