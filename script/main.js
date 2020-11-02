@@ -1,7 +1,14 @@
 
 function insert() { 
-    $('body').append('<div class="top"><a href="index.html">Elevation Aotearoa</a></div>');
-    $('body').append('<div class="menu"></div>');
+    $('body').append('<div class="top"></div>');
+        $('.top').append('<div class="menuitem-index"><a href="index.html">Elevation Aotearoa</a></div>');
+        $('.top').append('<div class="menuitem"><span><a href="discover.html">Discover Data</a></span></div>');
+        $('.top').append('<div class="menuitem"><a href="learn.html">Learn</a></div>');
+        $('.top').append('<div class="menuitem"><a href="connect.html">Connect</a></div>');
+        $('.top').append('<div class="menuitem"><a href="about.html">About</a></div>');
+
+
+    $('body').append('<div class="imageholder"></div>');
     $('body').append('<div class="landboxframe"></div>');
         $('.landboxframe').append('<div class="landbox1"></div>');
             $('.landbox1').append('<div class="landbox1inner-left" data-href="https://xycarto.github.io/elevation.aotearoa.proto/discover.html"></div>');

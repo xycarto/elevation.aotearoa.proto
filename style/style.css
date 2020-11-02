@@ -11,53 +11,62 @@ html, body{
     font-family: Helvetica, Arial, sans-serif;
   }
 
-.active {
-    background-color: #4CAF50;
-  }
-
 .top {
     height: 10%;
     width: 100%;
     background-color: #ffffff;
-    color: #02637A;
     padding:10px;
     text-align: center;
     font-size:3vw;
     margin: 2;
 }
 
-.top a {
-    color: #02637A;
-    text-decoration: none;
-}
-
-.menu {
-    display: flex;
-    height: 5%;
-    width: 100%;
-    background-color: #02637A;
-    color: black;
-    margin: 2;
-    align-items: center;
-}
-
 .menuitem {
-    width:20%;
+    position: relative;
+    width:10%;
     float: left;
-    background-color: #02637A;
+    background-color: #ffffff;
     text-align: center;
-    font-size:1.25vw;
+    font-size:1.0vw;
+}
+
+.menuitem span {
+    align-content: bottom;
+}
+
+.menuitem-index {
+    width:30%;
+    float: left;
+    background-color: #ffffff;
+    text-align: center;
+    font-size:2.25vw;
 }
 
 .menuitem a {
     display: block;
-    color: white;
+    color: #676767;
+    text-decoration: none;
+  }
+
+  .menuitem-index a {
+    display: block;
+    color: #02637A;
     text-decoration: none;
   }
 
 .menuitem a:hover {
     font-weight: bold;
   }
+
+.imageholder {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    background-color: #02637A;
+    color: black;
+    margin: 2;
+    align-items: center;
+}
 
 .landboxframe {    
     width: 100%;
