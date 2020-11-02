@@ -122,6 +122,7 @@ L.popup()
               var name = '<div>' + item + '</div>';
               $(".left-data").append(name);
             })
+          
               //$.each(JSON.parse(data.json), function(i, items){
                 //console.log(items.layers)
                 //});
