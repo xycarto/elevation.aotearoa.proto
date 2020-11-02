@@ -120,27 +120,14 @@ L.popup()
           $(".left-title").text("Available Data")
           $.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
             var parsed = JSON.parse(data.json)
-            var list = parsed.tilestats.layers[0].attributes[15].values
-            $.each(list, function(i, item){
+            var listNames = parsed.tilestats.layers[0].attributes[15].values;
+            window.listNames = listNames
+            $.each(listNames, function(i, item){
               var name = '<div class="left-list">' + item + '</div>';
               $(".left-data").append(name);
+              $(".left-data").data = name;
             })
-            $(".left-list").click(function(){
-              $(".left-data").empty()
-              $(".left-data").append('<div class="data">data clicked</div>')
-              $(".left-data").append('<div class="return">return to list</div>')
-              $(".return").click(function(){
-                $(".left-data").empty()
-                $.each(list, function(i, item){
-                  var name = '<div class="left-list">' + item + '</div>';
-                  $(".left-data").append(name);
-                })
-              })
-              
-            })
-            
-
-        })
+          })
           $(".left-data").empty()
         }
         else if (e.name === 'Coming Soon') {
@@ -168,6 +155,23 @@ L.popup()
         }
     });
 
+    $(".left").delegate(".left-data", "click", function(){
+      $(".left-data").empty()
+      $(".left-data").append('<div class="data">data clicked</div>')
+      $(".left-data").append('<div class="return">return to list</div>')
+      $(".left-data").find(".return").click(function(){
+        $(".left-data").remove()
+        $('.left').append('<div class="left-data"></div>');
+        console.log("return clicked")
+        //console.log(listNames)
+        //$(".left-data").text(listNames)
+        $.each(listNames, function(i, item){
+          var name = '<div class="left-list">' + item + '</div>';
+          $(".left-data").append(name);
+        })
+      })
+    })
+    
     
     map.addLayer(map);
 
