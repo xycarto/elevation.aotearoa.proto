@@ -78,12 +78,54 @@ html, body{
     align-items: center;
 }
 
-.imageholdertext {
+.imageholderoverlay {
     position: absolute;
-    color: #ffffff;
-    top: 50%;
+    width: 40%;
+    height: 50%;    
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.imageholdertext {
+    height:70%;
+    width: 100%;
+    color: #ffffff;
+    font-size:2.0vw;
+    font-weight: bold;
+}
+
+.imageholderbox-buttonholder {
+    display: flex;
+    justify-content: space-between;   
+    width: 100%;
+    height: 30%;
+    margin: 1 auto;
+}
+
+.imageholderbox-left{
+    display: flex; 
+    background-color: #ffffff;
+    color: #02637A;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-weight: 600;
+    width: 40%;
+    height: 50%;
+}
+
+.imageholderbox-right {
+    display: flex;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 600;
+    width: 40%;
+    height: 50%;
 }
 
 img {
