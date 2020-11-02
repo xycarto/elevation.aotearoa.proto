@@ -1,7 +1,6 @@
 
 function insert() { 
-$('body').append('<div class="page-container"></div>');
-    $('.page-container').append('<div class="alldiv"></div>');
+$('body').append('<div class="alldiv"></div>');
         /*top*/
         $('.alldiv').append('<div class="top"></div>');
             $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
