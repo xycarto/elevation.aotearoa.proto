@@ -210,12 +210,22 @@ $(".left-data").append(popupDensity, popupVertical, popupHorizontal, popupSuppli
       $.each(listResults, function(i, result){
         if (getName == result[1]){
           //console.log(result)
-          var listData = [6,7,8,9];
-          $.each(listData, function(i, orderNum){
+          var listData = [6,7,8,9,10,11,12,16,17,18];
+          /*$.each(listData, function(i, orderNum){
           $(".left-data").append('<div class="data">' + result[orderNum] + '</div>')
-          })
+          })*/
+          $(".left-data").append('<div class="popUpText"><strong>Point Density: </strong>' + result[6] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Vertical Datum: </strong>' + result[7] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Horizontal Datum: </strong>' + result[8] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Supplier: </strong>' + result[10] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Flown From: </strong>' + result[11] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Flown To: </strong>' + result[12] + '</div>');
+          $(".left-data").append('<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + result[16] + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ result[17] + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + result[18] + '" target="_blank">Point Cloud(LAS)</a></li></ul></div>');
         }
       })
+
+      //var popupName = '<h3 style="text-align: center;">' + result[1] + '</h3>';
+      
 
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
