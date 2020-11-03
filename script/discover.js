@@ -1,7 +1,7 @@
 
 function insert() { 
-$('body').append('<div class="alldiv"></div>');
-       
+
+$('body').append('<div class="alldiv"></div>');       
   $('.alldiv').append('<div class="top"></div>');
       $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
       $('.top').append('<div class="menuitem"><a href="discover.html"><span>Discover Data</span></a></div>');
@@ -53,8 +53,11 @@ var popupSupplier = '<div class="><strong>Supplier: </strong>' + e.layer.propert
 var popupFlownFrom = '<div class="popUpText"><strong>Flown From: </strong>' + e.layer.properties.flown_from + '</div>';
 var popupFlownTo = '<div class="popUpText"><strong>Flown To: </strong>' + e.layer.properties.flown_to + '</div>';
 var popupGetData = '<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + e.layer.properties.DataDEM + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ e.layer.properties.DataDSM + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + e.layer.properties.DataPointC+ '" target="_blank">Point Cloud(LAS)</a></li></ul></div>';
-//$("#sp-head").text(e.layer.properties.name);
-//$("#fill-items").text(e.layer.properties.point_dens, e.layer.properties.vertical_d);
+$(".left-title").empty();
+$(".left-data").empty();
+$(".left-title").append('<div class="fullList">See Full Available List</div>');
+$(".left-title").append('<div>'+ popupName +'</div>');
+$(".left-data").append(e.layer.properties.point_dens, e.layer.properties.vertical_d);
 L.popup()
   .setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
   .setLatLng(e.latlng)
@@ -76,12 +79,34 @@ L.popup()
     fillOpacity: 0.75,
     fill: true
   });
-  
-  
-  
+
+  $(".left").delegate(".fullList", "click", function(e){
+    $(".left-data").empty()
+    $(".left-title").empty()
+    
+    var listNames = []
+    var listResults = []
+
+          
+        Papa.parse("https://xycarto.github.io/elevation.aotearoa.proto/csv/available_now.csv", {
+            download: true,
+            complete: function(results) {
+              var resultsData = results.data
+              //console.log(results.data[3])
+              $.each(resultsData, function(i,nme){
+                //console.log(nme[5])
+                listResults.push(nme)
+                listNames.push(nme[1])
+                window.listResults = listResults
+                window.listNames = listNames
+                var name = '<div class="left-list">' + nme[1] + '</div>';
+                $(".left-data").append(name);
+                $(".left-data").data = nme;
+              })
+            }
+        });
+    })
 });
-
-
 
 //Build Basemap    
     var settingsBasemap = {
@@ -177,8 +202,9 @@ L.popup()
     $(".left").delegate(".left-list", "click", function(e){
       var getName = $(this).text();
       $(".left-data").empty()
-      $(".left-data").append('<div class="return">return to list</div>')
-      $(".left-data").append('<div class="data">' + getName + '</div>')
+      $(".left-title").empty()
+      $(".left-data").append('<div class="return"><strong>return to list</strong></div>')
+      $(".left-title").append('<div class="data">' + getName + '</div>')
       //console.log(listResults[2][6])
       $.each(listResults, function(i, result){
         if (getName == result[1]){
@@ -188,8 +214,8 @@ L.popup()
           $(".left-data").append('<div class="data">' + result[orderNum] + '</div>')
           })
         }
-
       })
+
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
         $('.left').append('<div class="left-data"></div>');
@@ -202,7 +228,6 @@ L.popup()
         })
       })
     })
-    
     
     map.addLayer(map);
 
