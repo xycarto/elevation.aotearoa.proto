@@ -47,17 +47,17 @@ var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvail
 .on('click', function(e) {
 var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
 var popupDensity = '<div class="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
-var popupVertical = '<div class="><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
-var popupHorizontal = '<div class="><strong>Horizontal Datum: </strong>' + e.layer.properties.horizontal + '</div>';
-var popupSupplier = '<div class="><strong>Supplier: </strong>' + e.layer.properties.supplier + '</div>';
+var popupVertical = '<div class="popUpText"><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
+var popupHorizontal = '<div class="popUpText"><strong>Horizontal Datum: </strong>' + e.layer.properties.horizontal + '</div>';
+var popupSupplier = '<div class="popUpText"><strong>Supplier: </strong>' + e.layer.properties.supplier + '</div>';
 var popupFlownFrom = '<div class="popUpText"><strong>Flown From: </strong>' + e.layer.properties.flown_from + '</div>';
 var popupFlownTo = '<div class="popUpText"><strong>Flown To: </strong>' + e.layer.properties.flown_to + '</div>';
 var popupGetData = '<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + e.layer.properties.DataDEM + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ e.layer.properties.DataDSM + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + e.layer.properties.DataPointC+ '" target="_blank">Point Cloud(LAS)</a></li></ul></div>';
 $(".left-title").empty();
 $(".left-data").empty();
 $(".left-title").append('<div class="fullList">See Full Available List</div>');
-$(".left-title").append('<div>'+ popupName +'</div>');
-$(".left-data").append(e.layer.properties.point_dens, e.layer.properties.vertical_d);
+$(".left-title").append(popupName);
+$(".left-data").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo, popupGetData);
 //L.popup()
   //.setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
   //.setLatLng(e.latlng)
