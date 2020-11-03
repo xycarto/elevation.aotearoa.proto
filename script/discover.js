@@ -11,7 +11,7 @@ $('body').append('<div class="alldiv"></div>');
   $('.alldiv').append('<div class="landboxframe"></div>');
       $('.landboxframe').append('<div class="left"></div>'); 
             $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
-            $('.left').append('<div class="left-data">left data</div>');
+            $('.left').append('<div class="left-data">Some description will go here</div>');
       $('.landboxframe').append('<div id="map"></div>'); 
 
 
