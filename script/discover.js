@@ -45,6 +45,8 @@ var stylesStartAvailable = {
 //add functionality to vector layer Available
 var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvailable)
 .on('click', function(e) {
+  Object.keys(e.layer.properties.name).forEach(layerName =>
+    console.log(layerName + ': ' + e.layer.properties.name[layerName]._keys.join(', ')));
 var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
 var popupDensity = '<div class="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
 var popupVertical = '<div class="><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
@@ -76,6 +78,8 @@ L.popup()
     fillOpacity: 0.75,
     fill: true
   });
+  
+  
   
 });
 
@@ -117,10 +121,13 @@ L.popup()
 
     map.on('overlayadd', function (e) {
         if (e.name === 'Available Now') {
+
           $(".left-title").text("Available Data")
           $.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
             var parsed = JSON.parse(data.json)
             var listNames = parsed.tilestats.layers[0].attributes[15].values;
+            
+            //console.log(parsed)
             window.listNames = listNames
             $.each(listNames, function(i, item){
               var name = '<div class="left-list">' + item + '</div>';
@@ -163,7 +170,7 @@ L.popup()
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
         $('.left').append('<div class="left-data"></div>');
-        console.log("return clicked")
+        //console.log("return clicked")
         //console.log(listNames)
         //$(".left-data").text(listNames)
         $.each(listNames, function(i, item){
