@@ -45,8 +45,6 @@ var stylesStartAvailable = {
 //add functionality to vector layer Available
 var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvailable)
 .on('click', function(e) {
-  Object.keys(e.layer.properties.name).forEach(layerName =>
-    console.log(layerName + ': ' + e.layer.properties.name[layerName]._keys.join(', ')));
 var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
 var popupDensity = '<div class="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
 var popupVertical = '<div class="><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
@@ -123,18 +121,26 @@ L.popup()
         if (e.name === 'Available Now') {
 
           $(".left-title").text("Available Data")
-          $.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
+          /*$.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
             var parsed = JSON.parse(data.json)
-            var listNames = parsed.tilestats.layers[0].attributes[15].values;
+            var listNames = parsed.tilestats.layers[0].attributes[15].values;*/
+          
+          var listNames = []
             
-            //console.log(parsed)
-            window.listNames = listNames
-            $.each(listNames, function(i, item){
-              var name = '<div class="left-list">' + item + '</div>';
-              $(".left-data").append(name);
-              $(".left-data").data = name;
-            })
-          })
+          Papa.parse("https://xycarto.github.io/elevation.aotearoa.proto/csv/available_now.csv", {
+              download: true,
+              complete: function(results) {
+                var resultsData = results.data
+                $.each(resultsData, function(i,nme){
+                  //console.log(nme[1])
+                  listNames.push(nme[1])
+                  window.listNames = listNames
+                  var name = '<div class="left-list">' + nme[1] + '</div>';
+                  $(".left-data").append(name);
+                  //$(".left-data").data = nme;
+                })
+              }
+          });
           $(".left-data").empty()
         }
         else if (e.name === 'Coming Soon') {
