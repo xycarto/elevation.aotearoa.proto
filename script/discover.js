@@ -126,21 +126,27 @@ L.popup()
             var listNames = parsed.tilestats.layers[0].attributes[15].values;*/
           
           var listNames = []
+          var listResults = []
+
             
           Papa.parse("https://xycarto.github.io/elevation.aotearoa.proto/csv/available_now.csv", {
               download: true,
               complete: function(results) {
                 var resultsData = results.data
+                //console.log(results.data[3])
                 $.each(resultsData, function(i,nme){
-                  //console.log(nme[1])
+                  //console.log(nme[5])
+                  listResults.push(nme)
                   listNames.push(nme[1])
+                  window.listResults = listResults
                   window.listNames = listNames
                   var name = '<div class="left-list">' + nme[1] + '</div>';
                   $(".left-data").append(name);
-                  //$(".left-data").data = nme;
+                  $(".left-data").data = nme;
                 })
               }
           });
+          //console.log(listResults)
           $(".left-data").empty()
         }
         else if (e.name === 'Coming Soon') {
@@ -173,6 +179,16 @@ L.popup()
       $(".left-data").empty()
       $(".left-data").append('<div class="return">return to list</div>')
       $(".left-data").append('<div class="data">' + getName + '</div>')
+      //console.log(listResults[2][1])
+      $.each(listResults, function(i, result){
+        if (getName == result[1]){
+          console.log(result)
+          $.each(result, function(e){
+          $(".left-data").append('<div class="data">' + result + '</div>')
+          })
+        }
+
+      })
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
         $('.left').append('<div class="left-data"></div>');
