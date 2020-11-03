@@ -4,7 +4,7 @@ $('body').append('<div class="alldiv"></div>');
         /*top*/
         $('.alldiv').append('<div class="top"></div>');
             $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
-            $('.top').append('<div class="menuitem"><a href="discover.html"><span>Discover Data</span></a></div>');
+            $('.top').append('<div class="menuitem"><a href="discover.html"><span>Find Data</span></a></div>');
             $('.top').append('<div class="menuitem"><span><a href="learn.html">Learn</a></span></div>');
             $('.top').append('<div class="menuitem"><span><a href="connect.html">Connect</a></span></div>');
             $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
@@ -21,7 +21,7 @@ $('body').append('<div class="alldiv"></div>');
                 /*Box Left Top*/
                 $('.landbox1').append('<div class="landbox1inner-left" data-href="https://xycarto.github.io/elevation.aotearoa.proto/discover.html"></div>');
                     $('.landbox1inner-left').append('<div class="boxstyle-t"></div>');
-                    $('.landbox1inner-left').append('<div class="boxstyle-m">Discover Data</div>');
+                    $('.landbox1inner-left').append('<div class="boxstyle-m">Find Data</div>');
                     $('.landbox1inner-left').append('<div class="boxstyle-b"><p>Some sort of text will go here. This will explain something about the link and what you are about to see.  It will be really cool content. </p></div>');
                 /*Box Middle Top*/
                 $('.landbox1').append('<div class="landbox1inner-middle" data-href="https://xycarto.github.io/elevation.aotearoa.proto/stories.html"></div>');
