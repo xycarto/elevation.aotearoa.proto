@@ -58,10 +58,10 @@ $(".left-data").empty();
 $(".left-title").append('<div class="fullList">See Full Available List</div>');
 $(".left-title").append('<div>'+ popupName +'</div>');
 $(".left-data").append(e.layer.properties.point_dens, e.layer.properties.vertical_d);
-L.popup()
-  .setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
-  .setLatLng(e.latlng)
-  .openOn(map);
+//L.popup()
+  //.setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
+  //.setLatLng(e.latlng)
+  //.openOn(map);
 })
 .on("mouseover", function(e) {
   e.layer.setStyle({
@@ -83,6 +83,7 @@ L.popup()
   $(".left").delegate(".fullList", "click", function(e){
     $(".left-data").empty()
     $(".left-title").empty()
+    $(".left-title").text("Available Data")
     
     var listNames = []
     var listResults = []
@@ -219,6 +220,7 @@ L.popup()
       $(".left-data").find(".return").click(function(){
         $(".left-data").remove()
         $('.left').append('<div class="left-data"></div>');
+        $(".left-title").text("Available Data")
         //console.log("return clicked")
         //console.log(listNames)
         //$(".left-data").text(listNames)
