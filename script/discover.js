@@ -179,12 +179,13 @@ L.popup()
       $(".left-data").empty()
       $(".left-data").append('<div class="return">return to list</div>')
       $(".left-data").append('<div class="data">' + getName + '</div>')
-      //console.log(listResults[2][1])
+      //console.log(listResults[2][6])
       $.each(listResults, function(i, result){
         if (getName == result[1]){
-          console.log(result)
-          $.each(result, function(e){
-          $(".left-data").append('<div class="data">' + result + '</div>')
+          //console.log(result)
+          var listData = [6,7,8,9];
+          $.each(listData, function(i, orderNum){
+          $(".left-data").append('<div class="data">' + result[orderNum] + '</div>')
           })
         }
 
