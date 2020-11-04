@@ -171,8 +171,11 @@ var url = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now.json';
 
 var myjson;
 $.getJSON(url, function(json) {
-  //console.log(json);
-  //json.push(json)
+  console.log(json);
+  var geojsonLayer = L.geoJson(myjson, style,{
+    onEachFeature: function(feature, layer) {
+        layer._leaflet_id = feature.elevation_;                                    
+    }});
   myjson=json;
    // this will show the info it in firebug console
 });
