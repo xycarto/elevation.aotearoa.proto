@@ -167,14 +167,26 @@ var style = {
     fillOpacity: 0.7
 }
 
-var geojsonLayer = L.geoJson(data, style,{
+var url = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now.json';
+
+var myjson;
+$.getJSON(url, function(json) {
+  //console.log(json);
+  //json.push(json)
+  myjson=json;
+   // this will show the info it in firebug console
+});
+
+console.log(myjson)
+
+var geojsonLayer = L.geoJson(myjson, style,{
   onEachFeature: function(feature, layer) {
       layer._leaflet_id = feature.elevation_;                                    
   }});
 
 
 
-/*var url = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
+/*var url = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now.json';
 
 var geoJsonDocument = {
   type: 'FeatureCollection',
