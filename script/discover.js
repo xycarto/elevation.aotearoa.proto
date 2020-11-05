@@ -58,6 +58,14 @@ function insert() {
     opacity: 1,
     color: 'white',
     fillOpacity: 0.7
+  }
+
+  var progressBaseStyle = {
+    fillColor: "#002580",
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    fillOpacity: 0.7
 }
   
   var rolloverPoly = {
@@ -73,13 +81,8 @@ function insert() {
   var urlAvailable = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
 
   var urlComingSoon = 'https://xycarto.github.io/vectortile-repo/ComingSoon_fix.json';  
-  
-  /*function onEachFeature(overlay) {
-    overlay.on('click', function(){
-      console.log("click");
-    });
-  }*/
 
+  var urlProgress = 'https://xycarto.github.io/vectortile-repo/InProgress_fix.json'; 
 
   //Load Available Now layer
   function createOverlay(data, layerName, availBaseStyle) {
@@ -132,7 +135,34 @@ function insert() {
   }
   
   $.getJSON(urlComingSoon, function (data) { createOverlay(data, "Coming Soon", comingBaseStyle)});
+
+  //Load In Progress layer
+  function createOverlay(data, layerName, progressBaseStyle) {
+    var overlayP = L.geoJson(data, progressBaseStyle,{
+      onEachFeature: function (feature, layer) {
+        return layer._leaflet_id = feature.elevation_; 
+    }
+    });// Add the data to the map
+    control.addOverlay(overlayP, layerName, settingsControl); // Add the layer to the Layer Control.
+    overlayP.on('click', function(e){
+      console.log(e.layer.feature.properties.name)
+      $(".left-data").empty();
+      $(".left-data").append(e.layer.feature.properties.name);
+    }) // add get information
+    overlayP.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayP.on('mouseout', function(e){
+      e.layer.setStyle(progressBaseStyle)
+    })
+    //overlayA.addEventListener('mouseover', function(e){
+      //e.layer.setStyle(rolloverPoly)
+    //}, true)
+  }
   
+  $.getJSON(urlProgress, function (data) { createOverlay(data, "In Progress", progressBaseStyle)});
+  
+  //Add Layer Control
   var control = L.control.layers(baseMapIndex).addTo(map);
   
   control.addTo(map);
