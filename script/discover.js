@@ -10,8 +10,12 @@ function insert() {
         $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
     $('.alldiv').append('<div class="landboxframe"></div>');
         $('.landboxframe').append('<div class="left"></div>'); 
-              $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
-              $('.left').append('<div class="left-data">Some description will go here</div>');
+              $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
+              $('.left').append('<div class="left-data"</div>');
+              $('.left-data').append('<div class="left-data-title">Title</div>');
+              $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
+              $('.left-data').append('<div class="left-data-meta">Metadata</div>');
+              $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
         $('.landboxframe').append('<div id="map"></div>'); 
   
   
@@ -171,28 +175,28 @@ function insert() {
   
   map.on('overlayadd', function (e) {
     if (e.name === 'Available Now') {
-      $(".left-title").text("Available Data")
+      $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
+      $(".left-data-meta-avail").text("Available Data")
     }
     else if (e.name === 'Coming Soon') {
-      $(".left-title").text("Coming Soon")
+      $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
+      $(".left-data-meta-coming").text("Coming Soon")
     }
     else if (e.name === 'In Progress') {
-      $(".left-title").text("In Progress")
+      $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
+      $(".left-data-meta-progress").text("In Progress")
     }
   });
   
   map.on('overlayremove', function (e) {
     if (e.name === 'Available Now') {
-      $(".left-title").text("Please Choose a Layer from the Layer Selector (Top Right of Map)")
-      $(".left-data").empty()
+      $(".left-data-meta-avail").remove()
     }
     else if (e.name === 'Coming Soon') {
-      $(".left-title").empty()
-      $(".left-data").empty()
+      $(".left-data-meta-coming").remove()
     }
     else if (e.name === 'In Progress') {
-      $(".left-title").empty()
-      $(".left-data").empty()
+      $(".left-data-meta-progress").remove()
     }
   });
   
