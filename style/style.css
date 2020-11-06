@@ -269,11 +269,7 @@ img {
     color: #02637A;
 }
 
-/*collapse*/
-
-/*.left-data-meta-title a {
-    display: inline;
-}*/
+/*collapse Big Lists*/
 
 #menu-icon-a:before,
 #menu-icon-c:before,
@@ -318,6 +314,52 @@ width: 50px;
     display: block;   
  }
 
+
+ /*collpase DEM DSM PointC*/
+
+#menu-icon-e:before,
+#menu-icon-s:before,
+#menu-icon-c:before {
+    /*content: "Menu";*/
+    float: left;
+    width: 50px;
+  }
+  
+#menu-icon-e:after,
+#menu-icon-s:after,
+#menu-icon-c:after {
+content: "\2261";
+float:left;
+width: 50px;
+}
+
+.left-data-datasets-DEM-title ul.e {
+    display: none;   
+  }
+
+.left-data-datasets-DEM-title ul.s {
+    display: none;   
+  }
+
+.left-data-datasets-DEM-title ul.c {
+    display: none;   
+  }
+  
+
+.left-data-datasets-DEM-title ul.e.visible {
+     display: block;   
+  }
+
+.left-data-datasets-DEM-title ul.s.visible{
+     display: block;   
+  }
+
+.left-data-datasets-DEM-title ul.c.visible{
+    display: block;   
+ }
+
+
+/*Build Map*/
 #map {
     width: 74%;
     height: 100%;

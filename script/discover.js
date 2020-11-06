@@ -88,6 +88,10 @@ function insert() {
 
   var urlProgress = 'https://xycarto.github.io/vectortile-repo/InProgress_fix.json'; 
 
+  
+
+
+
   //Load Available Now layer
   function createOverlayA(data, layerName, availBaseStyle) {
     var overlayA = L.geoJson(data, availBaseStyle,{
@@ -97,11 +101,24 @@ function insert() {
     });// Add the data to the map
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayA.on('click', function(e){
-      //console.log(e.layer.feature.properties.name)
+      var demList = [
+        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+        '<li>WMTS</li>',
+        '<li>XYZ</li>'
+      ];
+
+      //console.log(e.layer.feature.properties)
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
+      $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
+        $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+        $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+          $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+        });
+        
+      $(".left-data-meta").text("metadata");
     }) // add get information
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -113,6 +130,8 @@ function insert() {
       //e.layer.setStyle(rolloverPoly)
     //}, true)
   }
+
+ 
 
   var availableList = [];
   function getListA(data){
