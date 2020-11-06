@@ -1,250 +1,351 @@
 
 function insert() { 
 
-$('body').append('<div class="alldiv"></div>');       
-  $('.alldiv').append('<div class="top"></div>');
-      $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
-      $('.top').append('<div class="menuitem"><a href="discover.html"><span>Find Data</span></a></div>');
-      $('.top').append('<div class="menuitem"><span><a href="learn.html">Learn</a></span></div>');
-      $('.top').append('<div class="menuitem"><span><a href="connect.html">Connect</a></span></div>');
-      $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
-  $('.alldiv').append('<div class="landboxframe"></div>');
-      $('.landboxframe').append('<div class="left"></div>'); 
-            $('.left').append('<div class="left-title">Please Choose a Layer from the Layer Selector (Top Right of Map)</div>'); 
-            $('.left').append('<div class="left-data">Some description will go here</div>');
-      $('.landboxframe').append('<div id="map"></div>'); 
-
-
-//Begin vector tiles
-
-//Vector Tiles: Available
-//layer url
-var urlVectorAvailable = "https://xycarto.github.io/vectortile-repo/available_now/{z}/{x}/{y}.pbf";
-
-var stylesStartAvailable = {
-    interactive: true,
-    getFeatureID: function(f) {
-      return f.layer.properties;
-    },
-    vectorTileLayerStyles: {
-      'LiDAR_available_now': function(properties,zoom) {
-          var level = map.getZoom();
-          var weight = 0.5;
-          if (level >= 8) {weight = 1.5;}
-          return {
-            weight: weight,
+  $('body').append('<div class="alldiv"></div>');       
+    $('.alldiv').append('<div class="top"></div>');
+        $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
+        $('.top').append('<div class="menuitem"><a href="discover.html"><span>Find Data</span></a></div>');
+        $('.top').append('<div class="menuitem"><span><a href="learn.html">Learn</a></span></div>');
+        $('.top').append('<div class="menuitem"><span><a href="connect.html">Connect</a></span></div>');
+        $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
+    $('.alldiv').append('<div class="landboxframe"></div>');
+        $('.landboxframe').append('<div class="left"></div>'); 
+              $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
+              $('.left').append('<div class="left-data"></div>');
+                $('.left-data').append('<div class="left-data-title">Title</div>');
+                $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
+                $('.left-data').append('<div class="left-data-meta"></div>');
+              $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
+        $('.landboxframe').append('<div id="map"></div>'); 
+  
+  
+  
+  //Build Basemap    
+  var settingsBasemap = {
+          maxZoom: 19, 
+          attribution: '<a href="http://www.linz.govt.nz">Sourced from LINZ. CC-BY 4.0</a>', //Simple attribution for linz
+  };
+  
+  var settingsControl = {
+          collapsed: false
+          };
+          
+      //Base map
+  var basemap = new L.TileLayer('https://tiles.maps.linz.io/nz_colour_basemap/GLOBAL_MERCATOR/{z}/{x}/{y}.png', settingsBasemap)
+  
+      // Layer control
+  var baseMapIndex = {
+      "LINZ Colour Base Map": basemap
+      };
+  
+  //end layer control
+          
+  //build all maps
+  var map = new L.Map('map',
+           {center: [-39.9, 175.2], 
+           zoom: 6,
+           layers: basemap
+          });
+  
+  
+  var availBaseStyle = {
+            fillColor: "#000000",
+            weight: 2,
             opacity: 1,
-            color: "#d677d6",
-            fillColor: "#e4a5e4",
-            fillOpacity: 0.75,
-            fill: true
-          }
-    }}
-};
+            color: 'white',
+            fillOpacity: 0.7
+  }
 
-//add functionality to vector layer Available
-var vectorAvailable = L.vectorGrid.protobuf(urlVectorAvailable, stylesStartAvailable)
-.on('click', function(e) {
-var popupName = '<h3 style="text-align: center;">' + e.layer.properties.name + '</h3>';
-var popupDensity = '<div class="popUpText"><strong>Point Density: </strong>' + e.layer.properties.point_dens + '</div>';
-var popupVertical = '<div class="popUpText"><strong>Vertical Datum: </strong>' + e.layer.properties.vertical_d + '</div>';
-var popupHorizontal = '<div class="popUpText"><strong>Horizontal Datum: </strong>' + e.layer.properties.horizontal + '</div>';
-var popupSupplier = '<div class="popUpText"><strong>Supplier: </strong>' + e.layer.properties.supplier + '</div>';
-var popupFlownFrom = '<div class="popUpText"><strong>Flown From: </strong>' + e.layer.properties.flown_from + '</div>';
-var popupFlownTo = '<div class="popUpText"><strong>Flown To: </strong>' + e.layer.properties.flown_to + '</div>';
-var popupGetData = '<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + e.layer.properties.DataDEM + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ e.layer.properties.DataDSM + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + e.layer.properties.DataPointC+ '" target="_blank">Point Cloud(LAS)</a></li></ul></div>';
-$(".left-title").empty();
-$(".left-data").empty();
-$(".left-title").append('<div class="fullList">See Full Available List</div>');
-$(".left-title").append(popupName);
-$(".left-data").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo, popupGetData);
-//L.popup()
-  //.setContent(popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo+ popupGetData)
-  //.setLatLng(e.latlng)
-  //.openOn(map);
-})
-.on("mouseover", function(e) {
-  e.layer.setStyle({
-    fillColor: "yellow"
-  })
-  //var nameID = e.layer.properties.name;
-  //console.log(nameID);
-})
-.on("mouseout", function(e) {
-  e.layer.setStyle({
-    //weight: weight,
+  var comingBaseStyle = {
+    fillColor: "#0ff000",
+    weight: 2,
     opacity: 1,
-    color: "#d677d6",
-    fillColor: "#e4a5e4",
-    fillOpacity: 0.75,
-    fill: true
+    color: 'white',
+    fillOpacity: 0.7
+  }
+
+  var progressBaseStyle = {
+    fillColor: "#002580",
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    fillOpacity: 0.7
+}
+  
+  var rolloverPoly = {
+    fillColor: "yellow",
+    color: 'white',
+    fillOpacity: 0.7
+  }
+  
+  var settingsControl = {
+    collapsed: false
+    };
+       
+  var urlAvailable = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
+
+  var urlComingSoon = 'https://xycarto.github.io/vectortile-repo/ComingSoon_fix.json';  
+
+  var urlProgress = 'https://xycarto.github.io/vectortile-repo/InProgress_fix.json'; 
+
+  
+
+
+
+  //Load Available Now layer
+  function createOverlayA(data, layerName, availBaseStyle) {
+    var overlayA = L.geoJson(data, availBaseStyle,{
+      onEachFeature: function (feature, layer) {
+        return layer._leaflet_id = feature.elevation_; 
+      }
+    });// Add the data to the map
+    control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
+    overlayA.on('click', function(e){
+      var demList = [
+        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+        '<li>WMTS</li>',
+        '<li>XYZ</li>'
+      ];
+      var dsmList = [
+        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+        '<li>WMTS</li>',
+        '<li>XYZ</li>'
+      ];
+
+      var popupDensity = '<div class="popUpText">Point Density:' + e.layer.feature.properties.point_dens + '</div>';
+      var popupVertical = '<div class="popUpText">Vertical Datum: ' + e.layer.feature.properties.vertical_d + '</div>';
+      var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + e.layer.feature.properties.horizontal + '</div>';
+      var popupSupplier = '<div class="popUpText">Supplier: ' + e.layer.feature.properties.supplier + '</div>';
+      var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
+      var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
+
+      //console.log(e.layer.feature.properties)
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.name);
+      $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
+        $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+        $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+          $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+        });
+      $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
+        $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+        $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+          $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
+        });
+        $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+          $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
+        });
+        
+      $(".left-data-meta").append('<div>Metadata</div>');
+      $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
+    }) // add get information
+    overlayA.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayA.on('mouseout', function(e){
+      e.layer.setStyle(availBaseStyle)
+    })
+    //overlayA.addEventListener('mouseover', function(e){
+      //e.layer.setStyle(rolloverPoly)
+    //}, true)
+  }
+
+  var availableList = [];
+  function getListA(data){
+    //console.log(data);
+    $.each(data.features, function(i, result){
+      availableList.push('<li>'+ result.properties.name + '</li>')
+      //console.log(result.properties.name)
+    })
+  }
+  //console.log(availableList)
+  
+  $.getJSON(urlAvailable, function (data) { 
+    createOverlayA(data, "Available Now", availBaseStyle)
+  }).done(function (data) {
+    getListA(data);
   });
 
-  $(".left").delegate(".fullList", "click", function(e){
-    $(".left-data").empty()
-    $(".left-title").empty()
-    $(".left-title").text("Available Data")
-    
-    var listNames = []
-    var listResults = []
 
-          
-        Papa.parse("https://xycarto.github.io/elevation.aotearoa.proto/csv/available_now.csv", {
-            download: true,
-            complete: function(results) {
-              var resultsData = results.data
-              //console.log(results.data[3])
-              $.each(resultsData, function(i,nme){
-                //console.log(nme[5])
-                listResults.push(nme)
-                listNames.push(nme[1])
-                window.listResults = listResults
-                window.listNames = listNames
-                var name = '<div class="left-list">' + nme[1] + '</div>';
-                $(".left-data").append(name);
-                $(".left-data").data = nme;
-              })
-            }
-        });
+
+
+  //Load Coming Soon layer/*
+  function createOverlayC(data, layerName, comingBaseStyle) {
+    var overlayC = L.geoJson(data, comingBaseStyle,{
+      onEachFeature: function (feature, layer) {
+        return layer._leaflet_id = feature.elevation_; 
+    }
+    });// Add the data to the map
+    control.addOverlay(overlayC, layerName, settingsControl); // Add the layer to the Layer Control.
+    overlayC.on('click', function(e){
+      var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
+      var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.DataDelive + '</div>';
+      var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
+      var dsm = '<div class="popUpText">DSM: ' + e.layer.feature.properties.DSM + '</div>';
+      var pointCloud = '<div class="popUpText">Point Cloud: ' + e.layer.feature.properties.PointCloud + '</div>';
+      var contour = '<div class="popUpText">Contour: ' + e.layer.feature.properties.Contours + '</div>';
+      var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';
+      
+      console.log(e.layer.feature.properties)
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.Region);
+      $(".left-data-meta").append('<div>Info</div>');
+      $(".left-data-meta").append(start);
+      $(".left-data-meta").append(delivery);
+      $(".left-data-meta").append('<div>Deliverables:</div>');
+      $(".left-data-meta").append(dem);
+      $(".left-data-meta").append(dsm);
+      $(".left-data-meta").append(pointCloud);
+      $(".left-data-meta").append(contour);
+      $(".left-data-meta").append(projectLead);
+
+    }) // add get information
+    overlayC.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
     })
-});
+    overlayC.on('mouseout', function(e){
+      e.layer.setStyle(comingBaseStyle)
+    })
+  }
 
-//Build Basemap    
-    var settingsBasemap = {
-        maxZoom: 19, 
-        attribution: '<a href="http://www.linz.govt.nz">Sourced from LINZ. CC-BY 4.0</a>', //Simple attribution for linz
-    };
+  var comingList = [];
+  function getListC(data){
+    //console.log(data);
+    $.each(data.features, function(i, result){
+      comingList.push('<li>'+ result.properties.Region + '</li>')
+      //console.log(result.properties.Region)
+    })
+  }
+  
+  $.getJSON(urlComingSoon, function (data) { 
+    createOverlayC(data, "Coming Soon", comingBaseStyle)
+  })
+  .done(function (data) {
+    getListC(data);
+  });
 
-    var settingsControl = {
-        collapsed: false
-        };
-        
-    //Base map
-    var basemap = new L.TileLayer('https://tiles.maps.linz.io/nz_colour_basemap/GLOBAL_MERCATOR/{z}/{x}/{y}.png', settingsBasemap)
+  //Load In Progress layer
+  function createOverlayP(data, layerName, progressBaseStyle) {
+    var overlayP = L.geoJson(data, progressBaseStyle,{
+      onEachFeature: function (feature, layer) {
+        return layer._leaflet_id = feature.elevation_; 
+      }
+    });// Add the data to the map
+    control.addOverlay(overlayP, layerName, settingsControl); // Add the layer to the Layer Control.
+    overlayP.on('click', function(e){
+      //console.log(e.layer.feature.properties.name)
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.Region);
+    }) // add get information
+    overlayP.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayP.on('mouseout', function(e){
+      e.layer.setStyle(progressBaseStyle)
+    })
+    //overlayA.addEventListener('mouseover', function(e){
+      //e.layer.setStyle(rolloverPoly)
+    //}, true)
+  }
 
-    // Layer control
-    var basemaps = {
-    "LINZ Colour Base Map": basemap
-    };
-
-    var overlays = {
-        "Available Now": vectorAvailable,
-        //"Coming Soon": vectorComingSoon,
-        //"In Progress": vectorInProgress
-      };
-    //end layer control
-        
-    //build all maps
-    var map = new L.Map('map',
-         {center: [-39.9, 175.2], 
-         zoom: 6,
-         layers: basemap
-        }); 
-
-    var control = L.control.layers(basemaps, overlays, settingsControl).addTo(map);
-
-    map.on('overlayadd', function (e) {
-        if (e.name === 'Available Now') {
-
-          $(".left-title").text("Available Data")
-          /*$.getJSON("https://xycarto.github.io/vectortile-repo/available_now/metadata.json", { get_param: 'value' }, function(data) {
-            var parsed = JSON.parse(data.json)
-            var listNames = parsed.tilestats.layers[0].attributes[15].values;*/
-          
-          var listNames = []
-          var listResults = []
-
-            
-          Papa.parse("https://xycarto.github.io/elevation.aotearoa.proto/csv/available_now.csv", {
-              download: true,
-              complete: function(results) {
-                var resultsData = results.data
-                //console.log(results.data[3])
-                $.each(resultsData, function(i,nme){
-                  //console.log(nme[5])
-                  listResults.push(nme)
-                  listNames.push(nme[1])
-                  window.listResults = listResults
-                  window.listNames = listNames
-                  var name = '<div class="left-list">' + nme[1] + '</div>';
-                  $(".left-data").append(name);
-                  $(".left-data").data = nme;
-                })
-              }
+  var progressList = [];
+  function getListP(data){
+    //console.log(data);
+    $.each(data.features, function(i, result){
+      progressList.push('<li>'+ result.properties.Region + '</li>')
+      //console.log(result.properties.Region)
+    })
+  }
+  
+  $.getJSON(urlProgress, function (data) { 
+    createOverlayP(data, "In Progress", progressBaseStyle)
+  })
+  .done(function (data) {
+    getListP(data);
+  });
+  
+  //Add Layer Control
+  var control = L.control.layers(baseMapIndex).addTo(map);
+  
+  control.addTo(map);
+  
+  //Map Legend Click Functions  
+  map.on('overlayadd', function (e) {
+    if (e.name === 'Available Now') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
+                
+      $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
+        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
+        $(".left-data-meta-avail").ready(function() {
+          $('#menu-icon-a').click(function() {
+            $('.left-data-meta-avail-title ul.a').toggleClass('visible');
           });
-          //console.log(listResults)
-          $(".left-data").empty()
-        }
-        else if (e.name === 'Coming Soon') {
-          $(".left-title").text("Coming Soon")
-          $(".left-data").empty()
-        }
-        else if (e.name === 'In Progress') {
-          $(".left-title").text("In Progress")
-          $(".left-data").empty()
-        }
-    });
+        });
+    }
+    else if (e.name === 'Coming Soon') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
+
+      $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
+        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
+        $(".left-data-meta-coming").ready(function() {
+          $('#menu-icon-c').click(function() {
+            $('.left-data-meta-coming-title ul.c').toggleClass('visible');
+          });
+        });
+    }
+    else if (e.name === 'In Progress') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
       
-    map.on('overlayremove', function (e) {
-        if (e.name === 'Available Now') {
-          $(".left-title").text("Please Choose a Layer from the Layer Selector (Top Right of Map)")
-          $(".left-data").empty()
-        }
-        else if (e.name === 'Coming Soon') {
-          $(".left-title").empty()
-          $(".left-data").empty()
-        }
-        else if (e.name === 'In Progress') {
-          $(".left-title").empty()
-          $(".left-data").empty()
-        }
-    });
+      $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
+      $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
+      $(".left-data-meta-progress").ready(function() {
+        $('#menu-icon-p').click(function() {
+          $('.left-data-meta-progress-title ul.p').toggleClass('visible');
+        });
+      });
+    }
+  });
 
-    $(".left").delegate(".left-list", "click", function(e){
-      var getName = $(this).text();
-      $(".left-data").empty()
-      $(".left-title").empty()
-      $(".left-data").append('<div class="return"><strong>return to list</strong></div>')
-      $(".left-title").append('<div class="data">' + getName + '</div>')
-      //console.log(listResults[2][6])
-      $.each(listResults, function(i, result){
-        if (getName == result[1]){
-          //console.log(result)
-          var listData = [6,7,8,9,10,11,12,16,17,18];
-          /*$.each(listData, function(i, orderNum){
-          $(".left-data").append('<div class="data">' + result[orderNum] + '</div>')
-          })*/
-          $(".left-data").append('<div class="popUpText"><strong>Point Density: </strong>' + result[6] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Vertical Datum: </strong>' + result[7] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Horizontal Datum: </strong>' + result[8] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Supplier: </strong>' + result[10] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Flown From: </strong>' + result[11] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Flown To: </strong>' + result[12] + '</div>');
-          $(".left-data").append('<div class="popUpText"><strong>Get Data: </strong>' + '<ul><li><a href="' + result[16] + '" target="_blank">Digital Elevation Model(DEM)</a></li><li><a href="'+ result[17] + '" target="_blank">Digital Surface Model(DSM)</a></li><li><a href="' + result[18] + '" target="_blank">Point Cloud(LAS)</a></li></ul></div>');
-        }
-      })
+ 
+  
+  map.on('overlayremove', function (e) {
+    if (e.name === 'Available Now') {
+      $(".left-data-meta-avail").remove()
+    }
+    else if (e.name === 'Coming Soon') {
+      $(".left-data-meta-coming").remove()
+    }
+    else if (e.name === 'In Progress') {
+      $(".left-data-meta-progress").remove()
+    }
+  });
 
-      //var popupName = '<h3 style="text-align: center;">' + result[1] + '</h3>';
+  //Build list from data click
+  //$(".left-data-meta").delegate('.left-data-meta-coming-title', 'click', function(e){
+    //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')
+
+    //$(".left-data-meta-coming-list").empty()
+    //$(".left-data-meta-coming-list").append(comingList)
+  //})
+  
+  
+  
+  };
+  
+  
       
-
-      $(".left-data").find(".return").click(function(){
-        $(".left-data").remove()
-        $('.left').append('<div class="left-data"></div>');
-        $(".left-title").text("Available Data")
-        //console.log("return clicked")
-        //console.log(listNames)
-        //$(".left-data").text(listNames)
-        $.each(listNames, function(i, item){
-          var name = '<div class="left-list">' + item + '</div>';
-          $(".left-data").append(name);
-        })
-      })
-    })
-    
-    map.addLayer(map);
-
-};
-
-
-    
-
+  
