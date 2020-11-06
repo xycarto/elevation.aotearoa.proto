@@ -337,11 +337,11 @@ width: 50px;
     display: none;   
   }
 
-.left-data-datasets-DEM-title ul.s {
+.left-data-datasets-DSM-title ul.s {
     display: none;   
   }
 
-.left-data-datasets-DEM-title ul.c {
+.left-data-datasets-PointC-title ul.c {
     display: none;   
   }
   
@@ -350,11 +350,11 @@ width: 50px;
      display: block;   
   }
 
-.left-data-datasets-DEM-title ul.s.visible{
+.left-data-datasets-DSM-title ul.s.visible{
      display: block;   
   }
 
-.left-data-datasets-DEM-title ul.c.visible{
+.left-data-datasets-PointC-title ul.c.visible{
     display: block;   
  }
 

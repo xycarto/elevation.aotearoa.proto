@@ -106,6 +106,11 @@ function insert() {
         '<li>WMTS</li>',
         '<li>XYZ</li>'
       ];
+      var dsmList = [
+        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+        '<li>WMTS</li>',
+        '<li>XYZ</li>'
+      ];
 
       //console.log(e.layer.feature.properties)
       $(".left-data-datasets").empty();
@@ -116,6 +121,16 @@ function insert() {
         $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
         $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
           $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+        });
+      $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
+        $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+        $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+          $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
+        });
+        $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+          $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
       $(".left-data-meta").text("metadata");
