@@ -11,10 +11,10 @@ function insert() {
     $('.alldiv').append('<div class="landboxframe"></div>');
         $('.landboxframe').append('<div class="left"></div>'); 
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
-              $('.left').append('<div class="left-data"</div>');
-              $('.left-data').append('<div class="left-data-title">Title</div>');
-              $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
-              $('.left-data').append('<div class="left-data-meta"></div>');
+              $('.left').append('<div class="left-data"></div>');
+                $('.left-data').append('<div class="left-data-title">Title</div>');
+                $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
+                $('.left-data').append('<div class="left-data-meta"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
         $('.landboxframe').append('<div id="map"></div>'); 
   
@@ -89,7 +89,7 @@ function insert() {
   var urlProgress = 'https://xycarto.github.io/vectortile-repo/InProgress_fix.json'; 
 
   //Load Available Now layer
-  function createOverlay(data, layerName, availBaseStyle) {
+  function createOverlayA(data, layerName, availBaseStyle) {
     var overlayA = L.geoJson(data, availBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
@@ -97,9 +97,11 @@ function insert() {
     });// Add the data to the map
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayA.on('click', function(e){
-      console.log(e.layer.feature.properties.name)
-      $(".left-data").empty();
-      $(".left-data").append(e.layer.feature.properties.name);
+      //console.log(e.layer.feature.properties.name)
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.name);
     }) // add get information
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -111,11 +113,25 @@ function insert() {
       //e.layer.setStyle(rolloverPoly)
     //}, true)
   }
+
+  var availableList = [];
+  function getListA(data){
+    console.log(data);
+    $.each(data.features, function(i, result){
+      availableList.push('<li>'+ result.properties.name + '</li>')
+      //console.log(result.properties.name)
+    })
+  }
+  console.log(availableList)
   
-  $.getJSON(urlAvailable, function (data) { createOverlay(data, "Available Now", availBaseStyle)});
+  $.getJSON(urlAvailable, function (data) { 
+    createOverlayA(data, "Available Now", availBaseStyle)
+  }).done(function (data) {
+    getListA(data);
+  });
 
   //Load Coming Soon layer/*
-  function createOverlay(data, layerName, comingBaseStyle) {
+  function createOverlayC(data, layerName, comingBaseStyle) {
     var overlayC = L.geoJson(data, comingBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
@@ -124,9 +140,10 @@ function insert() {
     control.addOverlay(overlayC, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayC.on('click', function(e){
       //console.log(e.layer.feature.properties.name)
-      //console.log(e.data)
-      $(".left-data").empty();
-      $(".left-data").append(e.layer.feature.properties.name);
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.Region);
     }) // add get information
     overlayC.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -134,31 +151,26 @@ function insert() {
     overlayC.on('mouseout', function(e){
       e.layer.setStyle(comingBaseStyle)
     })
-    overlayC.addEventListener('mouseover', function(e){
-      e.layer.setStyle(rolloverPoly)
-    }, true)
   }
 
   var comingList = [];
-  function getList(data){
-    console.log(data);
+  function getListC(data){
+    //console.log(data);
     $.each(data.features, function(i, result){
       comingList.push('<li>'+ result.properties.Region + '</li>')
-      console.log(result.properties.Region)
+      //console.log(result.properties.Region)
     })
   }
-
-  console.log(comingList)
   
   $.getJSON(urlComingSoon, function (data) { 
-    createOverlay(data, "Coming Soon", comingBaseStyle)
+    createOverlayC(data, "Coming Soon", comingBaseStyle)
   })
   .done(function (data) {
-    getList(data);
+    getListC(data);
   });
 
   //Load In Progress layer
-  function createOverlay(data, layerName, progressBaseStyle) {
+  function createOverlayP(data, layerName, progressBaseStyle) {
     var overlayP = L.geoJson(data, progressBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
@@ -166,9 +178,11 @@ function insert() {
     });// Add the data to the map
     control.addOverlay(overlayP, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayP.on('click', function(e){
-      console.log(e.layer.feature.properties.name)
-      $(".left-data").empty();
-      $(".left-data").append(e.layer.feature.properties.name);
+      //console.log(e.layer.feature.properties.name)
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();
+      $(".left-data-meta").empty();
+      $(".left-data-title").append(e.layer.feature.properties.Region);
     }) // add get information
     overlayP.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -181,7 +195,7 @@ function insert() {
     //}, true)
   }
   
-  $.getJSON(urlProgress, function (data) { createOverlay(data, "In Progress", progressBaseStyle)});
+  $.getJSON(urlProgress, function (data) { createOverlayP(data, "In Progress", progressBaseStyle)});
   
   //Add Layer Control
   var control = L.control.layers(baseMapIndex).addTo(map);
@@ -192,14 +206,19 @@ function insert() {
   map.on('overlayadd', function (e) {
     if (e.name === 'Available Now') {     
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
-      $(".left-data-meta-avail").text("Available Data with drop down")
+        $(".left-data-meta-avail").append('<nav class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></nav><a href="#" id="menu-icon-a"></a>')
+        $(".left-data-meta-avail").ready(function() {
+          $('#menu-icon-a').click(function() {
+            $('.left-data-meta-avail-title ul.a').toggleClass('visible');
+          });
+        });
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<nav class="left-data-meta-coming-title"><ul>' + comingList + '</ul></nav><a href="#" id="menu-icon"></a>')
+        $(".left-data-meta-coming").append('<nav class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></nav><a href="#" id="menu-icon-c"></a>')
         $(".left-data-meta-coming").ready(function() {
-          $('#menu-icon').click(function() {
-            $('.left-data-meta-coming-title ul').toggleClass('visible');
+          $('#menu-icon-c').click(function() {
+            $('.left-data-meta-coming-title ul.c').toggleClass('visible');
           });
         });
           //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')

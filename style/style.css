@@ -271,23 +271,44 @@ img {
 
 /*collapse*/
 
-#menu-icon:before {
-    content: "Menu";
+#menu-icon-a:before {
+    /*content: "Menu";*/
     display: inline-block;
     width: 50px;
   }
   
-#menu-icon:after {
+#menu-icon-a:after {
 content: "\2261";   
 display: inline-block;
 width: 50px;
 }
 
-.left-data-meta-coming-title ul {
+#menu-icon-c:before {
+    /*content: "Menu";*/
+    display: inline-block;
+    width: 50px;
+  }
+  
+#menu-icon-c:after {
+content: "\2261";   
+display: inline-block;
+width: 50px;
+}
+
+.left-data-meta-coming-title ul.c {
+    display: none;   
+  }
+
+.left-data-meta-avail-title ul.a {
     display: none;   
   }
   
-.left-data-meta-coming-title ul.visible {
+
+.left-data-meta-avail-title ul.a.visible {
+     display: block;   
+  }
+
+.left-data-meta-coming-title ul.c.visible{
      display: block;   
   }
 
