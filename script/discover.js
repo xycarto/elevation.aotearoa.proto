@@ -13,6 +13,7 @@ function insert() {
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
                 $('.left-data').append('<div class="left-data-title">Title</div>');
+                $('.left-data').append('<div class="left-data-lists"></div>');
                 $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
@@ -123,6 +124,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
         $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
@@ -194,6 +196,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div>Info</div>');
       $(".left-data-meta").append(start);
@@ -243,6 +246,8 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-lists").empty();
+      
       $(".left-data-title").append(e.layer.feature.properties.Region);
     }) // add get information
     overlayP.on('mouseover', function(e){
@@ -282,8 +287,9 @@ function insert() {
     if (e.name === 'Available Now') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
+      $(".left-data-meta").empty(); 
                 
-      $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
+      $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
           $('#menu-icon-a').click(function() {
@@ -293,9 +299,10 @@ function insert() {
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-datasets").empty();
-      $(".left-data-title").empty();
+      $(".left-data-title").empty(); 
+      $(".left-data-meta").empty(); 
 
-      $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
+      $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
           $('#menu-icon-c').click(function() {
@@ -305,9 +312,10 @@ function insert() {
     }
     else if (e.name === 'In Progress') {
       $(".left-data-datasets").empty();
-      $(".left-data-title").empty(); 
+      $(".left-data-title").empty();  
+      $(".left-data-meta").empty(); 
       
-      $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
+      $(".left-data-lists").append('<div class="left-data-meta-progress"></div>')
       $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
       $(".left-data-meta-progress").ready(function() {
         $('#menu-icon-p').click(function() {
