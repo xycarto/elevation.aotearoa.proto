@@ -13,9 +13,10 @@ function insert() {
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
                 $('.left-data').append('<div class="left-data-title">Title</div>');
-                $('.left-data').append('<div class="left-data-lists"></div>');
+                
                 $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
+                $('.left-data').append('<div class="left-data-lists"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
         $('.landboxframe').append('<div id="map"></div>'); 
   
@@ -124,7 +125,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
-      $(".left-data-lists").empty();
+      //$(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
         $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
@@ -157,15 +158,24 @@ function insert() {
   }
 
   var availableList = [];
+  var availableFullList = [];
   function getListA(data){
     //console.log(data);
     $.each(data.features, function(i, result){
-      availableList.push('<li>'+ result.properties.name + '</li>')
-      //console.log(result.properties.name)
+      availableList.push('<div class="name">'+ result.properties.name + '</div>')
+      availableFullList.push(result.properties)
+      //console.log(result.properties)
     })
   }
-  //console.log(availableList)
+
+  //function clickCompare(availableFullList){
+    //if
+  //}
+
+
   
+  console.log(availableFullList)
+
   $.getJSON(urlAvailable, function (data) { 
     createOverlayA(data, "Available Now", availBaseStyle)
   }).done(function (data) {
@@ -196,7 +206,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
-      $(".left-data-lists").empty();
+      //$(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div>Info</div>');
       $(".left-data-meta").append(start);
@@ -337,6 +347,11 @@ function insert() {
     else if (e.name === 'In Progress') {
       $(".left-data-meta-progress").remove()
     }
+  });
+
+  $(".left-data-lists").delegate(".name", 'click', function() {
+    var txt = $(this).text();
+    console.log(txt);
   });
 
   //Build list from data click
