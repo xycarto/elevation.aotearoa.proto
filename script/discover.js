@@ -194,8 +194,22 @@ function insert() {
       //e.layer.setStyle(rolloverPoly)
     //}, true)
   }
+
+  var progressList = [];
+  function getListP(data){
+    //console.log(data);
+    $.each(data.features, function(i, result){
+      progressList.push('<li>'+ result.properties.Region + '</li>')
+      //console.log(result.properties.Region)
+    })
+  }
   
-  $.getJSON(urlProgress, function (data) { createOverlayP(data, "In Progress", progressBaseStyle)});
+  $.getJSON(urlProgress, function (data) { 
+    createOverlayP(data, "In Progress", progressBaseStyle)
+  })
+  .done(function (data) {
+    getListP(data);
+  });
   
   //Add Layer Control
   var control = L.control.layers(baseMapIndex).addTo(map);
@@ -204,7 +218,9 @@ function insert() {
   
   //Map Legend Click Functions  
   map.on('overlayadd', function (e) {
-    if (e.name === 'Available Now') {     
+    if (e.name === 'Available Now') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty();           
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
@@ -214,6 +230,8 @@ function insert() {
         });
     }
     else if (e.name === 'Coming Soon') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty(); 
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
@@ -221,14 +239,17 @@ function insert() {
             $('.left-data-meta-coming-title ul.c').toggleClass('visible');
           });
         });
-          //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')
-        //$(".left-data-meta-coming").append('<div class="left-data-meta-coming-list">list</div>')
-
-      //$(".left-data-meta-coming").text("Coming Soon with drop down")
     }
     else if (e.name === 'In Progress') {
+      $(".left-data-datasets").empty();
+      $(".left-data-title").empty(); 
       $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
-      $(".left-data-meta-progress").text("In Progress with drop down")
+      $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
+      $(".left-data-meta-progress").ready(function() {
+        $('#menu-icon-p').click(function() {
+          $('.left-data-meta-progress-title ul.p').toggleClass('visible');
+        });
+      });
     }
   });
 

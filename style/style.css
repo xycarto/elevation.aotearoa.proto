@@ -276,14 +276,16 @@ img {
 }*/
 
 #menu-icon-a:before,
-#menu-icon-c:before {
+#menu-icon-c:before,
+#menu-icon-p:before {
     /*content: "Menu";*/
     float: left;
     width: 50px;
   }
   
 #menu-icon-a:after,
-#menu-icon-c:after {
+#menu-icon-c:after,
+#menu-icon-p:after {
 content: "\2261";
 float:left;
 width: 50px;
@@ -298,6 +300,10 @@ width: 50px;
 .left-data-meta-avail-title ul.a {
     display: none;   
   }
+
+.left-data-meta-progress-title ul.p {
+    display: none;   
+  }
   
 
 .left-data-meta-avail-title ul.a.visible {
@@ -307,6 +313,10 @@ width: 50px;
 .left-data-meta-coming-title ul.c.visible{
      display: block;   
   }
+
+.left-data-meta-progress-title ul.p.visible{
+    display: block;   
+ }
 
 #map {
     width: 74%;
