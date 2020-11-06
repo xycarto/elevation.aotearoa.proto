@@ -14,7 +14,7 @@ function insert() {
               $('.left').append('<div class="left-data"</div>');
               $('.left-data').append('<div class="left-data-title">Title</div>');
               $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
-              $('.left-data').append('<div class="left-data-meta">Metadata</div>');
+              $('.left-data').append('<div class="left-data-meta"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
         $('.landboxframe').append('<div id="map"></div>'); 
   
@@ -93,7 +93,7 @@ function insert() {
     var overlayA = L.geoJson(data, availBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
-    }
+      }
     });// Add the data to the map
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayA.on('click', function(e){
@@ -123,7 +123,8 @@ function insert() {
     });// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayC.on('click', function(e){
-      console.log(e.layer.feature.properties.name)
+      //console.log(e.layer.feature.properties.name)
+      //console.log(e.data)
       $(".left-data").empty();
       $(".left-data").append(e.layer.feature.properties.name);
     }) // add get information
@@ -137,15 +138,31 @@ function insert() {
       e.layer.setStyle(rolloverPoly)
     }, true)
   }
+
+  var comingList = [];
+  function getList(data){
+    console.log(data);
+    $.each(data.features, function(i, result){
+      comingList.push('<li>'+ result.properties.Region + '</li>')
+      console.log(result.properties.Region)
+    })
+  }
+
+  console.log(comingList)
   
-  $.getJSON(urlComingSoon, function (data) { createOverlay(data, "Coming Soon", comingBaseStyle)});
+  $.getJSON(urlComingSoon, function (data) { 
+    createOverlay(data, "Coming Soon", comingBaseStyle)
+  })
+  .done(function (data) {
+    getList(data);
+  });
 
   //Load In Progress layer
   function createOverlay(data, layerName, progressBaseStyle) {
     var overlayP = L.geoJson(data, progressBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
-    }
+      }
     });// Add the data to the map
     control.addOverlay(overlayP, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayP.on('click', function(e){
@@ -171,20 +188,22 @@ function insert() {
   
   control.addTo(map);
   
-  //Map Functions
-  
+  //Map Legend Click Functions  
   map.on('overlayadd', function (e) {
-    if (e.name === 'Available Now') {
+    if (e.name === 'Available Now') {     
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
-      $(".left-data-meta-avail").text("Available Data")
+      $(".left-data-meta-avail").text("Available Data with drop down")
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
-      $(".left-data-meta-coming").text("Coming Soon")
+        $(".left-data-meta-coming").append('<div class="left-data-meta-coming-title">Coming Soon</div>')
+        $(".left-data-meta-coming").append('<div class="left-data-meta-coming-list">list</div>')
+
+      //$(".left-data-meta-coming").text("Coming Soon with drop down")
     }
     else if (e.name === 'In Progress') {
       $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
-      $(".left-data-meta-progress").text("In Progress")
+      $(".left-data-meta-progress").text("In Progress with drop down")
     }
   });
   
@@ -199,6 +218,12 @@ function insert() {
       $(".left-data-meta-progress").remove()
     }
   });
+
+  //Build list from data click
+  $(".left-data-meta").delegate('.left-data-meta-coming-title', 'click', function(e){
+    $(".left-data-meta-coming-list").empty()
+    $(".left-data-meta-coming-list").append(comingList)
+  })
   
   
   
