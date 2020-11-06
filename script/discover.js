@@ -154,23 +154,24 @@ function insert() {
     //}, true)
   }
 
- 
-
   var availableList = [];
   function getListA(data){
-    console.log(data);
+    //console.log(data);
     $.each(data.features, function(i, result){
       availableList.push('<li>'+ result.properties.name + '</li>')
       //console.log(result.properties.name)
     })
   }
-  console.log(availableList)
+  //console.log(availableList)
   
   $.getJSON(urlAvailable, function (data) { 
     createOverlayA(data, "Available Now", availBaseStyle)
   }).done(function (data) {
     getListA(data);
   });
+
+
+
 
   //Load Coming Soon layer/*
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -181,11 +182,29 @@ function insert() {
     });// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayC.on('click', function(e){
-      //console.log(e.layer.feature.properties.name)
+      var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
+      var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.DataDelive + '</div>';
+      var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
+      var dsm = '<div class="popUpText">DSM: ' + e.layer.feature.properties.DSM + '</div>';
+      var pointCloud = '<div class="popUpText">Point Cloud: ' + e.layer.feature.properties.PointCloud + '</div>';
+      var contour = '<div class="popUpText">Contour: ' + e.layer.feature.properties.Contours + '</div>';
+      var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';
+      
+      console.log(e.layer.feature.properties)
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
+      $(".left-data-meta").append('<div>Info</div>');
+      $(".left-data-meta").append(start);
+      $(".left-data-meta").append(delivery);
+      $(".left-data-meta").append('<div>Deliverables:</div>');
+      $(".left-data-meta").append(dem);
+      $(".left-data-meta").append(dsm);
+      $(".left-data-meta").append(pointCloud);
+      $(".left-data-meta").append(contour);
+      $(".left-data-meta").append(projectLead);
+
     }) // add get information
     overlayC.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -262,7 +281,9 @@ function insert() {
   map.on('overlayadd', function (e) {
     if (e.name === 'Available Now') {
       $(".left-data-datasets").empty();
-      $(".left-data-title").empty();           
+      $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
+                
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
@@ -274,6 +295,8 @@ function insert() {
     else if (e.name === 'Coming Soon') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
+
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
@@ -285,6 +308,8 @@ function insert() {
     else if (e.name === 'In Progress') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
+      $(".left-data-meta").empty();
+      
       $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
       $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
       $(".left-data-meta-progress").ready(function() {
