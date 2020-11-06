@@ -352,6 +352,54 @@ function insert() {
   $(".left-data-lists").delegate(".name", 'click', function() {
     var txt = $(this).text();
     console.log(txt);
+    $.each(availableFullList, function(i, result){
+      if (txt == result.name){
+        console.log(result);
+        var demList = [
+          '<li><a href="' + result.DataDEM + '" target="_blank">Source DEM</a></li>',
+          '<li>WMTS</li>',
+          '<li>XYZ</li>'
+        ];
+        var dsmList = [
+          '<li><a href="' + result.DataDEM + '" target="_blank">Source DEM</a></li>',
+          '<li>WMTS</li>',
+          '<li>XYZ</li>'
+        ];
+  
+        var popupDensity = '<div class="popUpText">Point Density:' + result.point_dens + '</div>';
+        var popupVertical = '<div class="popUpText">Vertical Datum: ' + result.vertical_d + '</div>';
+        var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + result.horizontal + '</div>';
+        var popupSupplier = '<div class="popUpText">Supplier: ' + result.supplier + '</div>';
+        var popupFlownFrom = '<div class="popUpText">Flown From: ' + result.flown_from + '</div>';
+        var popupFlownTo = '<div class="popUpText">Flown To: ' + result.flown_to + '</div>';
+  
+        //console.log(e.layer.feature.properties)
+        $(".left-data-datasets").empty();
+        $(".left-data-title").empty();
+        $(".left-data-meta").empty();
+        //$(".left-data-lists").empty();
+        $(".left-data-title").append(result.name);
+        $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
+          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+          $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+            $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+          });
+        $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
+          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+          $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+            $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
+          });
+          $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
+          $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
+          $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+            $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
+          });
+          
+        $(".left-data-meta").append('<div>Metadata</div>');
+        $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
+      }
+    })
+    
   });
 
   //Build list from data click
