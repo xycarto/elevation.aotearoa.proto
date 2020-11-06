@@ -269,6 +269,28 @@ img {
     color: #02637A;
 }
 
+/*collapse*/
+
+#menu-icon:before {
+    content: "Menu";
+    display: inline-block;
+    width: 50px;
+  }
+  
+#menu-icon:after {
+content: "\2261";   
+display: inline-block;
+width: 50px;
+}
+
+.left-data-meta-coming-title ul {
+    display: none;   
+  }
+  
+.left-data-meta-coming-title ul.visible {
+     display: block;   
+  }
+
 #map {
     width: 74%;
     height: 100%;

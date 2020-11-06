@@ -196,8 +196,14 @@ function insert() {
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<div class="left-data-meta-coming-title">Coming Soon</div>')
-        $(".left-data-meta-coming").append('<div class="left-data-meta-coming-list">list</div>')
+        $(".left-data-meta-coming").append('<nav class="left-data-meta-coming-title"><ul>' + comingList + '</ul></nav><a href="#" id="menu-icon"></a>')
+        $(".left-data-meta-coming").ready(function() {
+          $('#menu-icon').click(function() {
+            $('.left-data-meta-coming-title ul').toggleClass('visible');
+          });
+        });
+          //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')
+        //$(".left-data-meta-coming").append('<div class="left-data-meta-coming-list">list</div>')
 
       //$(".left-data-meta-coming").text("Coming Soon with drop down")
     }
@@ -206,6 +212,8 @@ function insert() {
       $(".left-data-meta-progress").text("In Progress with drop down")
     }
   });
+
+ 
   
   map.on('overlayremove', function (e) {
     if (e.name === 'Available Now') {
@@ -220,10 +228,12 @@ function insert() {
   });
 
   //Build list from data click
-  $(".left-data-meta").delegate('.left-data-meta-coming-title', 'click', function(e){
-    $(".left-data-meta-coming-list").empty()
-    $(".left-data-meta-coming-list").append(comingList)
-  })
+  //$(".left-data-meta").delegate('.left-data-meta-coming-title', 'click', function(e){
+    //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')
+
+    //$(".left-data-meta-coming-list").empty()
+    //$(".left-data-meta-coming-list").append(comingList)
+  //})
   
   
   
