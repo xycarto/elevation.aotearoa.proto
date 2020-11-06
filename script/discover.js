@@ -282,7 +282,6 @@ function insert() {
     if (e.name === 'Available Now') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
-      $(".left-data-meta").empty();
                 
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
@@ -294,8 +293,7 @@ function insert() {
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-datasets").empty();
-      $(".left-data-title").empty(); 
-      $(".left-data-meta").empty();
+      $(".left-data-title").empty();
 
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
@@ -308,7 +306,6 @@ function insert() {
     else if (e.name === 'In Progress') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
-      $(".left-data-meta").empty();
       
       $(".left-data-meta").append('<div class="left-data-meta-progress"></div>')
       $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
