@@ -248,7 +248,7 @@ img {
     background-color: #ff0ff0;
 }
 
-.left-data-meta{
+.left-data-meta {
     width: 100%;
     color: #333333;
     background-color: #fff000;
@@ -271,29 +271,25 @@ img {
 
 /*collapse*/
 
-#menu-icon-a:before {
+/*.left-data-meta-title a {
+    display: inline;
+}*/
+
+#menu-icon-a:before,
+#menu-icon-c:before {
     /*content: "Menu";*/
-    display: inline-block;
+    float: left;
     width: 50px;
   }
   
-#menu-icon-a:after {
-content: "\2261";   
-display: inline-block;
+#menu-icon-a:after,
+#menu-icon-c:after {
+content: "\2261";
+float:left;
 width: 50px;
 }
 
-#menu-icon-c:before {
-    /*content: "Menu";*/
-    display: inline-block;
-    width: 50px;
-  }
-  
-#menu-icon-c:after {
-content: "\2261";   
-display: inline-block;
-width: 50px;
-}
+
 
 .left-data-meta-coming-title ul.c {
     display: none;   

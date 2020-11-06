@@ -206,7 +206,7 @@ function insert() {
   map.on('overlayadd', function (e) {
     if (e.name === 'Available Now') {     
       $(".left-data-meta").append('<div class="left-data-meta-avail"></div>')
-        $(".left-data-meta-avail").append('<nav class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></nav><a href="#" id="menu-icon-a"></a>')
+        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
           $('#menu-icon-a').click(function() {
             $('.left-data-meta-avail-title ul.a').toggleClass('visible');
@@ -215,7 +215,7 @@ function insert() {
     }
     else if (e.name === 'Coming Soon') {
       $(".left-data-meta").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<nav class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></nav><a href="#" id="menu-icon-c"></a>')
+        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
           $('#menu-icon-c').click(function() {
             $('.left-data-meta-coming-title ul.c').toggleClass('visible');
