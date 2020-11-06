@@ -112,6 +112,13 @@ function insert() {
         '<li>XYZ</li>'
       ];
 
+      var popupDensity = '<div class="popUpText">Point Density:' + e.layer.feature.properties.point_dens + '</div>';
+      var popupVertical = '<div class="popUpText">Vertical Datum: ' + e.layer.feature.properties.vertical_d + '</div>';
+      var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + e.layer.feature.properties.horizontal + '</div>';
+      var popupSupplier = '<div class="popUpText">Supplier: ' + e.layer.feature.properties.supplier + '</div>';
+      var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
+      var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
+
       //console.log(e.layer.feature.properties)
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
@@ -133,7 +140,8 @@ function insert() {
           $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
-      $(".left-data-meta").text("metadata");
+      $(".left-data-meta").append('<div>Metadata</div>');
+      $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
     }) // add get information
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
