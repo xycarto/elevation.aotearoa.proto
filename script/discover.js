@@ -321,7 +321,7 @@ function insert() {
       if (txtC == result.properties.Region){
         var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
         var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.DataDelive + '</div>';
-        var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + result.properties.PulseDensi + '</div>';
         var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
         var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
         var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
@@ -431,7 +431,7 @@ function insert() {
     })
   }
 
-      //Build info if item clicked in side bar list Coming Soon layer
+      //Build info if item clicked in side bar list progress layer
       $(".left-data-lists").delegate(".name", 'click', function() {
         var txtP = $(this).text();
         console.log(txtP)
