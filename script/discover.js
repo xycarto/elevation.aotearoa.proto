@@ -342,9 +342,8 @@ function insert() {
         $(".left-data-meta").append(pointCloud);
         $(".left-data-meta").append(contour);
         $(".left-data-meta").append(projectLead);
-    }
-  })
-    
+      }
+    }) 
   })
 
   // build lists from list for COMING SOON for legend click functions 
@@ -404,7 +403,7 @@ function insert() {
       $(".left-data-meta").append(dsm);
       $(".left-data-meta").append(pointCloud);
       $(".left-data-meta").append(contour);
-      $(".left-data-meta").append(projectLead);;
+      $(".left-data-meta").append(projectLead);
     })
     overlayP.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
@@ -412,15 +411,72 @@ function insert() {
     overlayP.on('mouseout', function(e){
       e.layer.setStyle(progressBaseStyle)
     })
-  }
 
-  var progressList = [];
-  function getListP(data){
-    //console.log(data);
-    $.each(data.features, function(i, result){
-      progressList.push('<div class="name">'+ result.properties.Region + '</div>')
+    // Mouse roll over highligh from side bar list
+    var idsP = overlayP._layers
+    $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
+    var txtPS = $(this).text();
+    //console.log(txt)
+    $.each(idsP, function(i, item){
+      //console.log(item._leaflet_id + item.feature.properties.name)
+      if (item.feature.properties.Region == txtPS && e.type == 'mouseenter'){
+        item.setStyle(rolloverPoly);
+        //console.log(item)
+      }
+      else {
+        item.setStyle(progressBaseStyle);
+        //console.log(item)
+        }
+      })
     })
   }
+
+      //Build info if item clicked in side bar list Coming Soon layer
+      $(".left-data-lists").delegate(".name", 'click', function() {
+        var txtP = $(this).text();
+        console.log(txtP)
+        
+        $.each(progressFeaturesList, function(i, result){  
+          console.log(result.properties.Region)
+          if (txtP == result.properties.Region){
+            var start = '<div class="popUpText">Start Date:' + result.properties.ProjectSta + '</div>';
+            var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.ProjectCom + '</div>';
+            var pulse = '<div class="popUpText">Pulse Density: ' + result.properties.PulseDensi + '</div>';
+            var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
+            var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
+            var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
+            var contour = '<div class="popUpText">Contour: ' + result.properties.Contours + '</div>';
+            var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
+            //Build side bar list
+            $(".left-data-datasets").empty();
+            $(".left-data-title").empty();
+            $(".left-data-meta").empty();
+            $(".left-data-title").append(result.properties.Region);
+            $(".left-data-meta").append('<div>Info</div>');
+            $(".left-data-meta").append(start);
+            $(".left-data-meta").append(delivery);
+            $(".left-data-meta").append(pulse);
+            $(".left-data-meta").append('<div>Deliverables:</div>');
+            $(".left-data-meta").append(dem);
+            $(".left-data-meta").append(dsm);
+            $(".left-data-meta").append(pointCloud);
+            $(".left-data-meta").append(contour);
+            $(".left-data-meta").append(projectLead);
+          }
+        }) 
+      })
+    
+      // build lists from list for COMING SOON for legend click functions 
+      var progressList = [];
+      var progressFullList = [];
+      var progressFeaturesList = [];
+      function getListP(data){
+        $.each(data.features, function(i, result){
+          progressList.push('<div class="name">'+ result.properties.Region + '</div>')
+          progressFullList.push(result.properties)
+          progressFeaturesList.push(result)
+        })
+      }
   
   $.getJSON(urlProgress, function (data) { 
     createOverlayP(data, "In Progress", progressBaseStyle)
@@ -429,8 +485,7 @@ function insert() {
     getListP(data);
   });
 
-  //console.log(overlayC)
-
+  
   //////////////////////////////// End In Progress Functions
   
 
