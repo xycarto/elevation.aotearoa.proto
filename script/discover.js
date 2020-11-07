@@ -101,9 +101,7 @@ function insert() {
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
     
     //mouse over functions fro avialable layer
-    overlayA.on('click', function(e){      
-      console.log(e.layer._leaflet_id)
-
+    overlayA.on('click', function(e){ 
       // vars for on map click Available now
       var demList = [
         '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
@@ -159,17 +157,17 @@ function insert() {
   //highlight available layer from side bar list
   var ids = overlayA._layers
   $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
-    var txt = $(this).text();
-    console.log(txt)
+    var txtA = $(this).text();
+    //console.log(txt)
     $.each(ids, function(i, item){
       //console.log(item._leaflet_id + item.feature.properties.name)
-      if (item.feature.properties.name == txt && e.type == 'mouseenter'){
+      if (item.feature.properties.name == txtA && e.type == 'mouseenter'){
         item.setStyle(rolloverPoly);
-        console.log(item)
+        //console.log(item)
       }
       else {
         item.setStyle(availBaseStyle);
-        console.log(item)
+        //console.log(item)
       }
     })
   })
@@ -177,12 +175,11 @@ function insert() {
     
   //Build info if item clicked in side bar list 
   $(".left-data-lists").delegate(".name", 'click', function() {
-    var txt = $(this).text();
+    var txtAS = $(this).text();
 
     $.each(availableFeaturesList, function(i, result){      
-      if (txt == result.properties.name){
-
-        //text templates for available
+      if (txtAS == result.properties.name){
+        //text templates for available side bar populate
         var demList = [
           '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
           '<li>WMTS</li>',
@@ -229,7 +226,7 @@ function insert() {
     });
   }
 
-  // build lists from list for Available for legend click functions
+  // build lists from list for Available for legend click functions Available
   var availableList = [];
   var availableFullList = [];
   var availableFeaturesList = [];
@@ -260,23 +257,24 @@ function insert() {
     var overlayC = L.geoJson(data, comingBaseStyle,{
       onEachFeature: function (feature, layer) {
         return layer._leaflet_id = feature.elevation_; 
-    }
+      }
     });// Add the data to the map
-    control.addOverlay(overlayC, layerName, settingsControl); // Add the layer to the Layer Control.
+    control.addOverlay(overlayC, layerName, settingsControl);
+
+    //Mouse over functions for map layer Coming Soon
     overlayC.on('click', function(e){
+      //vars for mouse over
       var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
       var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.DataDelive + '</div>';
       var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
       var dsm = '<div class="popUpText">DSM: ' + e.layer.feature.properties.DSM + '</div>';
       var pointCloud = '<div class="popUpText">Point Cloud: ' + e.layer.feature.properties.PointCloud + '</div>';
       var contour = '<div class="popUpText">Contour: ' + e.layer.feature.properties.Contours + '</div>';
-      var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';
-      
-      console.log(e.layer.feature.properties)
+      var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
+      //Build side bar list
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
-      //$(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div>Info</div>');
       $(".left-data-meta").append(start);
@@ -297,13 +295,51 @@ function insert() {
     })
   }
 
+   //Build info if item clicked in side bar list Coming Soon layer
+  $(".left-data-lists").delegate(".name", 'click', function() {
+    var txtC = $(this).text();
+    console.log(txtC)
+    $.each(comingFeaturesList, function(i, result){      
+      if (txtC == result.properties.Region){
+        var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
+        var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.DataDelive + '</div>';
+        var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
+        var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
+        var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
+        var contour = '<div class="popUpText">Contour: ' + result.properties.Contours + '</div>';
+        var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
+        //Build side bar list
+        $(".left-data-datasets").empty();
+        $(".left-data-title").empty();
+        $(".left-data-meta").empty();
+        $(".left-data-title").append(result.properties.Region);
+        $(".left-data-meta").append('<div>Info</div>');
+        $(".left-data-meta").append(start);
+        $(".left-data-meta").append(delivery);
+        $(".left-data-meta").append('<div>Deliverables:</div>');
+        $(".left-data-meta").append(dem);
+        $(".left-data-meta").append(dsm);
+        $(".left-data-meta").append(pointCloud);
+        $(".left-data-meta").append(contour);
+        $(".left-data-meta").append(projectLead);
+    }
+  })
+    
+  })
+
+  // build lists from list for COMING SOON for legend click functions 
   var comingList = [];
+  var comingFullList = [];
+  var comingFeaturesList = [];
   function getListC(data){
     $.each(data.features, function(i, result){
-      comingList.push('<li>'+ result.properties.Region + '</li>')
+      comingList.push('<div class="name">'+ result.properties.Region + '</div>')
+      comingFullList.push(result.properties)
+      comingFeaturesList.push(result)
     })
   }
-  
+
+  //get coming soon layer for map
   $.getJSON(urlComingSoon, function (data) { 
     createOverlayC(data, "Coming Soon", comingBaseStyle)
   }).done(function (data) {
