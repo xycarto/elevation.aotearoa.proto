@@ -1,6 +1,7 @@
 
 function insert() { 
 
+  // Build Load structure
   $('body').append('<div class="alldiv"></div>');       
     $('.alldiv').append('<div class="top"></div>');
         $('.top').append('<div class="menuitem-index"><a href="index.html"><span>Elevation Aotearoa</span></a></div>');
@@ -22,26 +23,24 @@ function insert() {
   
   
   
-  //Build Basemap    
+  //Build Basemap  Settings  
   var settingsBasemap = {
-          maxZoom: 19, 
+          maxZoom: 16, 
           attribution: '<a href="http://www.linz.govt.nz">Sourced from LINZ. CC-BY 4.0</a>', //Simple attribution for linz
   };
-  
-  var settingsControl = {
-          collapsed: false
-          };
-          
-      //Base map
+            
+  //Base map URL
   var basemap = new L.TileLayer('https://tiles.maps.linz.io/nz_colour_basemap/GLOBAL_MERCATOR/{z}/{x}/{y}.png', settingsBasemap)
   
-      // Layer control
+  // Layer control base map
   var baseMapIndex = {
       "LINZ Colour Base Map": basemap
       };
+
+  var settingsControl = {
+    collapsed: false
+    };
   
-  //end layer control
-          
   //build all maps
   var map = new L.Map('map',
            {center: [-39.9, 175.2], 
@@ -50,12 +49,13 @@ function insert() {
           });
   
   
+  //JSON styles
   var availBaseStyle = {
-            fillColor: "#000000",
-            weight: 2,
-            opacity: 1,
-            color: 'white',
-            fillOpacity: 0.7
+    fillColor: "#000000",
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    fillOpacity: 0.7
   }
 
   var comingBaseStyle = {
@@ -79,10 +79,6 @@ function insert() {
     color: 'white',
     fillOpacity: 0.7
   }
-  
-  var settingsControl = {
-    collapsed: false
-    };
        
   var urlAvailable = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
 
@@ -102,8 +98,9 @@ function insert() {
       }
     });// Add the data to the map
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
-    overlayA.on('click', function(e){
-      
+    
+    //mouse over functions fro avialable layer
+    overlayA.on('click', function(e){      
       console.log(e.layer._leaflet_id)
       var demList = [
         '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
@@ -146,7 +143,6 @@ function insert() {
       $(".left-data-meta").append('<div>Metadata</div>');
       $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
     })
-    //mouse over functions
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
@@ -203,7 +199,7 @@ function insert() {
         var popupFlownFrom = '<div class="popUpText">Flown From: ' + result.properties.flown_from + '</div>';
         var popupFlownTo = '<div class="popUpText">Flown To: ' + result.properties.flown_to + '</div>';
   
-        //build html structure with names on click
+        //build html structure with names on click from available
         $(".left-data-datasets").empty();
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
@@ -251,22 +247,12 @@ function insert() {
     getListA(data);
   });
 
-
-  /////////////////////////// Available done
-
+  //////////////////////////////////// End Available Now functions
 
 
-
-
-
-
-
-
-
-
-
-
-
+  ////////////////////////////////////  Begin Coming Soon Functions
+  //TODO: build sidebar functions
+  //TODO: polygon heighlight form sidebar
 
   //Load Coming Soon layer/*
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -300,8 +286,8 @@ function insert() {
       $(".left-data-meta").append(pointCloud);
       $(".left-data-meta").append(contour);
       $(".left-data-meta").append(projectLead);
-
-    }) // add get information
+    })
+    //mouse over functions coming
     overlayC.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
@@ -312,20 +298,21 @@ function insert() {
 
   var comingList = [];
   function getListC(data){
-    //console.log(data);
     $.each(data.features, function(i, result){
       comingList.push('<li>'+ result.properties.Region + '</li>')
-      //console.log(result.properties.Region)
     })
   }
   
   $.getJSON(urlComingSoon, function (data) { 
     createOverlayC(data, "Coming Soon", comingBaseStyle)
-  })
-  .done(function (data) {
+  }).done(function (data) {
     getListC(data);
   });
 
+  ////////////////////////////////////////////// End Coming Soon Functions
+
+
+  ////////////////////////////////////////////// Begin In Progress Functions
   //Load In Progress layer
   function createOverlayP(data, layerName, progressBaseStyle) {
     var overlayP = L.geoJson(data, progressBaseStyle,{
@@ -369,12 +356,18 @@ function insert() {
   .done(function (data) {
     getListP(data);
   });
+
+  //////////////////////////////// End In Progress Functions
   
+
+  ///////////////////////////////////// Map legend Click functions
+
   //Add Layer Control
   var control = L.control.layers(baseMapIndex,null,settingsControl).addTo(map);
   
+  //add control to map
   control.addTo(map);
-  
+
   //Map Legend Click Functions  
   map.on('overlayadd', function (e) {
     if (e.name === 'Available Now') {
