@@ -13,7 +13,7 @@ function insert() {
         $('.landboxframe').append('<div class="left"></div>'); 
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
-                $('.left-data').append('<div class="left-data-title">Title</div>');
+                $('.left-data').append('<div class="left-data-title"></div>');
                 
                 $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
@@ -520,10 +520,10 @@ function insert() {
       $(".left-data-title").empty(); 
       $(".left-data-meta").empty(); 
       $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
+        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-cs"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
-          $('#menu-icon-c').click(function() {
-            $('.left-data-meta-coming-title ul.c').toggleClass('visible');
+          $('#menu-icon-cs').click(function() {
+            $('.left-data-meta-coming-title ul.cs').toggleClass('visible');
           });
         });
     }

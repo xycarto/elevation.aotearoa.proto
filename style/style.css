@@ -208,6 +208,8 @@ img {
 
 
 /*Discover Data Layouts*/
+
+
 .left {
     width: 25%;
     height: 100%;
@@ -256,20 +258,21 @@ img {
     text-align: center;
     font-weight: 500;
     font-size: 1.25vw;
-    background-color: #ff0000;
+    /*background-color: #ff0000;*/
     margin-bottom: 5;
 }
 
 .left-data-datasets {
     width: 100%;
     color: #333333;
-    background-color: #ff0ff0;
+    /*background-color: #ff0ff0;*/
 }
 
 .left-data-meta {
     width: 100%;
-    color: #333333;
-    background-color: #fff000;
+    color: #333333;    
+    text-align: center;
+    /*background-color: #fff000;*/
     margin-top: 5;
 }
 
@@ -291,24 +294,26 @@ img {
 /*collapse Big Lists*/
 
 #menu-icon-a:before,
-#menu-icon-c:before,
+#menu-icon-cs:before,
 #menu-icon-p:before {
-    /*content: "Menu";*/
+    content: "\25B6";
     float: left;
     width: 50px;
   }
   
 #menu-icon-a:after,
-#menu-icon-c:after,
+#menu-icon-cs:after,
 #menu-icon-p:after {
-content: "\2261";
 float:left;
 width: 50px;
 }
 
+ul{
 
+    list-style-type: none;
+}
 
-.left-data-meta-coming-title ul.c {
+.left-data-meta-coming-title ul.cs {
     display: none;   
   }
 
@@ -325,7 +330,7 @@ width: 50px;
      display: block; 
   }
 
-.left-data-meta-coming-title ul.c.visible{
+.left-data-meta-coming-title ul.cs.visible{
      display: block;   
   }
 
@@ -335,7 +340,8 @@ width: 50px;
 
 ul.a {
     max-height: 200px;
- overflow: auto;  
+    overflow: auto;  
+    background-color: #eeeeee;
  }
 
 
@@ -345,7 +351,7 @@ ul.a {
 #menu-icon-e:before,
 #menu-icon-s:before,
 #menu-icon-c:before {
-    /*content: "Menu";*/
+    content: "\25B6";
     float: left;
     width: 50px;
   }
@@ -353,7 +359,6 @@ ul.a {
 #menu-icon-e:after,
 #menu-icon-s:after,
 #menu-icon-c:after {
-content: "\2261";
 float:left;
 width: 50px;
 }
