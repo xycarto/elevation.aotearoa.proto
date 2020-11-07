@@ -211,7 +211,7 @@ img {
 .left {
     width: 25%;
     height: 100%;
-    background-color: #eeeeee;
+    /*background-color: #eeeeee;*/
     float: left;
     padding: 5;
     margin-top: 10;
@@ -239,6 +239,8 @@ img {
 .left-data-title {
     width: 100%;
     color: #333333;
+    text-align: center;
+    font-weight: 500;
     background-color: #ff0000;
 }
 
