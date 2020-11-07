@@ -165,6 +165,23 @@ function insert() {
       availableFeaturesList.push(result)
     })
 
+    $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
+      var txt = $(this).text();
+      console.log(txt)
+      $.each(ids, function(i, item){
+        //console.log(item._leaflet_id + item.feature.properties.name)
+        if (item.feature.properties.name == txt && e.type == 'mouseenter'){
+          item.setStyle(rolloverPoly);
+          console.log(item)
+        }
+        else {
+          item.setStyle(availBaseStyle);
+          console.log(item)
+        }
+      })
+
+   })
+
       
     $(".left-data-lists").delegate(".name", 'click', function() {
       var txt = $(this).text();
