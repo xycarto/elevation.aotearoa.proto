@@ -371,7 +371,7 @@ function insert() {
   });
   
   //Add Layer Control
-  var control = L.control.layers(baseMapIndex).addTo(map);
+  var control = L.control.layers(baseMapIndex,null,settingsControl).addTo(map);
   
   control.addTo(map);
   
