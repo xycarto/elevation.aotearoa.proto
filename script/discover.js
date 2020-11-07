@@ -256,11 +256,11 @@ function insert() {
   function createOverlayC(data, layerName, comingBaseStyle) {
     var overlayC = L.geoJson(data, comingBaseStyle,{
       onEachFeature: function (feature, layer) {
-        return layer._leaflet_id = feature.elevation_; 
+        return _layers._leaflet_id; 
       }
     });// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl);
-
+     console.log(overlayC)
     //Mouse over functions for map layer Coming Soon
     overlayC.on('click', function(e){
       //vars for mouse over
@@ -293,7 +293,28 @@ function insert() {
     overlayC.on('mouseout', function(e){
       e.layer.setStyle(comingBaseStyle)
     })
+
+    // Mouse roll over highligh from side bar list
+    var idsC = overlayC._layers
+    $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
+    var txtCS = $(this).text();
+    //console.log(txt)
+    $.each(idsC, function(i, item){
+      //console.log(item._leaflet_id + item.feature.properties.name)
+      if (item.feature.properties.Region == txtCS && e.type == 'mouseenter'){
+        item.setStyle(rolloverPoly);
+        //console.log(item)
+      }
+      else {
+        item.setStyle(comingBaseStyle);
+        //console.log(item)
+      }
+    })
+  })
   }
+
+  //highlight COMING SOON layer from side bar list
+  
 
    //Build info if item clicked in side bar list Coming Soon layer
   $(".left-data-lists").delegate(".name", 'click', function() {
@@ -393,6 +414,8 @@ function insert() {
   .done(function (data) {
     getListP(data);
   });
+
+  //console.log(overlayC)
 
   //////////////////////////////// End In Progress Functions
   
