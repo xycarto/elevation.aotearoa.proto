@@ -249,8 +249,6 @@ function insert() {
 
 
   ////////////////////////////////////  Begin Coming Soon Functions
-  //TODO: build sidebar functions
-  //TODO: polygon heighlight form sidebar
 
   //Load Coming Soon layer/*
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -266,6 +264,7 @@ function insert() {
       //vars for mouse over
       var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
       var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.DataDelive + '</div>';
+      var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
       var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
       var dsm = '<div class="popUpText">DSM: ' + e.layer.feature.properties.DSM + '</div>';
       var pointCloud = '<div class="popUpText">Point Cloud: ' + e.layer.feature.properties.PointCloud + '</div>';
@@ -279,6 +278,7 @@ function insert() {
       $(".left-data-meta").append('<div>Info</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
+      $(".left-data-meta").append(pulse);
       $(".left-data-meta").append('<div>Deliverables:</div>');
       $(".left-data-meta").append(dem);
       $(".left-data-meta").append(dsm);
@@ -308,15 +308,12 @@ function insert() {
       else {
         item.setStyle(comingBaseStyle);
         //console.log(item)
-      }
+        }
+      })
     })
-  })
   }
 
-  //highlight COMING SOON layer from side bar list
-  
-
-   //Build info if item clicked in side bar list Coming Soon layer
+     //Build info if item clicked in side bar list Coming Soon layer
   $(".left-data-lists").delegate(".name", 'click', function() {
     var txtC = $(this).text();
     console.log(txtC)
@@ -324,6 +321,7 @@ function insert() {
       if (txtC == result.properties.Region){
         var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
         var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.DataDelive + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
         var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
         var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
         var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
@@ -337,6 +335,7 @@ function insert() {
         $(".left-data-meta").append('<div>Info</div>');
         $(".left-data-meta").append(start);
         $(".left-data-meta").append(delivery);
+        $(".left-data-meta").append(pulse);
         $(".left-data-meta").append('<div>Deliverables:</div>');
         $(".left-data-meta").append(dem);
         $(".left-data-meta").append(dsm);
@@ -378,33 +377,48 @@ function insert() {
         return layer._leaflet_id = feature.elevation_; 
       }
     });// Add the data to the map
-    control.addOverlay(overlayP, layerName, settingsControl); // Add the layer to the Layer Control.
+    control.addOverlay(overlayP, layerName, settingsControl);
+    
+    //Progress layer mounse over functions
     overlayP.on('click', function(e){
-      //console.log(e.layer.feature.properties.name)
+      //vars for mouse over
+      var start = '<div class="popUpText">Start Date:' + e.layer.feature.properties.ProjectSta + '</div>';
+      var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.ProjectCom + '</div>';
+      var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
+      var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
+      var dsm = '<div class="popUpText">DSM: ' + e.layer.feature.properties.DSM + '</div>';
+      var pointCloud = '<div class="popUpText">Point Cloud: ' + e.layer.feature.properties.PointCloud + '</div>';
+      var contour = '<div class="popUpText">Contour: ' + e.layer.feature.properties.Contours + '</div>';
+      var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
+      //Build side bar list
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
-      $(".left-data-lists").empty();
-      
       $(".left-data-title").append(e.layer.feature.properties.Region);
-    }) // add get information
+      $(".left-data-meta").append('<div>Info</div>');
+      $(".left-data-meta").append(start);
+      $(".left-data-meta").append(delivery);
+      $(".left-data-meta").append(pulse);
+      $(".left-data-meta").append('<div>Deliverables:</div>');
+      $(".left-data-meta").append(dem);
+      $(".left-data-meta").append(dsm);
+      $(".left-data-meta").append(pointCloud);
+      $(".left-data-meta").append(contour);
+      $(".left-data-meta").append(projectLead);;
+    })
     overlayP.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
     overlayP.on('mouseout', function(e){
       e.layer.setStyle(progressBaseStyle)
     })
-    //overlayA.addEventListener('mouseover', function(e){
-      //e.layer.setStyle(rolloverPoly)
-    //}, true)
   }
 
   var progressList = [];
   function getListP(data){
     //console.log(data);
     $.each(data.features, function(i, result){
-      progressList.push('<li>'+ result.properties.Region + '</li>')
-      //console.log(result.properties.Region)
+      progressList.push('<div class="name">'+ result.properties.Region + '</div>')
     })
   }
   
