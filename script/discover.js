@@ -93,7 +93,7 @@ function insert() {
   
 
 
-
+  //////////////////////////////// Available Begin
   //Load Available Now layer
   function createOverlayA(data, layerName, availBaseStyle) {
     var overlayA = L.geoJson(data, availBaseStyle,{
@@ -101,8 +101,6 @@ function insert() {
         return _layers._leaflet_id; 
       }
     });// Add the data to the map
-    
-
     control.addOverlay(overlayA, layerName, settingsControl); // Add the layer to the Layer Control.
     overlayA.on('click', function(e){
       
@@ -124,11 +122,10 @@ function insert() {
       var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
       var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
 
-      //console.log(e.layer._leaflet_id)
+      
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
-      //$(".left-data-lists").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
         $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
@@ -148,146 +145,114 @@ function insert() {
         
       $(".left-data-meta").append('<div>Metadata</div>');
       $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
-    }) // add get information
+    })
+    //mouse over functions
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
     overlayA.on('mouseout', function(e){
       e.layer.setStyle(availBaseStyle)
     })
-    
-    console.log(overlayA._layers)
-    var ids = overlayA._layers
 
-    var availableFeaturesList = [];
-
-    $.each(data.features, function(i, result){
-      availableFeaturesList.push(result)
+  //highlight available layer from side bar list
+  var ids = overlayA._layers
+  $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
+    var txt = $(this).text();
+    console.log(txt)
+    $.each(ids, function(i, item){
+      //console.log(item._leaflet_id + item.feature.properties.name)
+      if (item.feature.properties.name == txt && e.type == 'mouseenter'){
+        item.setStyle(rolloverPoly);
+        console.log(item)
+      }
+      else {
+        item.setStyle(availBaseStyle);
+        console.log(item)
+      }
     })
+  })
 
-    $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
-      var txt = $(this).text();
-      console.log(txt)
-      $.each(ids, function(i, item){
-        //console.log(item._leaflet_id + item.feature.properties.name)
-        if (item.feature.properties.name == txt && e.type == 'mouseenter'){
-          item.setStyle(rolloverPoly);
-          console.log(item)
-        }
-        else {
-          item.setStyle(availBaseStyle);
-          console.log(item)
-        }
-      })
+  //Build available features list for side bar
+  var availableFeaturesList = [];
+  $.each(data.features, function(i, result){
+      availableFeaturesList.push(result)
+    }) 
+  
+  //Build info if item clicked in side bar list 
+  $(".left-data-lists").delegate(".name", 'click', function() {
+    var txt = $(this).text();
 
-   })
+    $.each(availableFeaturesList, function(i, result){      
+      if (txt == result.properties.name){
 
-      
-    $(".left-data-lists").delegate(".name", 'click', function() {
-      var txt = $(this).text();
-      //console.log(txt);
-      $.each(availableFeaturesList, function(i, result){
-        
-        if (txt == result.properties.name){
-          //console.log(result);
-          var demList = [
-            '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
-            '<li>WMTS</li>',
-            '<li>XYZ</li>'
-          ];
-          var dsmList = [
-            '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
-            '<li>WMTS</li>',
-            '<li>XYZ</li>'
-          ];
-    
-          var popupDensity = '<div class="popUpText">Point Density:' + result.properties.point_dens + '</div>';
-          var popupVertical = '<div class="popUpText">Vertical Datum: ' + result.properties.vertical_d + '</div>';
-          var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + result.properties.horizontal + '</div>';
-          var popupSupplier = '<div class="popUpText">Supplier: ' + result.properties.supplier + '</div>';
-          var popupFlownFrom = '<div class="popUpText">Flown From: ' + result.properties.flown_from + '</div>';
-          var popupFlownTo = '<div class="popUpText">Flown To: ' + result.properties.flown_to + '</div>';
-    
-          //console.log(e.layer.feature.properties)
-          $(".left-data-datasets").empty();
-          $(".left-data-title").empty();
-          $(".left-data-meta").empty();
-          //$(".left-data-lists").empty();
-          $(".left-data-title").append(result.properties.name);
-          $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-            $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
-            $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
-              $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
-            });
-          $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-            $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
-            $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
-              $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
-            });
-            $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-            $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
-            $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
-              $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
-            });
-            
-          $(".left-data-meta").append('<div>Metadata</div>');
-          $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
-          //console.log(result)
+        //text templates for available
+        var demList = [
+          '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+          '<li>WMTS</li>',
+          '<li>XYZ</li>'
+        ];
+        var dsmList = [
+          '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+          '<li>WMTS</li>',
+          '<li>XYZ</li>'
+        ];  
+        var popupDensity = '<div class="popUpText">Point Density:' + result.properties.point_dens + '</div>';
+        var popupVertical = '<div class="popUpText">Vertical Datum: ' + result.properties.vertical_d + '</div>';
+        var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + result.properties.horizontal + '</div>';
+        var popupSupplier = '<div class="popUpText">Supplier: ' + result.properties.supplier + '</div>';
+        var popupFlownFrom = '<div class="popUpText">Flown From: ' + result.properties.flown_from + '</div>';
+        var popupFlownTo = '<div class="popUpText">Flown To: ' + result.properties.flown_to + '</div>';
+  
+        //build html structure with names on click
+        $(".left-data-datasets").empty();
+        $(".left-data-title").empty();
+        $(".left-data-meta").empty();
 
-          $.each(ids, function(i, item){
-            //console.log(item._leaflet_id + item.feature.properties.name)
-            if (item.feature.properties.name == txt){
-
-              //item.on('mouseover', function(e){
-                //e.setStyle(rolloverPoly)
-              //})
-              
-              item.setStyle(rolloverPoly);
-              console.log(item)
-            }
-          })
+        $(".left-data-title").append(result.properties.name);
+        $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
+          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+          $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+            $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+          });
+        $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
+          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+          $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+            $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
+          });
+          $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
+          $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
+          $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+            $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
+          });
+          
+        $(".left-data-meta").append('<div>Metadata</div>');
+        $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
         }
       })
-
-      
-      
     });
-
-
-
-
-
-
-
-
   }
 
-
-
-
-
+  // build lists for Available for legend click functions
   var availableList = [];
   var availableFullList = [];
   var availableFeaturesList = [];
-
   function getListA(data){
-    //console.log(data);
     $.each(data.features, function(i, result){
       availableList.push('<div class="name">'+ result.properties.name + '</div>')
       availableFullList.push(result.properties)
       availableFeaturesList.push(result)
-
-      //console.log(result.properties)
     })
   }
-  
-  //console.log(availableFeaturesList)
 
+  //Load Available Now JSON into map
   $.getJSON(urlAvailable, function (data) { 
     createOverlayA(data, "Available Now", availBaseStyle)
   }).done(function (data) {
     getListA(data);
   });
+
+
+  /////////////////////////// Available done
 
 
 
@@ -451,9 +416,7 @@ function insert() {
         });
       });
     }
-  });
-
- 
+  }); 
   
   map.on('overlayremove', function (e) {
     if (e.name === 'Available Now') {
@@ -467,19 +430,7 @@ function insert() {
     }
   });
 
-  
-
-  //Build list from data click
-  //$(".left-data-meta").delegate('.left-data-meta-coming-title', 'click', function(e){
-    //$(".left-data-meta-coming-title").append('<ul>' + comingList + '</ul>')
-
-    //$(".left-data-meta-coming-list").empty()
-    //$(".left-data-meta-coming-list").append(comingList)
-  //})
-  
-  
-  
-  };
+};
   
   
       
