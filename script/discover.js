@@ -80,6 +80,7 @@ function insert() {
     fillOpacity: 0.7
   }
        
+  // JSON urls
   var urlAvailable = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
 
   var urlComingSoon = 'https://xycarto.github.io/vectortile-repo/ComingSoon_fix.json';  
@@ -102,6 +103,8 @@ function insert() {
     //mouse over functions fro avialable layer
     overlayA.on('click', function(e){      
       console.log(e.layer._leaflet_id)
+
+      // vars for on map click Available now
       var demList = [
         '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
         '<li>WMTS</li>',
@@ -112,6 +115,8 @@ function insert() {
         '<li>WMTS</li>',
         '<li>XYZ</li>'
       ];
+
+      ///////////////////Missing POINT CLOUD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       var popupDensity = '<div class="popUpText">Point Density:' + e.layer.feature.properties.point_dens + '</div>';
       var popupVertical = '<div class="popUpText">Vertical Datum: ' + e.layer.feature.properties.vertical_d + '</div>';
       var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + e.layer.feature.properties.horizontal + '</div>';
@@ -119,25 +124,25 @@ function insert() {
       var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
       var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
 
-      
+      // Build sidebar when map clicked Availabel now
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-        $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
-        $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
-          $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
-        });
+          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+          $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+            $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
+          });
       $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-        $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
         $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
-          $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
+            $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
         $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
         $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
-          $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
+            $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
       $(".left-data-meta").append('<div>Metadata</div>');
