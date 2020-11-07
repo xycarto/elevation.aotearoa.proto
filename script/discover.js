@@ -17,8 +17,10 @@ function insert() {
                 
                 $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
+                $('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
+
         $('.landboxframe').append('<div id="map"></div>'); 
   
   
@@ -393,6 +395,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div>Info</div>');
       $(".left-data-meta").append(start);
@@ -502,7 +505,7 @@ function insert() {
     if (e.name === 'Available Now') {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
-      $(".left-data-meta").empty(); 
+      $(".left-data-meta").empty();
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
@@ -516,7 +519,6 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
       $(".left-data-meta").empty(); 
-
       $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-c"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="c">' + comingList + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {

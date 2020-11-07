@@ -220,10 +220,11 @@ img {
 .left-title {
     background-color: #ffffff;
     width: 100%;
-    height:5%;
+    height:10%;
     color: #333333;
     text-align: center;
-    font-size: 1.25vw;
+    font-weight: 500;
+    font-size: 1.5vw;
 
     /*margin-top: 10;*/
 }
@@ -233,7 +234,20 @@ img {
     height: 89%;
     color: #333333;
     background-color: white;
-    overflow: scroll;
+}
+
+.left-data-info {
+    width: 100%;
+    color: #333333;
+    background-color: white;
+    margin-top: 10;
+}
+
+.left-data-lists {
+    width: 100%;
+    color: #333333;
+    background-color: white;
+    margin-top: 10;
 }
 
 .left-data-title {
@@ -241,7 +255,9 @@ img {
     color: #333333;
     text-align: center;
     font-weight: 500;
+    font-size: 1.25vw;
     background-color: #ff0000;
+    margin-bottom: 5;
 }
 
 .left-data-datasets {
@@ -254,13 +270,14 @@ img {
     width: 100%;
     color: #333333;
     background-color: #fff000;
+    margin-top: 5;
 }
 
 .left-bottom {
     width: 100%;
     height: 2%;
     color: #333333;
-
+    text-align: center;
     font-size: 0.75vw;
     background-color: #ffffff;
     margin-top: 10;
