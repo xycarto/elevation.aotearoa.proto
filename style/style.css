@@ -303,7 +303,7 @@ width: 50px;
   
 
 .left-data-meta-avail-title ul.a.visible {
-     display: block;   
+     display: block; 
   }
 
 .left-data-meta-coming-title ul.c.visible{
@@ -313,6 +313,12 @@ width: 50px;
 .left-data-meta-progress-title ul.p.visible{
     display: block;   
  }
+
+ul.a {
+    max-height: 200px;
+ overflow: auto;  
+ }
+
 
 
  /*collpase DEM DSM PointC*/
