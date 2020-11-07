@@ -51,26 +51,26 @@ function insert() {
   
   //JSON styles
   var availBaseStyle = {
-    fillColor: "#000000",
-    weight: 2,
+    fillColor: "#cc3366",
+    weight: 0.5,
     opacity: 1,
-    color: 'white',
+    color: '#dddddd',
     fillOpacity: 0.7
   }
 
   var comingBaseStyle = {
-    fillColor: "#0ff000",
-    weight: 2,
+    fillColor: "#66cccc",
+    weight: 0.5,
     opacity: 1,
-    color: 'white',
+    color: '#dddddd',
     fillOpacity: 0.7
   }
 
   var progressBaseStyle = {
-    fillColor: "#002580",
-    weight: 2,
+    fillColor: "#996699",
+    weight: 0.5,
     opacity: 1,
-    color: 'white',
+    color: '#dddddd',
     fillOpacity: 0.7
 }
   
