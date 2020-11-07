@@ -115,8 +115,9 @@ function insert() {
         '<li>WMTS</li>',
         '<li>XYZ</li>'
       ];
-
-      ///////////////////Missing POINT CLOUD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      var pointList = [
+        '<li><a href="' + e.layer.feature.properties.PointC + '" target="_blank">Point Cloud</a></li>'
+      ];
       var popupDensity = '<div class="popUpText">Point Density:' + e.layer.feature.properties.point_dens + '</div>';
       var popupVertical = '<div class="popUpText">Vertical Datum: ' + e.layer.feature.properties.vertical_d + '</div>';
       var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + e.layer.feature.properties.horizontal + '</div>';
@@ -124,7 +125,7 @@ function insert() {
       var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
       var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
 
-      // Build sidebar when map clicked Availabel now
+      // Build sidebar when map clicked Available now
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
@@ -140,7 +141,7 @@ function insert() {
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList + '</ul></div>')
         $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
@@ -173,12 +174,7 @@ function insert() {
     })
   })
 
-  //Build available features list for side bar
-  var availableFeaturesList = [];
-  $.each(data.features, function(i, result){
-      availableFeaturesList.push(result)
-    }) 
-  
+    
   //Build info if item clicked in side bar list 
   $(".left-data-lists").delegate(".name", 'click', function() {
     var txt = $(this).text();
@@ -233,7 +229,7 @@ function insert() {
     });
   }
 
-  // build lists for Available for legend click functions
+  // build lists from list for Available for legend click functions
   var availableList = [];
   var availableFullList = [];
   var availableFeaturesList = [];
