@@ -146,7 +146,7 @@ function insert() {
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
-      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+      $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
     })
     overlayA.on('mouseover', function(e){
@@ -224,7 +224,7 @@ function insert() {
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });;
           
-        $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+        $(".left-data-meta").append('<div class="midtext">Metadata</div>');
         $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
         }
       })
