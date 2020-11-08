@@ -546,13 +546,13 @@ function insert() {
   }); 
   
   map.on('overlayremove', function (e) {
-    if (e.name === 'Available Now') {
+    if (e.name === legenditemA) {
       $(".left-data-meta-avail").remove()
     }
-    else if (e.name === 'Coming Soon') {
+    else if (e.name === legenditemC) {
       $(".left-data-meta-coming").remove()
     }
-    else if (e.name === 'In Progress') {
+    else if (e.name === legenditemP) {
       $(".left-data-meta-progress").remove()
     }
   });
