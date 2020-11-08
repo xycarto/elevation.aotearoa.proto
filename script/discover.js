@@ -240,9 +240,10 @@ function insert() {
     })
   }
 
+  var legenditemA = '<span><span class="legend-at"></span>Available Now</span>'
   //Load Available Now JSON into map
   $.getJSON(urlAvailable, function (data) { 
-    createOverlayA(data, "Available Now", availBaseStyle)
+    createOverlayA(data, legenditemA, availBaseStyle)
   }).done(function (data) {
     getListA(data);
   });
@@ -360,9 +361,10 @@ function insert() {
     })
   }
 
+  var legenditemC = '<span><span class="legend-cs"></span>Coming Soon</span>'
   //get coming soon layer for map
   $.getJSON(urlComingSoon, function (data) { 
-    createOverlayC(data, "Coming Soon", comingBaseStyle)
+    createOverlayC(data, legenditemC, comingBaseStyle)
   }).done(function (data) {
     getListC(data);
   });
@@ -481,8 +483,9 @@ function insert() {
         })
       }
   
+  var legenditemP = '<span><span class="legend-ip"></span>In Progress</span>'
   $.getJSON(urlProgress, function (data) { 
-    createOverlayP(data, "In Progress", progressBaseStyle)
+    createOverlayP(data, legenditemP, progressBaseStyle)
   })
   .done(function (data) {
     getListP(data);
@@ -508,10 +511,10 @@ function insert() {
       $(".left-data-meta").empty();
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
-        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="a">' + availableList + '</ul></div>')
+        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
           $('#menu-icon-a').click(function() {
-            $('.left-data-meta-avail-title ul.a').toggleClass('visible');
+            $('.left-data-meta-avail-title ul.at').toggleClass('visible')
           });
         });
     }
