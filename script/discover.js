@@ -505,7 +505,7 @@ function insert() {
 
   //Map Legend Click Functions  
   map.on('overlayadd', function (e) {
-    if (e.name === 'Available Now') {
+    if (e.name === legenditemA) {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
       $(".left-data-meta").empty();
@@ -518,7 +518,7 @@ function insert() {
           });
         });
     }
-    else if (e.name === 'Coming Soon') {
+    else if (e.name === legenditemC) {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty(); 
       $(".left-data-meta").empty(); 
@@ -530,7 +530,7 @@ function insert() {
           });
         });
     }
-    else if (e.name === 'In Progress') {
+    else if (e.name === legenditemP) {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();  
       $(".left-data-meta").empty(); 
