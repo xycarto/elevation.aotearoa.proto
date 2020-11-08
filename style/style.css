@@ -302,19 +302,21 @@ img {
 .left-data-meta-progress {
     display: inline-block;
     width: 100%;
-    background-color: red;
 }
 
 .left-data-meta-avail-title,
 .left-data-meta-coming-title,
-.left-data-meta-progress-title {
+.left-data-meta-progress-title {    
     float: left;
 }
 
-#icon {
+#iconA,
+#iconC,
+#iconP {
     float: left;
     margin-right: 10;
 }
+
 
 /*legend color*/
 
@@ -350,6 +352,10 @@ img {
 
 span {
     display: inline-block;
+}
+
+.avail {
+    float: left;
 }
 
 /*collapse Big Lists*/
@@ -388,7 +394,10 @@ ul .name:before {
   
 
 .left-data-meta-avail-title ul.at.visible {
-     display: block; 
+     display: block;
+     max-height: 300px;
+     overflow: auto;
+     background-color: #eeeeee
   }
 
 .left-data-meta-coming-title ul.cs.visible{
@@ -399,11 +408,7 @@ ul .name:before {
     display: block;   
  }
 
-ul.at {
-    max-height: 300px;
-    overflow: auto;  
-    background-color: #eeeeee;
- }
+
 
 
 
