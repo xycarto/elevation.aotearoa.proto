@@ -141,12 +141,12 @@ function insert() {
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
-        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
-            $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-p"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="p">' + pointList.join("") + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#menu-icon-p', function(){
+            $('.left-data-datasets-PointC-title ul.p').toggleClass('visible');
         });
         
-      $(".left-data-meta").append('<div>Metadata</div>');
+      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
       $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
     })
     overlayA.on('mouseover', function(e){
@@ -224,7 +224,7 @@ function insert() {
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });;
           
-        $(".left-data-meta").append('<div>Metadata</div>');
+        $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
         $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
         }
       })
@@ -281,7 +281,7 @@ function insert() {
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
-      $(".left-data-meta").append('<div>Info</div>');
+      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
       $(".left-data-meta").append(pulse);
@@ -338,7 +338,7 @@ function insert() {
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
         $(".left-data-title").append(result.properties.Region);
-        $(".left-data-meta").append('<div>Info</div>');
+        $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
         $(".left-data-meta").append(start);
         $(".left-data-meta").append(delivery);
         $(".left-data-meta").append(pulse);
@@ -447,7 +447,7 @@ function insert() {
         $.each(progressFeaturesList, function(i, result){  
           //console.log(result.properties.Region)
           if (txtP == result.properties.Region){
-            var start = '<div class="popUpText">Start Date:' + result.properties.ProjectSta + '</div>';
+            var start = '<div class="popUpText">Start Date: ' + result.properties.ProjectSta + '</div>';
             var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.ProjectCom + '</div>';
             var pulse = '<div class="popUpText">Pulse Density: ' + result.properties.PulseDensi + '</div>';
             var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
@@ -460,7 +460,7 @@ function insert() {
             $(".left-data-title").empty();
             $(".left-data-meta").empty();
             $(".left-data-title").append(result.properties.Region);
-            $(".left-data-meta").append('<div>Info</div>');
+            $(".left-data-meta").append('<div>Metadata</div>');
             $(".left-data-meta").append(start);
             $(".left-data-meta").append(delivery);
             $(".left-data-meta").append(pulse);

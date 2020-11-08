@@ -271,8 +271,7 @@ img {
 
 .left-data-meta {
     width: 100%;
-    color: #333333;    
-    text-align: center;
+    color: #333333;
     font-weight: 500;
     /*background-color: #fff000;*/
     margin-top: 10;
@@ -345,7 +344,6 @@ span {
 #menu-icon-p:after {
     float:left;
     width: 50px;
-    transform: rotate(90deg);
 }
 
 ul{
@@ -353,7 +351,7 @@ ul{
     list-style-type: none;
 }
 
-.left-data-meta-coming-title ul.cs {
+.left-data-meta-coming-title ul.c {
     display: none;   
   }
 
@@ -370,7 +368,7 @@ ul{
      display: block; 
   }
 
-.left-data-meta-coming-title ul.cs.visible{
+.left-data-meta-coming-title ul.c.visible{
      display: block;   
   }
 
