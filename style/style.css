@@ -288,6 +288,13 @@ img {
     margin-top: 10;
 }
 
+.midtext {
+    margin-bottom: 5;
+    margin-top: 5;
+    text-align: center;
+    font-weight: 500;
+}
+
 /*legend color*/
 
 .legend-at
@@ -342,12 +349,18 @@ span {
     width: 50px;
 }
 
-ul{
+ul {
 
-    list-style-type: none;
+    list-style: none;
 }
 
-.left-data-meta-coming-title ul.c {
+ul .name:before {
+
+    content: "\002D";
+    margin-right: 6;
+}
+
+.left-data-meta-coming-title ul.cs {
     display: none;   
   }
 
@@ -364,7 +377,7 @@ ul{
      display: block; 
   }
 
-.left-data-meta-coming-title ul.c.visible{
+.left-data-meta-coming-title ul.cs.visible{
      display: block;   
   }
 
@@ -373,7 +386,7 @@ ul{
  }
 
 ul.at {
-    max-height: 200px;
+    max-height: 300px;
     overflow: auto;  
     background-color: #eeeeee;
  }
@@ -436,5 +449,5 @@ width: 50px;
 
 
 .popUpText {
-    color: #222222;
+    color: #333333;
   }

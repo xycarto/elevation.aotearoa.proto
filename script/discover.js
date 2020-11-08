@@ -281,11 +281,11 @@ function insert() {
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
-      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+      $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
       $(".left-data-meta").append(pulse);
-      $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
+      $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
       $(".left-data-meta").append(dem);
       $(".left-data-meta").append(dsm);
       $(".left-data-meta").append(pointCloud);
@@ -338,11 +338,11 @@ function insert() {
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
         $(".left-data-title").append(result.properties.Region);
-        $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+        $(".left-data-meta").append('<div class="midtext">Metadata</div>');
         $(".left-data-meta").append(start);
         $(".left-data-meta").append(delivery);
         $(".left-data-meta").append(pulse);
-        $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
+        $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
         $(".left-data-meta").append(dem);
         $(".left-data-meta").append(dsm);
         $(".left-data-meta").append(pointCloud);
@@ -388,7 +388,7 @@ function insert() {
     //Progress layer mounse over functions
     overlayP.on('click', function(e){
       //vars for mouse over
-      var start = '<div class="popUpText">Start Date:' + e.layer.feature.properties.ProjectSta + '</div>';
+      var start = '<div class="popUpText">Start Date: ' + e.layer.feature.properties.ProjectSta + '</div>';
       var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.ProjectCom + '</div>';
       var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
       var dem = '<div class="popUpText">DEM: ' + e.layer.feature.properties.DEM + '</div>';
@@ -402,11 +402,11 @@ function insert() {
       $(".left-data-meta").empty();
       
       $(".left-data-title").append(e.layer.feature.properties.Region);
-      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+      $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
       $(".left-data-meta").append(pulse);
-      $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
+      $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
       $(".left-data-meta").append(dem);
       $(".left-data-meta").append(dsm);
       $(".left-data-meta").append(pointCloud);
@@ -460,11 +460,11 @@ function insert() {
             $(".left-data-title").empty();
             $(".left-data-meta").empty();
             $(".left-data-title").append(result.properties.Region);
-            $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
+            $(".left-data-meta").append('<div class="midtext">Metadata</div>');
             $(".left-data-meta").append(start);
             $(".left-data-meta").append(delivery);
             $(".left-data-meta").append(pulse);
-            $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
+            $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
             $(".left-data-meta").append(dem);
             $(".left-data-meta").append(dsm);
             $(".left-data-meta").append(pointCloud);
