@@ -67,6 +67,7 @@ img {
 .alldiv {
     height: 100%;
     width: 100%;
+    overflow: auto;
 }
 .top {
     display: flex;
@@ -233,7 +234,6 @@ img {
 
 .left-data {
     width: 100%;
-    height: 89%;
     color: #333333;
     background-color: white;
 }
@@ -286,6 +286,8 @@ img {
     font-size: 0.75vw;
     background-color: #ffffff;
     margin-top: 10;
+    display: flex;
+    flex-direction: column;
 }
 
 .midtext {
