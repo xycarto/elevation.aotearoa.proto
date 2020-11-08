@@ -558,6 +558,7 @@ function insert() {
   map.on('overlayremove', function (e) {
     if (e.name === legenditemA) {
       $(".left-data-meta-avail").remove()
+      
     }
     else if (e.name === legenditemC) {
       $(".left-data-meta-coming").remove()
