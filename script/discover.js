@@ -141,9 +141,9 @@ function insert() {
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-p"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="p">' + pointList.join("") + '</ul></div>')
-        $('.left-data-datasets-PointC').on('click', '#menu-icon-p', function(){
-            $('.left-data-datasets-PointC-title ul.p').toggleClass('visible');
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+            $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
       $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
