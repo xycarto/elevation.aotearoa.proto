@@ -285,7 +285,7 @@ function insert() {
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
       $(".left-data-meta").append(pulse);
-      $(".left-data-meta").append('<div>Deliverables:</div>');
+      $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
       $(".left-data-meta").append(dem);
       $(".left-data-meta").append(dsm);
       $(".left-data-meta").append(pointCloud);
@@ -342,7 +342,7 @@ function insert() {
         $(".left-data-meta").append(start);
         $(".left-data-meta").append(delivery);
         $(".left-data-meta").append(pulse);
-        $(".left-data-meta").append('<div>Deliverables:</div>');
+        $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
         $(".left-data-meta").append(dem);
         $(".left-data-meta").append(dsm);
         $(".left-data-meta").append(pointCloud);
@@ -402,11 +402,11 @@ function insert() {
       $(".left-data-meta").empty();
       
       $(".left-data-title").append(e.layer.feature.properties.Region);
-      $(".left-data-meta").append('<div>Info</div>');
+      $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
       $(".left-data-meta").append(pulse);
-      $(".left-data-meta").append('<div>Deliverables:</div>');
+      $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
       $(".left-data-meta").append(dem);
       $(".left-data-meta").append(dsm);
       $(".left-data-meta").append(pointCloud);
@@ -460,11 +460,11 @@ function insert() {
             $(".left-data-title").empty();
             $(".left-data-meta").empty();
             $(".left-data-title").append(result.properties.Region);
-            $(".left-data-meta").append('<div>Metadata</div>');
+            $(".left-data-meta").append('<div style="text-align:center;">Metadata</div>');
             $(".left-data-meta").append(start);
             $(".left-data-meta").append(delivery);
             $(".left-data-meta").append(pulse);
-            $(".left-data-meta").append('<div>Deliverables:</div>');
+            $(".left-data-meta").append('<div style="text-align:center;">Deliverables</div>');
             $(".left-data-meta").append(dem);
             $(".left-data-meta").append(dsm);
             $(".left-data-meta").append(pointCloud);
