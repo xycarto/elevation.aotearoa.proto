@@ -516,9 +516,6 @@ function insert() {
   //Map Legend Click Functions  
   map.on('overlayadd', function (e) {
     if (e.name === legenditemA) {
-      $(".left-data-datasets").empty();
-      $(".left-data-title").empty(); 
-      $(".left-data-meta").empty();
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
         $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
@@ -529,9 +526,7 @@ function insert() {
         });
     }
     else if (e.name === legenditemC) {
-      $(".left-data-datasets").empty();
-      $(".left-data-title").empty(); 
-      $(".left-data-meta").empty(); 
+
       $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
         $(".left-data-meta-coming").append('<a href="#" id="menu-icon-cs"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList.join("") + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
@@ -541,9 +536,6 @@ function insert() {
         });
     }
     else if (e.name === legenditemP) {
-      $(".left-data-datasets").empty();
-      $(".left-data-title").empty();  
-      $(".left-data-meta").empty(); 
       
       $(".left-data-lists").append('<div class="left-data-meta-progress"></div>')
       $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList.join("") + '</ul></div>')
