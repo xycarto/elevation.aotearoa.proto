@@ -131,17 +131,17 @@ function insert() {
       $(".left-data-meta").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
           $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
             $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
           });
       $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
         $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList + '</ul></div>')
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
         $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
@@ -191,7 +191,10 @@ function insert() {
           '<li><a href="' + result.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
           '<li>WMTS</li>',
           '<li>XYZ</li>'
-        ];  
+        ];
+        var pointList = [
+          '<li><a href="' + result.properties.PointC + '" target="_blank">Point Cloud</a></li>'
+        ];
         var popupDensity = '<div class="popUpText">Point Density:' + result.properties.point_dens + '</div>';
         var popupVertical = '<div class="popUpText">Vertical Datum: ' + result.properties.vertical_d + '</div>';
         var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + result.properties.horizontal + '</div>';
@@ -206,20 +209,20 @@ function insert() {
 
         $(".left-data-title").append(result.properties.name);
         $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList + '</ul></div>')
+          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
           $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
             $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
           });
         $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList + '</ul></div>')
+          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
           $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
           });
           $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-          $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + dsmList + '</ul></div>')
-          $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
-          });
+        });;
           
         $(".left-data-meta").append('<div>Metadata</div>');
         $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
@@ -442,7 +445,7 @@ function insert() {
         console.log(txtP)
         
         $.each(progressFeaturesList, function(i, result){  
-          console.log(result.properties.Region)
+          //console.log(result.properties.Region)
           if (txtP == result.properties.Region){
             var start = '<div class="popUpText">Start Date:' + result.properties.ProjectSta + '</div>';
             var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.ProjectCom + '</div>';
@@ -511,7 +514,7 @@ function insert() {
       $(".left-data-meta").empty();
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
-        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList + '</ul></div>')
+        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
           $('#menu-icon-a').click(function() {
             $('.left-data-meta-avail-title ul.at').toggleClass('visible')
@@ -523,7 +526,7 @@ function insert() {
       $(".left-data-title").empty(); 
       $(".left-data-meta").empty(); 
       $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-cs"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList + '</ul></div>')
+        $(".left-data-meta-coming").append('<a href="#" id="menu-icon-cs"></a><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList.join("") + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
           $('#menu-icon-cs').click(function() {
             $('.left-data-meta-coming-title ul.cs').toggleClass('visible');
@@ -536,7 +539,7 @@ function insert() {
       $(".left-data-meta").empty(); 
       
       $(".left-data-lists").append('<div class="left-data-meta-progress"></div>')
-      $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList + '</ul></div>')
+      $(".left-data-meta-progress").append('<a href="#" id="menu-icon-p"></a><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList.join("") + '</ul></div>')
       $(".left-data-meta-progress").ready(function() {
         $('#menu-icon-p').click(function() {
           $('.left-data-meta-progress-title ul.p').toggleClass('visible');
@@ -556,6 +559,8 @@ function insert() {
       $(".left-data-meta-progress").remove()
     }
   });
+
+  
 
 };
   
