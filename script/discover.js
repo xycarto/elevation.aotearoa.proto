@@ -131,7 +131,10 @@ function insert() {
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-intro").empty();
+
+      
       $(".left-data-title").append(e.layer.feature.properties.name);
+      $(".left-data-title").append('<div style="font-size: 1vw">Available Now</div>');
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
           $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
           $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
@@ -210,7 +213,9 @@ function insert() {
         $(".left-data-meta").empty();
         $(".left-data-intro").empty();
 
+        
         $(".left-data-title").append(result.properties.name);
+        $(".left-data-title").append('<div style="font-size: 1vw">Available Now</div>');
         $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
           $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
           $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
@@ -284,7 +289,10 @@ function insert() {
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
       $(".left-data-intro").empty();
+
+      
       $(".left-data-title").append(e.layer.feature.properties.Region);
+      $(".left-data-title").append('<div style="font-size: 1vw">Coming Soon</div>');
       $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
@@ -342,7 +350,10 @@ function insert() {
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
         $(".left-data-intro").empty();
+
+        
         $(".left-data-title").append(result.properties.Region);
+        $(".left-data-title").append('<div style="font-size: 1vw">Coming Soon</div>');
         $(".left-data-meta").append('<div class="midtext">Metadata</div>');
         $(".left-data-meta").append(start);
         $(".left-data-meta").append(delivery);
@@ -407,7 +418,9 @@ function insert() {
       $(".left-data-meta").empty();
       $(".left-data-intro").empty();
       
+      
       $(".left-data-title").append(e.layer.feature.properties.Region);
+      $(".left-data-title").append('<div style="font-size: 1vw">In Progress</div>');
       $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(start);
       $(".left-data-meta").append(delivery);
@@ -466,7 +479,10 @@ function insert() {
             $(".left-data-title").empty();
             $(".left-data-meta").empty();
             $(".left-data-intro").empty();
+
+            
             $(".left-data-title").append(result.properties.Region);
+            $(".left-data-title").append('<div style="font-size: 1vw">In Progress</div>');
             $(".left-data-meta").append('<div class="midtext">Metadata</div>');
             $(".left-data-meta").append(start);
             $(".left-data-meta").append(delivery);
