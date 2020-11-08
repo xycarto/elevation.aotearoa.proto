@@ -339,16 +339,9 @@ span {
 #menu-icon-p:before {
     content: "\25B6";
     float: left;
-    width: 50px;
+    margin-right: 10;
   }
   
-#menu-icon-a:after,
-#menu-icon-cs:after,
-#menu-icon-p:after {
-    float:left;
-    width: 50px;
-}
-
 ul {
 
     list-style: none;
@@ -400,15 +393,10 @@ ul.at {
 #menu-icon-c:before {
     content: "\25B6";
     float: left;
-    width: 50px;
+    margin-right: 10;
   }
   
-#menu-icon-e:after,
-#menu-icon-s:after,
-#menu-icon-c:after {
-float:left;
-width: 50px;
-}
+
 
 .left-data-datasets-DEM-title ul.e {
     display: none;   
