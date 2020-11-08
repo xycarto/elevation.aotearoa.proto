@@ -13,9 +13,10 @@ function insert() {
         $('.landboxframe').append('<div class="left"></div>'); 
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
+                $('.left-data').append('<div class="left-data-intro"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
                 $('.left-data').append('<div class="left-data-title"></div>');
                 
-                $('.left-data').append('<div class="left-data-datasets"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
+                $('.left-data').append('<div class="left-data-datasets"></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
                 $('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
@@ -129,6 +130,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-intro").empty();
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
           $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
@@ -206,6 +208,7 @@ function insert() {
         $(".left-data-datasets").empty();
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
+        $(".left-data-intro").empty();
 
         $(".left-data-title").append(result.properties.name);
         $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
@@ -280,6 +283,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-intro").empty();
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(start);
@@ -337,6 +341,7 @@ function insert() {
         $(".left-data-datasets").empty();
         $(".left-data-title").empty();
         $(".left-data-meta").empty();
+        $(".left-data-intro").empty();
         $(".left-data-title").append(result.properties.Region);
         $(".left-data-meta").append('<div class="midtext">Metadata</div>');
         $(".left-data-meta").append(start);
@@ -400,6 +405,7 @@ function insert() {
       $(".left-data-datasets").empty();
       $(".left-data-title").empty();
       $(".left-data-meta").empty();
+      $(".left-data-intro").empty();
       
       $(".left-data-title").append(e.layer.feature.properties.Region);
       $(".left-data-meta").append('<div class="midtext">Metadata</div>');
@@ -459,6 +465,7 @@ function insert() {
             $(".left-data-datasets").empty();
             $(".left-data-title").empty();
             $(".left-data-meta").empty();
+            $(".left-data-intro").empty();
             $(".left-data-title").append(result.properties.Region);
             $(".left-data-meta").append('<div class="midtext">Metadata</div>');
             $(".left-data-meta").append(start);
