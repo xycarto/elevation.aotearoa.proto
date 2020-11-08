@@ -534,10 +534,11 @@ function insert() {
     if (e.name === legenditemA) {
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
-        $(".left-data-meta-avail").append('<a href="#" id="menu-icon-a"></a><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
+        $(".left-data-meta-avail").append('<div id="icon" class="fa fa-arrow-right"></div><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
-          $('#menu-icon-a').click(function() {
-            $('.left-data-meta-avail-title ul.at').toggleClass('visible')
+          $(".left-data-meta-avail").click(function() {
+            $('#icon').toggleClass('fa-arrow-right fa-arrow-down');
+            $('.left-data-meta-avail-title ul.at').toggleClass('visible');
           });
         });
     }

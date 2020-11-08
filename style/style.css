@@ -297,6 +297,25 @@ img {
     font-weight: 500;
 }
 
+.left-data-meta-avail,
+.left-data-meta-coming,
+.left-data-meta-progress {
+    display: inline-block;
+    width: 100%;
+    background-color: red;
+}
+
+.left-data-meta-avail-title,
+.left-data-meta-coming-title,
+.left-data-meta-progress-title {
+    float: left;
+}
+
+#icon {
+    float: left;
+    margin-right: 10;
+}
+
 /*legend color*/
 
 .legend-at
