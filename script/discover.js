@@ -136,18 +136,18 @@ function insert() {
       $(".left-data-title").append(e.layer.feature.properties.name);
       $(".left-data-title").append('<div style="font-size: 1vw">Available Now</div>');
       $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
-          $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+          $(".left-data-datasets-DEM").append('<div id="iconE" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
+          $('.left-data-datasets-DEM').on('click', '#iconE', function(){
             $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
           });
       $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
-        $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+          $(".left-data-datasets-DSM").append('<div id="iconS" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
+        $('.left-data-datasets-DSM').on('click', '#iconS', function(){
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
         });
         $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
-        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+        $(".left-data-datasets-PointC").append('<div id="iconPC" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#iconPC', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });
         
@@ -217,18 +217,18 @@ function insert() {
         $(".left-data-title").append(result.properties.name);
         $(".left-data-title").append('<div style="font-size: 1vw">Available Now</div>');
         $(".left-data-datasets").append('<div class="left-data-datasets-DEM"></div>')
-          $(".left-data-datasets-DEM").append('<a href="#" id="menu-icon-e"></a><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
-          $('.left-data-datasets-DEM').on('click', '#menu-icon-e', function(){
+          $(".left-data-datasets-DEM").append('<div id="iconE" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-DEM-title">Digital Elevation Model<ul class="e">' + demList.join("") + '</ul></div>')
+          $('.left-data-datasets-DEM').on('click', '#iconE', function(){
             $('.left-data-datasets-DEM-title ul.e').toggleClass('visible');
           });
         $(".left-data-datasets").append('<div class="left-data-datasets-DSM"></div>')
-          $(".left-data-datasets-DSM").append('<a href="#" id="menu-icon-s"></a><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
-          $('.left-data-datasets-DSM').on('click', '#menu-icon-s', function(){
+          $(".left-data-datasets-DSM").append('<div id="iconS" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-DSM-title">Digital Surface Model<ul class="s">' + dsmList.join("") + '</ul></div>')
+          $('.left-data-datasets-DSM').on('click', '#iconS', function(){
             $('.left-data-datasets-DSM-title ul.s').toggleClass('visible');
           });
           $(".left-data-datasets").append('<div class="left-data-datasets-PointC"></div>')
-        $(".left-data-datasets-PointC").append('<a href="#" id="menu-icon-c"></a><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
-        $('.left-data-datasets-PointC').on('click', '#menu-icon-c', function(){
+        $(".left-data-datasets-PointC").append('<div id="iconPC" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
+        $('.left-data-datasets-PointC').on('click', '#iconPC', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
         });;
           
