@@ -288,6 +288,7 @@ function insert() {
     //Mouse over functions for map layer Coming Soon
     overlayC.on('click', function(e){
       //vars for mouse over
+      var nameC = '<div class="popUpText">' + e.layer.feature.properties.Region + '</div>';
       var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
       var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.DataDelive + '</div>';
       var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
@@ -315,6 +316,10 @@ function insert() {
       $(".left-data-meta").append(pointCloud);
       $(".left-data-meta").append(contour);
       $(".left-data-meta").append(projectLead);
+      L.popup()
+        .setContent('<div class="popupWrapper">' + nameC + start + delivery + pulse + dem + dsm + pointCloud + contour + projectLead + '</div>')
+        .setLatLng(e.latlng)
+        .openOn(map);
     })
     //mouse over functions coming
     overlayC.on('mouseover', function(e){
@@ -416,6 +421,7 @@ function insert() {
     //Progress layer mounse over functions
     overlayP.on('click', function(e){
       //vars for mouse over
+      var nameIP = '<div class="popUpText">' + e.layer.feature.properties.Region + '</div>';
       var start = '<div class="popUpText">Start Date: ' + e.layer.feature.properties.ProjectSta + '</div>';
       var delivery = '<div class="popUpText">Expected Delivery Date: ' + e.layer.feature.properties.ProjectCom + '</div>';
       var pulse = '<div class="popUpText">Pulse Density: ' + e.layer.feature.properties.PulseDensi + '</div>';
@@ -443,6 +449,10 @@ function insert() {
       $(".left-data-meta").append(pointCloud);
       $(".left-data-meta").append(contour);
       $(".left-data-meta").append(projectLead);
+      L.popup()
+        .setContent('<div class="popupWrapper">' + nameIP + start + delivery + pulse + dem + dsm + pointCloud + contour + projectLead + '</div>')
+        .setLatLng(e.latlng)
+        .openOn(map);
     })
     overlayP.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
