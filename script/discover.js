@@ -173,25 +173,27 @@ function insert() {
       e.layer.setStyle(availBaseStyle)
     })
 
-  //highlight available layer from side bar list
-  var ids = overlayA._layers
-  $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
-    var txtA = $(this).text();
-    //console.log(txt)
-    $.each(ids, function(i, item){
-      //console.log(item._leaflet_id + item.feature.properties.name)
-      if (item.feature.properties.name == txtA && e.type == 'mouseenter'){
-        item.setStyle(rolloverPoly);
-        //console.log(item)
-      }
-      else {
-        item.setStyle(availBaseStyle);
-        //console.log(item)
-      }
-    })
-  })
+  /*
+    //highlight available layer from side bar list
+    var ids = overlayA._layers
+    $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
+      var txtA = $(this).text();
+      //console.log(txt)
+      $.each(ids, function(i, item){
+        //console.log(item._leaflet_id + item.feature.properties.name)
+        if (item.feature.properties.name == txtA && e.type == 'mouseenter'){
+          item.setStyle(rolloverPoly);
+          //console.log(item)
+        }
+        else {
+          item.setStyle(availBaseStyle);
+          //console.log(item)
+        }
+      })
+    })*/
+  }
 
-    
+    /*
   //Build info if item clicked in side bar list 
   $(".left-data-lists").delegate(".name", 'click', function() {
     var txtAS = $(this).text();
@@ -262,6 +264,7 @@ function insert() {
       availableFeaturesList.push(result)
     })
   }
+  */
 
   var legenditemA = '<span><span class="legend-at"></span>Available Now</span>'
   //Load Available Now JSON into map
@@ -329,6 +332,7 @@ function insert() {
       e.layer.setStyle(comingBaseStyle)
     })
 
+    /*
     // Mouse roll over highligh from side bar list
     var idsC = overlayC._layers
     $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
@@ -345,10 +349,11 @@ function insert() {
         //console.log(item)
         }
       })
-    })
+    })*/
   }
 
-     //Build info if item clicked in side bar list Coming Soon layer
+  /*
+  //Build info if item clicked in side bar list Coming Soon layer
   $(".left-data-lists").delegate(".name", 'click', function() {
     var txtC = $(this).text();
     console.log(txtC)
@@ -396,6 +401,7 @@ function insert() {
       comingFeaturesList.push(result)
     })
   }
+  */
 
   var legenditemC = '<span><span class="legend-cs"></span>Coming Soon</span>'
   //get coming soon layer for map
@@ -461,6 +467,7 @@ function insert() {
       e.layer.setStyle(progressBaseStyle)
     })
 
+    /*
     // Mouse roll over highligh from side bar list
     var idsP = overlayP._layers
     $(".left-data-lists").delegate(".name", 'mouseenter mouseleave', function(e) {
@@ -477,59 +484,60 @@ function insert() {
         //console.log(item)
         }
       })
-    })
+    })*/
   }
 
-      //Build info if item clicked in side bar list progress layer
-      $(".left-data-lists").delegate(".name", 'click', function() {
-        var txtP = $(this).text();
-        console.log(txtP)
-        
-        $.each(progressFeaturesList, function(i, result){  
-          //console.log(result.properties.Region)
-          if (txtP == result.properties.Region){
-            var start = '<div class="popUpText">Start Date: ' + result.properties.ProjectSta + '</div>';
-            var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.ProjectCom + '</div>';
-            var pulse = '<div class="popUpText">Pulse Density: ' + result.properties.PulseDensi + '</div>';
-            var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
-            var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
-            var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
-            var contour = '<div class="popUpText">Contour: ' + result.properties.Contours + '</div>';
-            var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
-            //Build side bar list
-            $(".left-data-datasets").empty();
-            $(".left-data-title").empty();
-            $(".left-data-meta").empty();
-            $(".left-data-intro").empty();
-
-            
-            $(".left-data-title").append(result.properties.Region);
-            $(".left-data-title").append('<div style="font-size: 1vw">In Progress</div>');
-            $(".left-data-meta").append('<div class="midtext">Metadata</div>');
-            $(".left-data-meta").append(start);
-            $(".left-data-meta").append(delivery);
-            $(".left-data-meta").append(pulse);
-            $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
-            $(".left-data-meta").append(dem);
-            $(".left-data-meta").append(dsm);
-            $(".left-data-meta").append(pointCloud);
-            $(".left-data-meta").append(contour);
-            $(".left-data-meta").append(projectLead);
-          }
-        }) 
-      })
+  //Build info if item clicked in side bar list progress layer
+  /*
+  $(".left-data-lists").delegate(".name", 'click', function() {
+    var txtP = $(this).text();
+    console.log(txtP)
     
-      // build lists from list for COMING SOON for legend click functions 
-      var progressList = [];
-      var progressFullList = [];
-      var progressFeaturesList = [];
-      function getListP(data){
-        $.each(data.features, function(i, result){
-          progressList.push('<div class="name">'+ result.properties.Region + '</div>')
-          progressFullList.push(result.properties)
-          progressFeaturesList.push(result)
-        })
+    $.each(progressFeaturesList, function(i, result){  
+      //console.log(result.properties.Region)
+      if (txtP == result.properties.Region){
+        var start = '<div class="popUpText">Start Date: ' + result.properties.ProjectSta + '</div>';
+        var delivery = '<div class="popUpText">Expected Delivery Date: ' + result.properties.ProjectCom + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + result.properties.PulseDensi + '</div>';
+        var dem = '<div class="popUpText">DEM: ' + result.properties.DEM + '</div>';
+        var dsm = '<div class="popUpText">DSM: ' + result.properties.DSM + '</div>';
+        var pointCloud = '<div class="popUpText">Point Cloud: ' + result.properties.PointCloud + '</div>';
+        var contour = '<div class="popUpText">Contour: ' + result.properties.Contours + '</div>';
+        var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';      
+        //Build side bar list
+        $(".left-data-datasets").empty();
+        $(".left-data-title").empty();
+        $(".left-data-meta").empty();
+        $(".left-data-intro").empty();
+
+        
+        $(".left-data-title").append(result.properties.Region);
+        $(".left-data-title").append('<div style="font-size: 1vw">In Progress</div>');
+        $(".left-data-meta").append('<div class="midtext">Metadata</div>');
+        $(".left-data-meta").append(start);
+        $(".left-data-meta").append(delivery);
+        $(".left-data-meta").append(pulse);
+        $(".left-data-meta").append('<div class="midtext">Deliverables</div>');
+        $(".left-data-meta").append(dem);
+        $(".left-data-meta").append(dsm);
+        $(".left-data-meta").append(pointCloud);
+        $(".left-data-meta").append(contour);
+        $(".left-data-meta").append(projectLead);
       }
+    }) 
+  })
+
+  // build lists from list for COMING SOON for legend click functions 
+  var progressList = [];
+  var progressFullList = [];
+  var progressFeaturesList = [];
+  function getListP(data){
+    $.each(data.features, function(i, result){
+      progressList.push('<div class="name">'+ result.properties.Region + '</div>')
+      progressFullList.push(result.properties)
+      progressFeaturesList.push(result)
+    })
+  }*/
   
   var legenditemP = '<span><span class="legend-ip"></span>In Progress</span>'
   $.getJSON(urlProgress, function (data) { 
