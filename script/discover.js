@@ -92,34 +92,71 @@ function insert() {
 
 
  function createOverlayA(data, layerName, availBaseStyle) {
-    L.geoJson(data, availBaseStyle,{
-      onEachFeature: function (feature, layer) {
-        return _layers._leaflet_id; 
+   console.log(data.features)
+   var list = data.features
+   $.each(list, function(i, item){
+    console.log(item) 
+    item.properties.id ="a"
+   })
+    var overlayA = L.geoJson(data, availBaseStyle,{
+      onEachFeature: function (data) {
+        data.features.properties.id == "a"
       }
     }).addTo(map);// Add the data to the map
+    /*$.each(overlayA, function(i, item){
+      item._layers[i].feature.properties.id == 'a'
+    })*/
+    console.log(overlayA)
+    control.addOverlay(overlayA, layerName, settingsControl);
+    //console.log(data.features)
   }
 
   function createOverlayC(data, layerName, availBaseStyle) {
-    L.geoJson(data, comingBaseStyle,{
+    var overlayC = L.geoJson(data, comingBaseStyle,{
       onEachFeature: function (feature, layer) {
         return _layers._leaflet_id; 
       }
     }).addTo(map);// Add the data to the map
+    control.addOverlay(overlayC, layerName, settingsControl);
+  }
+
+  function createOverlayP(data, layerName, progressBaseStyle) {
+    var overlayP = L.geoJson(data, progressBaseStyle,{
+      onEachFeature: function (feature, layer) {
+        return _layers._leaflet_id; 
+      }
+    }).addTo(map);// Add the data to the map
+    control.addOverlay(overlayP, layerName, settingsControl);
   }
 
   $.getJSON(urlAvailable, function (data) { 
-    createOverlayA(data, "avail", availBaseStyle)
+    createOverlayA(data, "Available", availBaseStyle)
   })
 
   $.getJSON(urlComingSoon, function (data) { 
-    createOverlayC(data, "avail", availBaseStyle)
+    createOverlayC(data, "Coming Soon", comingBaseStyle)
+  })
+
+  $.getJSON(urlProgress, function (data) { 
+    createOverlayP(data, "In Progress", progressBaseStyle)
   })
 
   map.on('click', function (e){
     var results = leafletPip.pointInLayer(e.latlng, map, false);
-      console.log(results)
+    console.log(results)
+    $.each(results, function(i, item){
+      if (item.feature.properties.name != null) {
+        console.log(item.feature.properties.name)
+        }
+      else {
+        console.log(item.feature.properties.Region)
+      }
     })
-
+    //L.popup()
+    //    .setContent()
+    //    .setLatLng(e.latlng)
+    //    .openOn(map);
+    })
 
 
   //Add Layer Control
