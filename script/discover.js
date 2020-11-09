@@ -18,7 +18,7 @@ function insert() {
                 
                 $('.left-data').append('<div class="left-data-datasets"></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
-                $('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
+                //$('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
 
@@ -112,19 +112,26 @@ function insert() {
         '<li>XYZ</li>'
       ];
       var dsmList = [
-        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></li>',
+        '<li><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DSM</a></li>',
         '<li>WMTS</li>',
         '<li>XYZ</li>'
       ];
       var pointList = [
         '<li><a href="' + e.layer.feature.properties.PointC + '" target="_blank">Point Cloud</a></li>'
       ];
+
+      var popupName = '<div class="popUpText">' + e.layer.feature.properties.name + '</div>';
       var popupDensity = '<div class="popUpText">Point Density:' + e.layer.feature.properties.point_dens + '</div>';
       var popupVertical = '<div class="popUpText">Vertical Datum: ' + e.layer.feature.properties.vertical_d + '</div>';
       var popupHorizontal = '<div class="popUpText">Horizontal Datum: ' + e.layer.feature.properties.horizontal + '</div>';
       var popupSupplier = '<div class="popUpText">Supplier: ' + e.layer.feature.properties.supplier + '</div>';
       var popupFlownFrom = '<div class="popUpText">Flown From: ' + e.layer.feature.properties.flown_from + '</div>';
       var popupFlownTo = '<div class="popUpText">Flown To: ' + e.layer.feature.properties.flown_to + '</div>';
+      var mainLinks = [
+        '<div><a href="' + e.layer.feature.properties.DataDEM + '" target="_blank">Source DEM</a></div>',
+        '<div><a href="' + e.layer.feature.properties.DataDSM + '" target="_blank">Source DSM</a></div>',
+        '<div><a href="' + e.layer.feature.properties.pointC + '" target="_blank">Source Point Cloud</a></div>'
+      ]
 
       // Build sidebar when map clicked Available now
       $(".left-data-datasets").empty();
@@ -149,11 +156,16 @@ function insert() {
         $(".left-data-datasets-PointC").append('<div id="iconPC" class="fa fa-caret-right fa-lg"></div><div class="left-data-datasets-PointC-title">Point Cloud<ul class="c">' + pointList.join("") + '</ul></div>')
         $('.left-data-datasets-PointC').on('click', '#iconPC', function(){
             $('.left-data-datasets-PointC-title ul.c').toggleClass('visible');
-        });
-        
+        });        
       $(".left-data-meta").append('<div class="midtext">Metadata</div>');
       $(".left-data-meta").append(popupDensity, popupVertical, popupHorizontal, popupSupplier, popupFlownFrom, popupFlownTo);
-    })
+      L.popup()
+        .setContent('<div class="popupWrapper">' + popupName + popupDensity + popupVertical + popupHorizontal + popupSupplier + popupFlownFrom + popupFlownTo + '<div>Download from Source</div>' + mainLinks.join("") + '</div>')
+        .setLatLng(e.latlng)
+        .openOn(map);
+      })
+    
+
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
@@ -529,7 +541,9 @@ function insert() {
   //add control to map
   control.addTo(map);
 
+
   //Map Legend Click Functions  
+  /*
   map.on('overlayadd', function (e) {
     if (e.name === legenditemA) {
                 
@@ -578,7 +592,7 @@ function insert() {
       $(".left-data-meta-progress").remove()
     }
   });
-
+  */
   
 
 };
