@@ -534,10 +534,10 @@ function insert() {
     if (e.name === legenditemA) {
                 
       $(".left-data-lists").append('<div class="left-data-meta-avail"></div>')
-        $(".left-data-meta-avail").append('<div id="iconA" class="fa fa-arrow-right"></div><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
+        $(".left-data-meta-avail").append('<div id="iconA" class="fa fa-caret-right fa-lg"></div><div class="left-data-meta-avail-title">Available Now<ul class="at">' + availableList.join("") + '</ul></div>')
         $(".left-data-meta-avail").ready(function() {
           $(".left-data-meta-avail").click(function() {
-            $('#iconA').toggleClass('fa-arrow-right fa-arrow-down');
+            $('#iconA').toggleClass('fa-caret-right fa-lg fa-caret-down fa-lg');
             $('.left-data-meta-avail-title ul.at').toggleClass('visible');
           });
         });
@@ -545,10 +545,10 @@ function insert() {
     else if (e.name === legenditemC) {
 
       $(".left-data-lists").append('<div class="left-data-meta-coming"></div>')
-        $(".left-data-meta-coming").append('<div id="iconC" class="fa fa-arrow-right"></div><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList.join("") + '</ul></div>')
+        $(".left-data-meta-coming").append('<div id="iconC" class="fa fa-caret-right fa-lg"></div><div class="left-data-meta-coming-title">Coming Soon<ul class="cs">' + comingList.join("") + '</ul></div>')
         $(".left-data-meta-coming").ready(function() {
           $(".left-data-meta-coming").click(function() {
-            $('#iconC').toggleClass('fa-arrow-right fa-arrow-down');
+            $('#iconC').toggleClass('fa-caret-right fa-lg fa-caret-down fa-lg');
             $('.left-data-meta-coming-title ul.cs').toggleClass('visible');
           });
         });
@@ -556,10 +556,10 @@ function insert() {
     else if (e.name === legenditemP) {
       
       $(".left-data-lists").append('<div class="left-data-meta-progress"></div>')
-      $(".left-data-meta-progress").append('<div id="iconP" class="fa fa-arrow-right"></div><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList.join("") + '</ul></div>')
+      $(".left-data-meta-progress").append('<div id="iconP" class="fa fa-caret-right fa-lg"></div><div class="left-data-meta-progress-title">In Progress<ul class="p">' + progressList.join("") + '</ul></div>')
       $(".left-data-meta-progress").ready(function() {
         $(".left-data-meta-progress").click(function() {
-          $('#iconP').toggleClass('fa-arrow-right fa-arrow-down');
+          $('#iconP').toggleClass('fa-caret-right-lg fa-caret-down-lg');
           $('.left-data-meta-progress-title ul.p').toggleClass('visible');
         });
       });
