@@ -116,7 +116,7 @@ function insert() {
     //console.log(data.features)
     var list = data.features
     $.each(list, function(i, item){
-    console.log(item) 
+    //console.log(item) 
     item.properties.id="c"
    })
     var overlayC = L.geoJson(data, comingBaseStyle,{
@@ -131,7 +131,7 @@ function insert() {
     var list = data.features
     var list = data.features
     $.each(list, function(i, item){
-    console.log(item) 
+    //console.log(item) 
     item.properties.id="p"
    })
     var overlayP = L.geoJson(data, progressBaseStyle,{
@@ -157,18 +157,26 @@ function insert() {
   map.on('click', function (e){
     var results = leafletPip.pointInLayer(e.latlng, map, false);
     console.log(results)
+    popupList = [];
     $.each(results, function(i, item){
       if (item.feature.properties.id === "a") {
-        console.log(item.feature.properties.name + item.feature.properties.id )
+        var availableLayer = '<div class="popupName">Available: ' + item.feature.properties.name + '</div>'
+        popupList.push(availableLayer)
+        }
+      else if (item.feature.properties.id === "c") {
+        var comingLayer = '<div class="popupName">Coming Soon: ' + item.feature.properties.Region + '</div>'
+        popupList.push(comingLayer)
         }
       else if (item.feature.properties.id === "p") {
-        console.log(item.feature.properties.Region + item.feature.properties.id )
+        var progressLayer = '<div class="popupName">In Progress: ' + item.feature.properties.Region + '</div>'
+        popupList.push(progressLayer)
       }
-    })
-    //L.popup()
-    //    .setContent()
-    //    .setLatLng(e.latlng)
-    //    .openOn(map);
+    });
+    console.log(popupList)
+    L.popup()
+        .setContent(popupList.join(""))
+        .setLatLng(e.latlng)
+        .openOn(map);
     })
 
 
