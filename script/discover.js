@@ -92,12 +92,13 @@ function insert() {
 
 
  function createOverlayA(data, layerName, availBaseStyle) {
-   console.log(data.features)
-   var list = data.features
-   $.each(list, function(i, item){
-    console.log(item) 
+    //console.log(data.features)
+    var list = data.features
+    $.each(list, function(i, item){
+    //console.log(item) 
     item.properties.id ="a"
    })
+
     var overlayA = L.geoJson(data, availBaseStyle,{
       onEachFeature: function (data) {
         data.features.properties.id == "a"
@@ -106,24 +107,36 @@ function insert() {
     /*$.each(overlayA, function(i, item){
       item._layers[i].feature.properties.id == 'a'
     })*/
-    console.log(overlayA)
+    //console.log(overlayA)
     control.addOverlay(overlayA, layerName, settingsControl);
     //console.log(data.features)
   }
 
-  function createOverlayC(data, layerName, availBaseStyle) {
+  function createOverlayC(data, layerName, comingBaseStyle) {
+    //console.log(data.features)
+    var list = data.features
+    $.each(list, function(i, item){
+    console.log(item) 
+    item.properties.id="c"
+   })
     var overlayC = L.geoJson(data, comingBaseStyle,{
-      onEachFeature: function (feature, layer) {
-        return _layers._leaflet_id; 
+      onEachFeature: function (data) {
+        data.features.properties.id == "c"
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl);
   }
 
   function createOverlayP(data, layerName, progressBaseStyle) {
+    var list = data.features
+    var list = data.features
+    $.each(list, function(i, item){
+    console.log(item) 
+    item.properties.id="p"
+   })
     var overlayP = L.geoJson(data, progressBaseStyle,{
-      onEachFeature: function (feature, layer) {
-        return _layers._leaflet_id; 
+      onEachFeature: function (data) {
+        data.features.properties.id == "p"
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayP, layerName, settingsControl);
@@ -145,11 +158,11 @@ function insert() {
     var results = leafletPip.pointInLayer(e.latlng, map, false);
     console.log(results)
     $.each(results, function(i, item){
-      if (item.feature.properties.name != null) {
-        console.log(item.feature.properties.name)
+      if (item.feature.properties.id === "a") {
+        console.log(item.feature.properties.name + item.feature.properties.id )
         }
-      else {
-        console.log(item.feature.properties.Region)
+      else if (item.feature.properties.id === "p") {
+        console.log(item.feature.properties.Region + item.feature.properties.id )
       }
     })
     //L.popup()
