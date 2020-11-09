@@ -559,6 +559,11 @@ function insert() {
   //add control to map
   control.addTo(map);
 
+  map.on('click', function (e){
+    var results = leafletPip.pointInLayer(e.latlng, map, false);
+      console.log(results)
+    })
+
 
   //Map Legend Click Functions  
   /*
