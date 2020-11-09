@@ -156,28 +156,55 @@ function insert() {
 
   map.on('click', function (e){
     var results = leafletPip.pointInLayer(e.latlng, map, false);
-    console.log(results)
-    popupList = [];
+    //console.log(results)
+    var popupList = [];
+    var availableList = [];
     $.each(results, function(i, item){
       if (item.feature.properties.id === "a") {
-        var availableLayer = '<div class="popupName">Available: ' + item.feature.properties.name + '</div>'
-        popupList.push(availableLayer)
+        var availableName = '<div class="popupText">Available: ' + item.feature.properties.name + '</div>'
+        var availableDensity = '<div class="popUpText">Point Density:' + item.feature.properties.point_dens + '</div>';
+        var availableVertical = '<div class="popUpText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>'; 
+        popupList.push(availableName);
+        var aList = [availableName, availableDensity, availableVertical]
+        availableList.push(aList)
+        //availableList.push(availableName);
+        //availableList.push(availableDensity);
+        //availableList.push(availableVertical);
         }
       else if (item.feature.properties.id === "c") {
-        var comingLayer = '<div class="popupName">Coming Soon: ' + item.feature.properties.Region + '</div>'
+        var comingLayer = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
         popupList.push(comingLayer)
         }
       else if (item.feature.properties.id === "p") {
-        var progressLayer = '<div class="popupName">In Progress: ' + item.feature.properties.Region + '</div>'
+        var progressLayer = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
         popupList.push(progressLayer)
       }
     });
-    console.log(popupList)
+    console.log(popupList);
+    console.log(availableList);
     L.popup()
-        .setContent(popupList.join(""))
+        .setContent('<div class="popupwrapper">' + popupList.join("") + '</div>')
         .setLatLng(e.latlng)
         .openOn(map);
+
+        $('.popupWrapper').delegate('.popupText', 'click', function(){
+          var index = $(this).index();
+          console.log(index);
+          console.log(availableList);
+          $.each(availableList, function(i,listItem){
+            console.log(listItem)
+            if (index === i) {
+              console.log(listItem)
+              $('.popupwrapper').empty()
+              $('.popupwrapper').append(listItem)
+            }
+            //L.popup().update("new content")
+          })
+        })
+        
     })
+
+    
 
 
   //Add Layer Control
