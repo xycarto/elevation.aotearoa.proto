@@ -371,14 +371,31 @@ span {
     display:none;
 }*/
 
-
-.popupWrapper {
+.leaflet-popup-content-wrapper  .leaflet-popup-content { 
     
+    width: auto;
+    white-space: nowrap;
+}
+
+.select {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 5;
+}
+
+.popupwrapper {
+    width: auto;
+    background-color: red;
 }
 
 .popupText {
+    color: #333333;
+    max-width: 2000;
+  }
 
-}
+/*.popupText:hover {
+    color: #aaaaaa;
+}*/
 
 /*collapse Big Lists*/
 
@@ -484,6 +501,3 @@ ul .name:before {
 }
 
 
-.popUpText {
-    color: #333333;
-  }

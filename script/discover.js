@@ -51,7 +51,7 @@ function insert() {
   var map = new L.Map('map',
            {center: [-39.9, 175.2], 
            zoom: 6,
-           layers: aerialBasemap
+           layers: colourBasemap
           });
   
   
@@ -176,8 +176,17 @@ function insert() {
       if (item.feature.properties.id === "a") {
         var availableName = '<div class="popupText">Available: ' + item.feature.properties.name + '</div>'
         var availableDensity = '<div class="popUpText">Point Density: ' + item.feature.properties.point_dens + '</div>';
-        var availableVertical = '<div class="popUpText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>'; 
-        var nameLayerA = [availableName, availableDensity, availableVertical]
+        var availableVertical = '<div class="popUpText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>';
+        var availableHorizontal = '<div class="popUpText">Horizontal Datum: ' + item.feature.properties.horizontal + '</div>'; 
+        var availableSupplier = '<div class="popUpText">Supplier: ' + item.feature.properties.supplier + '</div>'; 
+        var availableFFrom = '<div class="popUpText">Flown From: ' + item.feature.properties.flown_from + '</div>';  
+        var availableFTo = '<div class="popUpText">Flown To: ' + item.feature.properties.flown_to + '</div>'; 
+        var mainLinks = [
+          '<div><a href="' + item.feature.properties.DataDEM + '" target="_blank">Source DEM</a></div>',
+          '<div><a href="' + item.feature.properties.DataDSM + '" target="_blank">Source DSM</a></div>',
+          '<div><a href="' + item.feature.properties.pointC + '" target="_blank">Source Point Cloud</a></div>'
+        ]
+        var nameLayerA = [availableName, availableDensity, availableVertical, availableHorizontal, availableSupplier, availableFFrom, availableFTo, mainLinks.join("")]
         popupList.push(nameLayerA);
         }
       else if (item.feature.properties.id === "c") {
@@ -203,8 +212,8 @@ function insert() {
 
     
     //Make popup state one
-    L.popup()        
-        .setContent('<div class="popupwrapper">' + popupNames.join("") + '</div>')
+    L.popup({maxWidth:1500})        
+        .setContent('<div class="select">Please Select a Layer</div><div class="popupwrapper">' + popupNames.join("") + '</div>')
         .setLatLng(e.latlng)
         .openOn(map)
         .on('remove', function() {
@@ -218,7 +227,7 @@ function insert() {
 
     var index;
     var color;
-    $('.popupWrapper').delegate('.popupText', 'mouseenter', function(){     
+    $('.popupwrapper').delegate('.popupText', 'mouseenter', function(){     
       index = $(this).index();
       color = results[index].defaultOptions.fillColor
       //console.log(color)
@@ -237,12 +246,15 @@ function insert() {
       results[index].setStyle(rolloutPoly)
     })    
 
-    $('.popupWrapper').delegate('.popupText', 'click', function(){     
+    $('.popupwrapper').delegate('.popupText', 'click', function(){     
         var index = $(this).index();
         //console.log(index + popupList[index])
         results[index].setStyle(rolloverPoly)
+        $('.select').empty()
         $('.popupwrapper').empty()
+        $('.left-data-meta').empty()
         $('.popupwrapper').append(popupList[index])
+        $('.left-data-meta').append(popupList[index])
       
     })
 
