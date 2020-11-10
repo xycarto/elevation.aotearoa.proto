@@ -227,7 +227,7 @@ function insert() {
 
     var index;
     var color;
-    $('.popupwrapper').delegate('.popupText', 'mouseenter', function(){     
+    $('.popupText').on('mouseenter', function(){     
       index = $(this).index();
       color = results[index].defaultOptions.fillColor
       //console.log(color)
