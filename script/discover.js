@@ -33,11 +33,14 @@ function insert() {
   };
             
   //Base map URL
-  var basemap = new L.TileLayer('https://tiles.maps.linz.io/nz_colour_basemap/GLOBAL_MERCATOR/{z}/{x}/{y}.png', settingsBasemap)
+  var aerialBasemap = new L.TileLayer('https://basemaps.linz.govt.nz/v1/tiles/aerial/EPSG:3857/{z}/{x}/{y}.png?api=c01emr2n17q0qtdaens2m3abcwd', settingsBasemap)
+  
+  var colourBasemap = new L.TileLayer('https://tiles.maps.linz.io/nz_colour_basemap/GLOBAL_MERCATOR/{z}/{x}/{y}.png', settingsBasemap)
   
   // Layer control base map
   var baseMapIndex = {
-      "LINZ Colour Base Map": basemap
+      "LINZ Aerial Base Map": aerialBasemap,
+      "LINZ Colour Base Map": colourBasemap
       };
 
   var settingsControl = {
@@ -48,7 +51,7 @@ function insert() {
   var map = new L.Map('map',
            {center: [-39.9, 175.2], 
            zoom: 6,
-           layers: basemap
+           layers: aerialBasemap
           });
   
   
