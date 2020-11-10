@@ -363,6 +363,15 @@ span {
 
 /* pop ups!*/
 
+/*.popupBox {
+    background-color: #ff0000;
+}*/
+
+/*.leaflet-popup-tip {
+    display:none;
+}*/
+
+
 .popupWrapper {
     
 }

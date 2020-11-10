@@ -109,8 +109,6 @@ function insert() {
     
     control.addOverlay(overlayA, layerName, settingsControl);
 
-    
-    
   }
 
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -156,12 +154,19 @@ function insert() {
   })
 
   
+  map.on('mouseover', function(e){
+    //e.layer.setStyle(rolloverPoly)
+    var results = leafletPip.pointInLayer(e.latlng, map, false); 
+    //console.log(results) 
+  })
+  /*map.on('mouseout', function(e){
+    e.layer.setStyle(availBaseStyle)
+  })*/
+  
+  
   //Begin Click Function
   map.on('click', function (e){
-    var results = leafletPip.pointInLayer(e.latlng, map, false);
-    //console.log(results[0])
-    //results[0].setStyle(rolloverPoly)
-    
+    var results = leafletPip.pointInLayer(e.latlng, map, false);    
 
     var popupList = [];
     $.each(results, function(i, item){
@@ -193,6 +198,7 @@ function insert() {
       popupNames.push(popupListName)
     })
 
+    
     //Make popup state one
     L.popup()        
         .setContent('<div class="popupwrapper">' + popupNames.join("") + '</div>')
@@ -212,14 +218,14 @@ function insert() {
     $('.popupWrapper').delegate('.popupText', 'mouseenter', function(){     
       index = $(this).index();
       color = results[index].defaultOptions.fillColor
-      console.log(color)
+      //console.log(color)
       results[index].setStyle(rolloverPoly)
     })
 
     $('.popupText').on('mouseleave', function(){     
       index = $(this).index();
       //var resetColor = $(this).results[index].defaultOptions.fillColor
-      console.log(color)
+      //console.log(color)
       var rolloutPoly = {
         fillColor: color
       }
