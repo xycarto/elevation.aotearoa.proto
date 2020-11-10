@@ -82,6 +82,8 @@ function insert() {
     color: 'white',
     fillOpacity: 0.7
   }
+
+  
        
   // JSON urls
   var urlAvailable = 'https://xycarto.github.io/vectortile-repo/LiDAR_available_now_fix.json';
@@ -104,12 +106,11 @@ function insert() {
         data.features.properties.id == "a"
       }
     }).addTo(map);// Add the data to the map
-    /*$.each(overlayA, function(i, item){
-      item._layers[i].feature.properties.id == 'a'
-    })*/
-    //console.log(overlayA)
+    
     control.addOverlay(overlayA, layerName, settingsControl);
-    //console.log(data.features)
+
+    
+    
   }
 
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -154,57 +155,89 @@ function insert() {
     createOverlayP(data, "In Progress", progressBaseStyle)
   })
 
+  
+  //Begin Click Function
   map.on('click', function (e){
     var results = leafletPip.pointInLayer(e.latlng, map, false);
-    //console.log(results)
+    //console.log(results[0])
+    //results[0].setStyle(rolloverPoly)
+    
+
     var popupList = [];
-    var availableList = [];
     $.each(results, function(i, item){
       if (item.feature.properties.id === "a") {
         var availableName = '<div class="popupText">Available: ' + item.feature.properties.name + '</div>'
-        var availableDensity = '<div class="popUpText">Point Density:' + item.feature.properties.point_dens + '</div>';
+        var availableDensity = '<div class="popUpText">Point Density: ' + item.feature.properties.point_dens + '</div>';
         var availableVertical = '<div class="popUpText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>'; 
-        popupList.push(availableName);
-        var aList = [availableName, availableDensity, availableVertical]
-        availableList.push(aList)
-        //availableList.push(availableName);
-        //availableList.push(availableDensity);
-        //availableList.push(availableVertical);
+        var nameLayerA = [availableName, availableDensity, availableVertical]
+        popupList.push(nameLayerA);
         }
       else if (item.feature.properties.id === "c") {
-        var comingLayer = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
-        popupList.push(comingLayer)
+        var comingName = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
+        var nameLayerC = [comingName]
+        popupList.push(nameLayerC)
         }
       else if (item.feature.properties.id === "p") {
-        var progressLayer = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
-        popupList.push(progressLayer)
+        var progressName = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
+        var nameLayerP = [progressName]
+        popupList.push(nameLayerP)
       }
     });
-    console.log(popupList);
-    console.log(availableList);
-    L.popup()
-        .setContent('<div class="popupwrapper">' + popupList.join("") + '</div>')
-        .setLatLng(e.latlng)
-        .openOn(map);
 
-        $('.popupWrapper').delegate('.popupText', 'click', function(){
-          var index = $(this).index();
-          console.log(index);
-          console.log(availableList);
-          $.each(availableList, function(i,listItem){
-            console.log(listItem)
-            if (index === i) {
-              console.log(listItem)
-              $('.popupwrapper').empty()
-              $('.popupwrapper').append(listItem)
-            }
-            //L.popup().update("new content")
-          })
-        })
-        
+    //console.log(popupList);
+    
+    // build list for first popup state
+    var popupNames = []
+    $.each(popupList, function(i, item){
+      var popupListName = item[0];
+      popupNames.push(popupListName)
     })
 
-    
+    //Make popup state one
+    L.popup()        
+        .setContent('<div class="popupwrapper">' + popupNames.join("") + '</div>')
+        .setLatLng(e.latlng)
+        .openOn(map)
+        .on('remove', function() {
+          var rolloutPoly = {
+            fillColor: color
+          }
+          results[index].setStyle(rolloutPoly)
+          });
+       
+    //get name of click, compare if a,c,p, then somehow associate name to items in available list
+
+    var index;
+    var color;
+    $('.popupWrapper').delegate('.popupText', 'mouseenter', function(){     
+      index = $(this).index();
+      color = results[index].defaultOptions.fillColor
+      console.log(color)
+      results[index].setStyle(rolloverPoly)
+    })
+
+    $('.popupText').on('mouseleave', function(){     
+      index = $(this).index();
+      //var resetColor = $(this).results[index].defaultOptions.fillColor
+      console.log(color)
+      var rolloutPoly = {
+        fillColor: color
+      }
+      //console.log(index)      
+      //console.log(results[index].defaultOptions.fillColor)
+      results[index].setStyle(rolloutPoly)
+    })    
+
+    $('.popupWrapper').delegate('.popupText', 'click', function(){     
+        var index = $(this).index();
+        //console.log(index + popupList[index])
+        results[index].setStyle(rolloverPoly)
+        $('.popupwrapper').empty()
+        $('.popupwrapper').append(popupList[index])
+      
+    })
+
+  }) // end map click function
 
 
   //Add Layer Control
@@ -213,8 +246,7 @@ function insert() {
   //add control to map
   control.addTo(map);
 
-
-
+  
   
 
  
