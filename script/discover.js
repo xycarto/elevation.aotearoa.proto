@@ -131,7 +131,6 @@ function insert() {
 
   function createOverlayP(data, layerName, progressBaseStyle) {
     var list = data.features
-    var list = data.features
     $.each(list, function(i, item){
     //console.log(item) 
     item.properties.id="p"
@@ -191,12 +190,28 @@ function insert() {
         }
       else if (item.feature.properties.id === "c") {
         var comingName = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
-        var nameLayerC = [comingName]
+        var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
+        var delivery = '<div class="popUpText">Expected Delivery Date: ' + item.feature.properties.DataDelive + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
+        var dem = '<div class="popUpText">DEM: ' + item.feature.properties.DEM + '</div>';
+        var dsm = '<div class="popUpText">DSM: ' + item.feature.properties.DSM + '</div>';
+        var pointCloud = '<div class="popUpText">Point Cloud: ' + item.feature.properties.PointCloud + '</div>';
+        var contour = '<div class="popUpText">Contour: ' + item.feature.properties.Contours + '</div>';
+        var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';  
+        var nameLayerC = [comingName, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
         popupList.push(nameLayerC)
         }
       else if (item.feature.properties.id === "p") {
         var progressName = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
-        var nameLayerP = [progressName]
+        var start = '<div class="popUpText">Start Date: Info Not Yet Available</div>';
+        var delivery = '<div class="popUpText">Expected Delivery Date: ' + item.feature.properties.DataDelive + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
+        var dem = '<div class="popUpText">DEM: ' + item.feature.properties.DEM + '</div>';
+        var dsm = '<div class="popUpText">DSM: ' + item.feature.properties.DSM + '</div>';
+        var pointCloud = '<div class="popUpText">Point Cloud: ' + item.feature.properties.PointCloud + '</div>';
+        var contour = '<div class="popUpText">Contour: ' + item.feature.properties.Contours + '</div>';
+        var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';  
+        var nameLayerP = [progressName, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
         popupList.push(nameLayerP)
       }
     });
