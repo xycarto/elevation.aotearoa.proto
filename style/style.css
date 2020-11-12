@@ -373,23 +373,39 @@ span {
 
 .leaflet-popup-content-wrapper  .leaflet-popup-content { 
     
-    width: auto;
+    width: 1250;
     white-space: nowrap;
 }
 
 .select {
+    width: auto;
     text-align: center;
     text-decoration: underline;
     margin-bottom: 5;
+    background-color: #ff0000;
 }
 
 .popupwrapper {
     width: auto;
+    white-space: nowrap;
 }
 
 .popupText {
+    width: auto;
     color: #333333;
-    max-width: 2000;
+}
+
+.popupTextTitle {
+    background-color: #ff0000;
+    font-size: 14pt;
+    text-align: center;
+    width: auto;
+    color: #333333;
+  }
+
+  .popupTextType {
+    text-align: center;
+    font-style: italic;
   }
 
 /*.popupText:hover {
