@@ -169,7 +169,7 @@ function insert() {
       if (item.feature.properties.id === "a") {
         var availableName = '<div class="popupText"> Available: '+ item.feature.properties.name + '</div>'
         var availableNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
-        var available = '<div class="popupTextType">Available</div>'
+        var available = '<div class="popupTextType">Available Now</div>'
         var availableDensity = '<div class="popupText">Point Density: ' + item.feature.properties.point_dens + '</div>';
         var availableVertical = '<div class="popupText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>';
         var availableHorizontal = '<div class="popupText">Horizontal Datum: ' + item.feature.properties.horizontal + '</div>'; 
@@ -187,7 +187,8 @@ function insert() {
         }
       else if (item.feature.properties.id === "c") {
         var comingName = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
-        var comingNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
+        var comingNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.Region+ '</div>'
+        var coming = '<div class="popupTextType">Coming Soon</div>'
         var start = '<div class="popupText">Start Date: Info Not Yet Available</div>';
         var delivery = '<div class="popupText">Expected Delivery Date: ' + item.feature.properties.DataDelive + '</div>';
         var pulse = '<div class="popupText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
@@ -196,22 +197,23 @@ function insert() {
         var pointCloud = '<div class="popupText">Point Cloud: ' + item.feature.properties.PointCloud + '</div>';
         var contour = '<div class="popupText">Contour: ' + item.feature.properties.Contours + '</div>';
         var projectLead = '<div class="popupText">Team Lead: Info Not Yet Available</div>';  
-        var nameLayerC = [comingNameTitle, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
+        var nameLayerC = [comingNameTitle, coming, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
         popupList.push(nameLayerC)
         popupStateOne.push(comingName);
         }
       else if (item.feature.properties.id === "p") {
         var progressName = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
-        var progressNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
-        var start = '<div class="popupText">Start Date: Info Not Yet Available</div>';
-        var delivery = '<div class="popupText">Expected Delivery Date: ' + item.feature.properties.DataDelive + '</div>';
-        var pulse = '<div class="popupText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
-        var dem = '<div class="popupText">DEM: ' + item.feature.properties.DEM + '</div>';
-        var dsm = '<div class="popupText">DSM: ' + item.feature.properties.DSM + '</div>';
-        var pointCloud = '<div class="popupText">Point Cloud: ' + item.feature.properties.PointCloud + '</div>';
-        var contour = '<div class="popupText">Contour: ' + item.feature.properties.Contours + '</div>';
-        var projectLead = '<div class="popupText">Team Lead: Info Not Yet Available</div>';  
-        var nameLayerP = [progressNameTitle, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
+        var progressNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.Region + '</div>'
+        var porgress = '<div class="popupTextType">In Progress</div>'
+        var start = '<div class="popUpText">Start Date: ' + item.feature.properties.ProjectSta + '</div>';
+        var delivery = '<div class="popUpText">Expected Delivery Date: ' + item.feature.properties.ProjectCom + '</div>';
+        var pulse = '<div class="popUpText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
+        var dem = '<div class="popUpText">DEM: ' + item.feature.properties.DEM + '</div>';
+        var dsm = '<div class="popUpText">DSM: ' + item.feature.properties.DSM + '</div>';
+        var pointCloud = '<div class="popUpText">Point Cloud: ' + item.feature.properties.PointCloud + '</div>';
+        var contour = '<div class="popUpText">Contour: ' + item.feature.properties.Contours + '</div>';
+        var projectLead = '<div class="popUpText">Team Lead: Info Not Yet Available</div>';  
+        var nameLayerP = [progressNameTitle, progress, start, delivery, pulse, dem, dsm, pointCloud, contour, projectLead]
         popupList.push(nameLayerP)
         popupStateOne.push(progressName);
       }
