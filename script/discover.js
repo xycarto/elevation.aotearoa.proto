@@ -167,7 +167,7 @@ function insert() {
     var popupList = [];
     $.each(results, function(i, item){
       if (item.feature.properties.id === "a") {
-        var availableName = '<div class="popupText">'+ item.feature.properties.name + '</div>'
+        var availableName = '<div class="popupText"> Available: '+ item.feature.properties.name + '</div>'
         var availableNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
         var available = '<div class="popupTextType">Available</div>'
         var availableDensity = '<div class="popupText">Point Density: ' + item.feature.properties.point_dens + '</div>';
@@ -231,7 +231,7 @@ function insert() {
 
     
     //Make popup state one
-    L.popup()        
+    var popup = L.popup({maxWidth:3000})        
         .setContent('<div><div class="select">Please Select a Layer</div><div class="popupwrapper">' + popupStateOne.join("") + '</div></div>')
         .setLatLng(e.latlng)
         .openOn(map)
@@ -265,18 +265,30 @@ function insert() {
       results[index].setStyle(rolloutPoly)
     })    
 
+    
+    
+    popup.bindPopup('.popupwrapper')
+    console.log(popupList)
+
     $('.popupwrapper').delegate('.popupText', 'click', function(){     
         var index = $(this).index();
         //console.log(index + popupList[index])
         $('.select').empty()
         $('.popupwrapper').empty()
         $('.left-data-meta').empty()
+        //popup.setContent(popupList)
+        var myList = popupList[index].join("")
+        newList = myList.replace(/,/g, '')
+        popup.setContent(newList)
+
         $.each(popupList[index], function(i,item){
-          $('.popupwrapper').append('<div>' + item + '</div>')
+          //popup.setContent('foo'+ i)
+          //inList = item;
           $('.left-data-meta').append('<div>' + item + '</div>')
-          console.log(item)
+          //console.log(item)
         })
-        results[index].setStyle(rolloverPoly)
+        //console.log(inList)
+        //results[index].setStyle(rolloverPoly)
         
         
       

@@ -372,38 +372,39 @@ span {
 }*/
 
 .leaflet-popup-content-wrapper  .leaflet-popup-content { 
-    
-    width: 1250;
+    width: auto;
+    /*background-color: #00ff00;*/
     white-space: nowrap;
 }
 
 .select {
-    width: auto;
     text-align: center;
     text-decoration: underline;
     margin-bottom: 5;
-    background-color: #ff0000;
+    margin-top: 5;
+    /*background-color: #ff0000;*/
 }
 
 .popupwrapper {
-    width: auto;
     white-space: nowrap;
 }
 
 .popupText {
     width: auto;
     color: #333333;
+    /*background-color: #0ff;*/
 }
 
 .popupTextTitle {
-    background-color: #ff0000;
+    width: auto;
+    /*background-color: #0f0f0f;*/
     font-size: 14pt;
     text-align: center;
-    width: auto;
     color: #333333;
   }
 
   .popupTextType {
+    /*background-color: #f0f0f0;*/
     text-align: center;
     font-style: italic;
   }
