@@ -61,7 +61,7 @@ function insert() {
     weight: 0.5,
     opacity: 1,
     color: '#dddddd',
-    fillOpacity: 0.7
+    fillOpacity: 0.4
   }
 
   var comingBaseStyle = {
@@ -69,7 +69,7 @@ function insert() {
     weight: 0.5,
     opacity: 1,
     color: '#dddddd',
-    fillOpacity: 0.7
+    fillOpacity: 0.4
   }
 
   var progressBaseStyle = {
@@ -77,13 +77,13 @@ function insert() {
     weight: 0.5,
     opacity: 1,
     color: '#dddddd',
-    fillOpacity: 0.7
+    fillOpacity: 0.4
 }
   
   var rolloverPoly = {
     fillColor: "yellow",
     color: 'white',
-    fillOpacity: 0.7
+    fillOpacity: 0.4
   }
 
   
