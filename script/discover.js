@@ -162,7 +162,7 @@ function insert() {
   //Begin Click Function
   map.on('click', function (e){
     var results = leafletPip.pointInLayer(e.latlng, map, false);    
-
+    //console.log(results)
     var popupStateOne = [];
     var popupList = [];
     $.each(results, function(i, item){
@@ -204,7 +204,7 @@ function insert() {
       else if (item.feature.properties.id === "p") {
         var progressName = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
         var progressNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.Region + '</div>'
-        var porgress = '<div class="popupTextType">In Progress</div>'
+        var progress = '<div class="popupTextType">In Progress</div>'
         var start = '<div class="popUpText">Start Date: ' + item.feature.properties.ProjectSta + '</div>';
         var delivery = '<div class="popUpText">Expected Delivery Date: ' + item.feature.properties.ProjectCom + '</div>';
         var pulse = '<div class="popUpText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
@@ -228,11 +228,13 @@ function insert() {
       popupNames.push(popupListName)
     })
 
-    console.log(popupNames)
-    console.log(popupList)
+    //console.log(popupNames)
+    //console.log(popupList)
 
     
     //Make popup state one
+    if (popupStateOne.join("") != "") {
+    //console.log(popupStateOne.join(""))
     var popup = L.popup({maxWidth:3000})        
         .setContent('<div><div class="select">Please Select a Layer</div><div class="popupwrapper">' + popupStateOne.join("") + '</div></div>')
         .setLatLng(e.latlng)
@@ -242,7 +244,9 @@ function insert() {
             fillColor: color
           }
           results[index].setStyle(rolloutPoly)
+          $('.left-data-meta').empty()
           });
+    }
        
     //get name of click, compare if a,c,p, then somehow associate name to items in available list
 
@@ -270,7 +274,7 @@ function insert() {
     
     
     popup.bindPopup('.popupwrapper')
-    console.log(popupList)
+    //console.log(popupList)
 
     $('.popupwrapper').delegate('.popupText', 'click', function(){     
         var index = $(this).index();
@@ -291,13 +295,12 @@ function insert() {
         })
         //console.log(inList)
         //results[index].setStyle(rolloverPoly)
-        
-        
-      
+
     })
 
   }) // end map click function
 
+  
 
   //Add Layer Control
   var control = L.control.layers(baseMapIndex,null,settingsControl).addTo(map);
