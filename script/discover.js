@@ -13,7 +13,7 @@ function insert() {
         $('.landboxframe').append('<div class="left"></div>'); 
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
-                $('.left-data').append('<div class="left-data-intro"><p>Elevation Data Finder provides you with ease of access to information on all current and future open elevation datasets in New Zealand.</p></div>');
+                $('.left-data').append('<div class="left-data-intro"><p>We provide ease of access to information on all current and future open LiDAR datasets managed by LINZ and regional councils. </p></div>');
                 $('.left-data').append('<div class="left-data-title"></div>');
                 
                 $('.left-data').append('<div class="left-data-datasets"></div>');
@@ -21,8 +21,8 @@ function insert() {
                 //$('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
               $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
-
         $('.landboxframe').append('<div id="map"></div>'); 
+      $('.alldiv').append('<div class="bottom"></div>');
   
   
   
