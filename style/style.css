@@ -217,80 +217,89 @@ img {
 .left {
     width: 25%;
     height: 100%;
-    /*background-color: #eeeeee;*/
+    background-color: #eeeeee;
     float: left;
     padding: 5;
-    margin-top: 10;
+    align-items: center;
 }
 
 .left-title {
     background-color: #ffffff;
-    width: 100%;
+    width: 80%;
     height:10%;
     color: #333333;
     text-align: center;
     font-weight: 500;
     font-size: 1.5vw;
+    margin: auto;
 
     /*margin-top: 10;*/
 }
 
 .left-data {
-    width: 100%;
+    width: 80%;
     color: #333333;
     background-color: white;
+    margin: auto;
 }
 
 .left-data-info {
-    width: 100%;
+    width: 80%;
     color: #333333;
     background-color: white;
-    margin-top: 10;
+    margin: auto;
 }
 
 .left-data-lists {
-    width: 100%;
+    width: 80%;
     color: #333333;
     background-color: white;
-    margin-top: 10;
+    margin: auto;
 }
 
 .left-data-title {
-    width: 100%;
+    width: 80%;
     color: #333333;
     text-align: center;
     font-weight: 500;
     font-size: 1.25vw;
     /*background-color: #ff0000;*/
+    margin: auto;
+}
+
+.left-data-intro,
+.left-data-intro-too {
+    width: 80%;
+    color: #333333;
+    /*background-color: #ff0000;*/
+    margin: auto;
     margin-bottom: 10;
 }
 
 .left-data-datasets {
-    width: 100%;
+    width: 80%;
     color: #333333;
-    margin-top: 10;
-    /*background-color: #ff0ff0;*/
+    margin: auto;
 }
 
 .left-data-meta {
-    width: 100%;
+    width: 80%;
     color: #333333;
     font-weight: 500;
-    /*background-color: #fff000;*/
+    margin: auto;
     margin-top: 10;
 }
 
 .left-bottom {
-    width: 100%;
-    height: 2%;
-    float: left;
+    width: 60%;
+    height: 9%;
     color: #333333;
-    text-align: center;
-    font-size: 0.75vw;
     background-color: #ffffff;
+    margin: auto;
     margin-top: 10;
     display: flex;
     flex-direction: column;
+    padding: 5;
 }
 
 .midtext {

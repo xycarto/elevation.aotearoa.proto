@@ -14,13 +14,14 @@ function insert() {
               $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
               $('.left').append('<div class="left-data"></div>');
                 $('.left-data').append('<div class="left-data-intro"><p>We provide ease of access to information on all current and future open LiDAR datasets managed by LINZ and regional councils. </p></div>');
+                $('.left-data').append('<div class="left-data-intro-too"><p>You are currently viewing all the map layers. Explore the map to find information about the area you need. If a dataset for the area exists, get the link to crop, select and download the data.</p></div>');
                 $('.left-data').append('<div class="left-data-title"></div>');
                 
                 $('.left-data').append('<div class="left-data-datasets"></div>');
                 $('.left-data').append('<div class="left-data-meta"></div>');
                 //$('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
-              $('.left').append('<div class="left-bottom">New to this map? Take a quick tour</div>');
+              $('.left').append('<div class="left-bottom"><i class="fa fa-cog" title="tool-tip"></i><p><strong>Tool tip:</strong> Only want to see what’s coming soon or is in progress? Uncheck the relevant boxes in the map legend.</p></div>');
         $('.landboxframe').append('<div id="map"></div>'); 
       $('.alldiv').append('<div class="bottom"></div>');
   
@@ -143,16 +144,19 @@ function insert() {
     control.addOverlay(overlayP, layerName, settingsControl);
   }
 
+  var availName = '<span><span class="legend-at"></span>Available Now</span>'
   $.getJSON(urlAvailable, function (data) { 
-    createOverlayA(data, "Available", availBaseStyle)
+    createOverlayA(data, availName, availBaseStyle)
   })
 
+  var comingName = '<span><span class="legend-cs"></span>Available Now</span>'
   $.getJSON(urlComingSoon, function (data) { 
-    createOverlayC(data, "Coming Soon", comingBaseStyle)
+    createOverlayC(data, comingName, comingBaseStyle)
   })
 
+  var progressName = '<span><span class="legend-ip"></span>Available Now</span>'
   $.getJSON(urlProgress, function (data) { 
-    createOverlayP(data, "In Progress", progressBaseStyle)
+    createOverlayP(data, progressName, progressBaseStyle)
   })
 
   
@@ -282,6 +286,7 @@ function insert() {
         $('.select').empty()
         $('.popupwrapper').empty()
         $('.left-data-meta').empty()
+        $('.left-data-intro-too').empty()
         //popup.setContent(popupList)
         var myList = popupList[index].join("")
         newList = myList.replace(/,/g, '')
