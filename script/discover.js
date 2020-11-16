@@ -112,13 +112,13 @@ function insert() {
     }).addTo(map);// Add the data to the map
     
     control.addOverlay(overlayA, layerName, settingsControl);
-
+    /*
     overlayA.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
     overlayA.on('mouseout', function(e){
       e.layer.setStyle(availBaseStyle)
-    })
+    })*/
 
   }
 
@@ -135,12 +135,13 @@ function insert() {
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl);
+    /*
     overlayC.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
     overlayC.on('mouseout', function(e){
       e.layer.setStyle(availBaseStyle)
-    })
+    })*/
   }
 
   function createOverlayP(data, layerName, progressBaseStyle) {
@@ -155,12 +156,13 @@ function insert() {
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayP, layerName, settingsControl);
+    /*
     overlayP.on('mouseover', function(e){
       e.layer.setStyle(rolloverPoly)
     })
     overlayP.on('mouseout', function(e){
       e.layer.setStyle(availBaseStyle)
-    })
+    })*/
   }
 
   var availName = '<span><span class="legend-at"></span>Available Now</span>'
@@ -184,7 +186,8 @@ function insert() {
   
   //Begin Click Function
   map.on('click', function (e){
-    var results = leafletPip.pointInLayer(e.latlng, map, false);    
+    var results = leafletPip.pointInLayer(e.latlng, map, false);  
+    //map.removeLayer(mkr)  
     //console.log(results)
     var popupStateOne = [];
     var popupList = [];
@@ -257,23 +260,38 @@ function insert() {
     //console.log(popupNames)
     //console.log(popupList)
 
-    
+    var mkr;
     //Make popup state one
     if (popupStateOne.join("") != "") {
     //console.log(popupStateOne.join(""))
-    var popup = L.popup({maxWidth:3000})        
+    var mkr = L.marker(e.latlng)
+    mkr.addTo(map);    
+    
+    var popup = L.popup({maxWidth:3000, offset: [-75,-50]})        
         .setContent('<div><div class="select">Please Select a Layer</div><div class="popupwrapper">' + popupStateOne.join("") + '</div></div>')
         .setLatLng(e.latlng)
         .openOn(map)
-        .on('remove', function() {
+        .on('closepopup', function() {
           var rolloutPoly = {
             fillColor: color
           }
           results[index].setStyle(rolloutPoly)
           $('.left-data-meta').empty()
+            map.removeLayer(mkr)
+          })
+        .on('remove', function(){
+            map.removeLayer(mkr)
+            var rolloutPoly = {
+              fillColor: color
+            }
+            results[index].setStyle(rolloutPoly)
+            $('.left-data-meta').empty()
           });
     }
-       
+
+   
+      
+    //map.removeLayer(mkr)
     //get name of click, compare if a,c,p, then somehow associate name to items in available list
 
     var index;
@@ -301,6 +319,8 @@ function insert() {
     
     popup.bindPopup('.popupwrapper')
     //console.log(popupList)
+
+    
 
     $('.popupwrapper').delegate('.popupText', 'click', function(){     
         var index = $(this).index();

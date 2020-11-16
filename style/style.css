@@ -402,11 +402,12 @@ span {
     background-color: #ff0000;
 }*/
 
-/*.leaflet-popup-tip {
+.leaflet-popup-tip {
     display:none;
-}*/
+}
 
-.leaflet-popup-content-wrapper  .leaflet-popup-content { 
+.leaflet-popup-content-wrapper .leaflet-popup-content
+ { 
     width: auto;
     /*background-color: #00ff00;*/
     white-space: nowrap;
