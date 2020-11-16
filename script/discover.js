@@ -52,7 +52,7 @@ function insert() {
   var map = new L.Map('map',
            {center: [-39.9, 175.2], 
            zoom: 6,
-           layers: colourBasemap
+           layers: aerialBasemap
           });
   
   
@@ -113,6 +113,13 @@ function insert() {
     
     control.addOverlay(overlayA, layerName, settingsControl);
 
+    overlayA.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayA.on('mouseout', function(e){
+      e.layer.setStyle(availBaseStyle)
+    })
+
   }
 
   function createOverlayC(data, layerName, comingBaseStyle) {
@@ -128,6 +135,12 @@ function insert() {
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayC, layerName, settingsControl);
+    overlayC.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayC.on('mouseout', function(e){
+      e.layer.setStyle(availBaseStyle)
+    })
   }
 
   function createOverlayP(data, layerName, progressBaseStyle) {
@@ -142,6 +155,12 @@ function insert() {
       }
     }).addTo(map);// Add the data to the map
     control.addOverlay(overlayP, layerName, settingsControl);
+    overlayP.on('mouseover', function(e){
+      e.layer.setStyle(rolloverPoly)
+    })
+    overlayP.on('mouseout', function(e){
+      e.layer.setStyle(availBaseStyle)
+    })
   }
 
   var availName = '<span><span class="legend-at"></span>Available Now</span>'
