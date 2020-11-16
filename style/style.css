@@ -74,13 +74,11 @@ img {
     display: flex;
     height: 10%;
     width: 100%;
-    background-color: #ff0000;
     margin-bottom: 5;
     float: left;
 }
 
 .landboxframe { 
-    background-color: #00ff00;
     float: left;
     height: 85%;
     width: 100%;
