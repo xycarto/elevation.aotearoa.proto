@@ -11,7 +11,7 @@ function insert() {
         $('.top').append('<div class="menuitem"><span><a href="about.html">About</a></span></div>');
     $('.alldiv').append('<div class="landboxframe"></div>');
         $('.landboxframe').append('<div class="left"></div>'); 
-              $('.left').append('<div class="left-title">Elevation Data Finder</div>'); 
+              $('.left').append('<div class="left-title"><div class="titleText">Elevation Data Finder</div></div>'); 
               $('.left').append('<div class="left-data"></div>');
                 $('.left-data').append('<div class="left-data-intro"><p>We provide ease of access to information on all current and future open LiDAR datasets managed by LINZ and regional councils. </p></div>');
                 $('.left-data').append('<div class="left-data-intro-too"><p>You are currently viewing all the map layers. Explore the map to find information about the area you need. If a dataset for the area exists, get the link to crop, select and download the data.</p></div>');
@@ -149,12 +149,12 @@ function insert() {
     createOverlayA(data, availName, availBaseStyle)
   })
 
-  var comingName = '<span><span class="legend-cs"></span>Available Now</span>'
+  var comingName = '<span><span class="legend-cs"></span>Coming Soon</span>'
   $.getJSON(urlComingSoon, function (data) { 
     createOverlayC(data, comingName, comingBaseStyle)
   })
 
-  var progressName = '<span><span class="legend-ip"></span>Available Now</span>'
+  var progressName = '<span><span class="legend-ip"></span>In Progress</span>'
   $.getJSON(urlProgress, function (data) { 
     createOverlayP(data, progressName, progressBaseStyle)
   })
@@ -174,6 +174,7 @@ function insert() {
         var availableName = '<div class="popupText"> Available: '+ item.feature.properties.name + '</div>'
         var availableNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
         var available = '<div class="popupTextType">Available Now</div>'
+        var metaTitle = '<div class="popupText" style="margin-bottom: 10;"><strong>Metadata</strong></div>'
         var availableDensity = '<div class="popupText">Point Density: ' + item.feature.properties.point_dens + '</div>';
         var availableVertical = '<div class="popupText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>';
         var availableHorizontal = '<div class="popupText">Horizontal Datum: ' + item.feature.properties.horizontal + '</div>'; 
@@ -181,18 +182,20 @@ function insert() {
         var availableFFrom = '<div class="popupText">Flown From: ' + item.feature.properties.flown_from + '</div>';  
         var availableFTo = '<div class="popupText">Flown To: ' + item.feature.properties.flown_to + '</div>'; 
         var mainLinks = [
-          '<div><a href="' + item.feature.properties.DataDEM + '" target="_blank">Source DEM</a></div>',
-          '<div><a href="' + item.feature.properties.DataDSM + '" target="_blank">Source DSM</a></div>',
-          '<div><a href="' + item.feature.properties.pointC + '" target="_blank">Source Point Cloud</a></div>'
+          '<div class="popupText" style="margin-bottom: 10;"><strong>Available Downloads</strong></div>',
+          '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDEM + '" target="_blank">Source DEM (LINZ)</a></div>',
+          '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDSM + '" target="_blank">Source DSM (LINZ)</a></div>',
+          '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.pointC + '" target="_blank">Source Point Cloud (OpenTopo)</a></div>',
+          '<hr>'
         ]
-        var nameLayerA = [availableNameTitle, available, availableDensity, availableVertical, availableHorizontal, availableSupplier, availableFFrom, availableFTo, mainLinks.join("")]
+        var nameLayerA = [availableNameTitle, available, mainLinks.join(""), metaTitle, availableDensity, availableVertical, availableHorizontal, availableSupplier, availableFFrom, availableFTo]
         popupList.push(nameLayerA);
         popupStateOne.push(availableName);
         }
       else if (item.feature.properties.id === "c") {
         var comingName = '<div class="popupText">Coming Soon: ' + item.feature.properties.Region + '</div>'
         var comingNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.Region+ '</div>'
-        var coming = '<div class="popupTextType">Coming Soon</div>'
+        var coming = '<div class="popupTextType" style="margin-bottom: 10;">Coming Soon</div>'
         var start = '<div class="popupText">Start Date: Info Not Yet Available</div>';
         var delivery = '<div class="popupText">Expected Delivery Date: ' + item.feature.properties.DataDelive + '</div>';
         var pulse = '<div class="popupText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';
@@ -208,7 +211,7 @@ function insert() {
       else if (item.feature.properties.id === "p") {
         var progressName = '<div class="popupText">In Progress: ' + item.feature.properties.Region + '</div>'
         var progressNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.Region + '</div>'
-        var progress = '<div class="popupTextType">In Progress</div>'
+        var progress = '<div class="popupTextType" style="margin-bottom: 10;">In Progress</div>'
         var start = '<div class="popUpText">Start Date: ' + item.feature.properties.ProjectSta + '</div>';
         var delivery = '<div class="popUpText">Expected Delivery Date: ' + item.feature.properties.ProjectCom + '</div>';
         var pulse = '<div class="popUpText">Pulse Density: ' + item.feature.properties.PulseDensi + '</div>';

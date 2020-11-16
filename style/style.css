@@ -14,6 +14,12 @@ img {
     object-fit: fill;
 }
 
+hr {
+    width: 80%;
+    margin-top: 20;
+    margin-bottom: 20;
+}
+
 /*Top Nav Bar*/
 .menuitem {
     position: relative;
@@ -223,48 +229,54 @@ img {
 .left {
     width: 25%;
     height: 100%;
-    background-color: #eeeeee;
     float: left;
     padding: 5;
     align-items: center;
+    overflow: scroll;
 }
 
 .left-title {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
-    width: 80%;
+    width: 95%;
     height:10%;
+    margin: auto;
+}
+
+.titleText{
+    background-color: #ffffff;
     color: #333333;
     text-align: center;
     font-weight: 500;
     font-size: 1.5vw;
     margin: auto;
-
-    /*margin-top: 10;*/
 }
 
 .left-data {
-    width: 80%;
+    width: 95%;
     color: #333333;
     background-color: white;
     margin: auto;
+    padding: 20;
 }
 
 .left-data-info {
-    width: 80%;
+    width: 95%;
     color: #333333;
     background-color: white;
     margin: auto;
 }
 
 .left-data-lists {
-    width: 80%;
+    width: 95%;
     color: #333333;
     background-color: white;
     margin: auto;
 }
 
 .left-data-title {
-    width: 80%;
+    width: 95%;
     color: #333333;
     text-align: center;
     font-weight: 500;
@@ -275,7 +287,7 @@ img {
 
 .left-data-intro,
 .left-data-intro-too {
-    width: 80%;
+    width: 95%;
     color: #333333;
     /*background-color: #ff0000;*/
     margin: auto;
@@ -283,13 +295,13 @@ img {
 }
 
 .left-data-datasets {
-    width: 80%;
+    width: 95%;
     color: #333333;
     margin: auto;
 }
 
 .left-data-meta {
-    width: 80%;
+    width: 95%;
     color: #333333;
     font-weight: 500;
     margin: auto;
@@ -297,8 +309,7 @@ img {
 }
 
 .left-bottom {
-    width: 60%;
-    height: 9%;
+    width: 75%;
     color: #333333;
     background-color: #ffffff;
     margin: auto;
@@ -411,13 +422,16 @@ span {
 .popupText {
     width: auto;
     color: #333333;
+    margin-top: 3;
+    margin-bottom: 3;
     /*background-color: #0ff;*/
 }
 
 .popupTextTitle {
     width: auto;
+    margin-bottom: 5;
     /*background-color: #0f0f0f;*/
-    font-size: 14pt;
+    font-size: 1.0vw;
     text-align: center;
     color: #333333;
   }
@@ -426,6 +440,7 @@ span {
     /*background-color: #f0f0f0;*/
     text-align: center;
     font-style: italic;
+    margin-bottom: 5;
   }
 
 /*.popupText:hover {
