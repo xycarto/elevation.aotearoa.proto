@@ -87,6 +87,14 @@ function insert() {
     fillOpacity: 0.4
   }
 
+  var markerStyle = {
+    radius: 5,
+    fillColor: "red",
+    weight: 0,
+    opacity: 1,
+    fillOpacity: 0.8
+  }
+
   
        
   // JSON urls
@@ -264,7 +272,7 @@ function insert() {
     //Make popup state one
     if (popupStateOne.join("") != "") {
     //console.log(popupStateOne.join(""))
-    var mkr = L.marker(e.latlng)
+    var mkr = L.circleMarker(e.latlng, markerStyle)
     mkr.addTo(map);    
     
     var popup = L.popup({maxWidth:3000, offset: [-75,-50]})        
