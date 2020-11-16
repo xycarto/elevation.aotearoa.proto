@@ -21,9 +21,9 @@ function insert() {
                 $('.left-data').append('<div class="left-data-meta"></div>');
                 //$('.left-data').append('<hr><div class="left-data-info">Please select a layer from the legend on the top right of the map.</div>');
                 $('.left-data').append('<div class="left-data-lists"></div>');
-              $('.left').append('<div class="left-bottom"><i class="fa fa-cog" title="tool-tip"></i><p><strong>Tool tip:</strong> Only want to see what’s coming soon or is in progress? Uncheck the relevant boxes in the map legend.</p></div>');
+              $('.left').append('<div class="left-bottom"><p><i class="fa fa-cog" title="tool-tip"></i><strong>Tool tip:</strong> Only want to see what’s coming soon or is in progress? Uncheck the relevant boxes in the map legend.</p></div>');
         $('.landboxframe').append('<div id="map"></div>'); 
-      $('.alldiv').append('<div class="bottom"></div>');
+      $('.alldiv').append('<div class="bottom"><div class="bottomText">This website is an initiative of Land Information New Zealand in partnership with regional councils.</div></div>');
   
   
   

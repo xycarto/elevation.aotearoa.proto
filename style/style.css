@@ -86,11 +86,19 @@ img {
 
 .bottom {
     float: left;
+    display: flex;
+    align-items: center;
     height: 4%;
     width: 100%;
     background-color: #02637A;
     margin-top: 5;
-    padding-top: 10;
+}
+
+.bottomText {
+    color: #eeeeee;
+    text-align: center;
+    width: 60%;
+    margin: auto; 
 }
 
 
@@ -298,6 +306,7 @@ img {
     display: flex;
     flex-direction: column;
     padding: 5;
+    border: 1px solid #333333;
 }
 
 .midtext {
