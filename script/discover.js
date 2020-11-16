@@ -174,15 +174,15 @@ function insert() {
         var availableName = '<div class="popupText"> Available: '+ item.feature.properties.name + '</div>'
         var availableNameTitle = '<div class="popupTextTitle">'+ item.feature.properties.name + '</div>'
         var available = '<div class="popupTextType">Available Now</div>'
-        var metaTitle = '<div class="popupText" style="margin-bottom: 10;"><strong>Metadata</strong></div>'
-        var availableDensity = '<div class="popupText">Point Density: ' + item.feature.properties.point_dens + '</div>';
-        var availableVertical = '<div class="popupText">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>';
-        var availableHorizontal = '<div class="popupText">Horizontal Datum: ' + item.feature.properties.horizontal + '</div>'; 
-        var availableSupplier = '<div class="popupText">Supplier: ' + item.feature.properties.supplier + '</div>'; 
-        var availableFFrom = '<div class="popupText">Flown From: ' + item.feature.properties.flown_from + '</div>';  
-        var availableFTo = '<div class="popupText">Flown To: ' + item.feature.properties.flown_to + '</div>'; 
+        var metaTitle = '<div class="popupText" style="margin-bottom: 10; font-weight:550;">Metadata</div>'
+        var availableDensity = '<div class="popupText" style="margin-left: 15;">Point Density: ' + item.feature.properties.point_dens + '</div>';
+        var availableVertical = '<div class="popupText" style="margin-left: 15;">Vertical Datum: ' + item.feature.properties.vertical_d + '</div>';
+        var availableHorizontal = '<div class="popupText" style="margin-left: 15;">Horizontal Datum: ' + item.feature.properties.horizontal + '</div>'; 
+        var availableSupplier = '<div class="popupText" style="margin-left: 15;">Supplier: ' + item.feature.properties.supplier + '</div>'; 
+        var availableFFrom = '<div class="popupText" style="margin-left: 15;">Flown From: ' + item.feature.properties.flown_from + '</div>';  
+        var availableFTo = '<div class="popupText" style="margin-left: 15;">Flown To: ' + item.feature.properties.flown_to + '</div>'; 
         var mainLinks = [
-          '<div class="popupText" style="margin-bottom: 10;"><strong>Available Downloads</strong></div>',
+          '<div class="popupText" style="margin-bottom: 10; font-weight:550;">Available Downloads</div>',
           '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDEM + '" target="_blank">Source DEM (LINZ)</a></div>',
           '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDSM + '" target="_blank">Source DSM (LINZ)</a></div>',
           '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.pointC + '" target="_blank">Source Point Cloud (OpenTopo)</a></div>',
