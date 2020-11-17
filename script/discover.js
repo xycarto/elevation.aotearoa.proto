@@ -61,7 +61,7 @@ function insert() {
     fillColor: "#cc3366",
     weight: 0.5,
     opacity: 1,
-    color: '#dddddd',
+    color: '#aaaaaa',
     fillOpacity: 0.4
   }
 
@@ -69,7 +69,7 @@ function insert() {
     fillColor: "#66cccc",
     weight: 0.5,
     opacity: 1,
-    color: '#dddddd',
+    color: '#aaaaaa',
     fillOpacity: 0.4
   }
 
@@ -77,7 +77,7 @@ function insert() {
     fillColor: "#996699",
     weight: 0.5,
     opacity: 1,
-    color: '#dddddd',
+    color: '#aaaaaa',
     fillOpacity: 0.4
 }
   
