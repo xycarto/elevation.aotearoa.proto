@@ -215,7 +215,7 @@ function insert() {
           '<div class="popupText" style="margin-bottom: 10; font-weight:550;">Available Downloads</div>',
           '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDEM + '" target="_blank">Source DEM (LINZ)</a></div>',
           '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.DataDSM + '" target="_blank">Source DSM (LINZ)</a></div>',
-          '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.pointC + '" target="_blank">Source Point Cloud (OpenTopo)</a></div>',
+          '<div class="popupText" style="margin-left: 15;"><a href="' + item.feature.properties.PointC + '" target="_blank">Source Point Cloud (OpenTopo)</a></div>',
           '<hr>'
         ]
         var nameLayerA = [availableNameTitle, available, mainLinks.join(""), metaTitle, availableDensity, availableVertical, availableHorizontal, availableSupplier, availableFFrom, availableFTo]
