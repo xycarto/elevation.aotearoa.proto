@@ -52,7 +52,7 @@ function insert() {
   var map = new L.Map('map',
            {center: [-39.9, 175.2], 
            zoom: 6,
-           layers: aerialBasemap
+           layers: colourBasemap
           });
   
   
